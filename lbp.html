@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Low Back Pain PM&R Interactive Revision Hub</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --card:#ffffff; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb;
+    --accent:#2563eb; --accent2:#0f766e; --warn:#b45309; --danger:#b91c1c; --ok:#15803d;
+    --soft:#eef2ff; --soft2:#ecfdf5; --soft3:#fff7ed; --shadow:0 10px 28px rgba(15,23,42,.08);
+  }
+  [data-theme="dark"]{
+    --bg:#0b1020; --card:#121a2b; --ink:#e5e7eb; --muted:#9ca3af; --line:#263244;
+    --accent:#60a5fa; --accent2:#2dd4bf; --warn:#f59e0b; --danger:#f87171; --ok:#4ade80;
+    --soft:#172554; --soft2:#064e3b; --soft3:#431407; --shadow:0 10px 28px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+  a{color:var(--accent)}
+  header{position:sticky;top:0;z-index:30;background:rgba(246,247,251,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  [data-theme="dark"] header{background:rgba(11,16,32,.92)}
+  .topbar{display:flex;gap:14px;align-items:center;justify-content:space-between;max-width:1240px;margin:auto;padding:12px 18px}
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;font-weight:900;box-shadow:var(--shadow)}
+  .brand h1{font-size:18px;line-height:1.1;margin:0}.brand small{color:var(--muted)}
+  .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  button,.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 12px;cursor:pointer;font-weight:650;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+  button:hover,.btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+  button.primary{background:var(--accent);color:white;border-color:var(--accent)}
+  button.ghost{background:transparent;box-shadow:none}
+  .layout{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;padding:18px}
+  nav{position:sticky;top:76px;height:calc(100vh - 92px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow)}
+  nav a{display:block;text-decoration:none;color:var(--ink);padding:9px 10px;border-radius:12px;margin:4px 0;font-size:14px}
+  nav a:hover, nav a.active{background:var(--soft);color:var(--accent)}
+  .navtitle{font-weight:850;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:12px 8px 6px}
+  main{min-width:0}
+  section{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+  h2{margin:0 0 12px;font-size:27px;line-height:1.18} h3{margin:18px 0 8px;font-size:19px} h4{margin:12px 0 8px;font-size:16px}
+  p{margin:8px 0}.muted{color:var(--muted)} .small{font-size:13px}.tiny{font-size:12px}.lead{font-size:17px;color:var(--muted)}
+  .grid{display:grid;gap:14px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,0));border:1px solid var(--line);border-radius:18px;padding:16px}
+  .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid var(--line);padding:4px 9px;font-size:12px;font-weight:750;margin:2px;background:var(--card)}
+  .pill.blue{background:var(--soft);color:var(--accent);border-color:transparent}.pill.green{background:var(--soft2);color:var(--ok);border-color:transparent}.pill.orange{background:var(--soft3);color:var(--warn);border-color:transparent}.pill.red{background:rgba(185,28,28,.12);color:var(--danger);border-color:transparent}
+  .callout{border-left:5px solid var(--accent);background:var(--soft);padding:14px 16px;border-radius:14px;margin:12px 0}.callout.warn{border-color:var(--warn);background:var(--soft3)}.callout.danger{border-color:var(--danger);background:rgba(185,28,28,.10)}.callout.ok{border-color:var(--ok);background:var(--soft2)}
+  details{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:rgba(127,127,127,.03);margin:10px 0}summary{cursor:pointer;font-weight:800}details[open]{background:rgba(127,127,127,.06)}
+  table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid var(--line);border-radius:15px;margin:12px 0;font-size:14px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{text-align:left;background:rgba(127,127,127,.08)}tr:last-child td{border-bottom:none}
+  .progresswrap{height:9px;background:rgba(127,127,127,.16);border-radius:999px;overflow:hidden;margin-top:8px}.progressbar{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s}
+  .module-check{float:right;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+  .module-check input{transform:scale(1.15)}
+  .svgbox{background:radial-gradient(circle at top left,rgba(37,99,235,.10),transparent 40%),var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;min-height:360px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  svg text{font-family:inherit}.hotspot{cursor:pointer;transition:opacity .2s,transform .2s}.hotspot:hover{opacity:.75}.tooltipbox{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--card);min-height:152px}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.tab{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:750}.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}.tabpane{display:none}.tabpane.active{display:block}
+  .flashcard{min-height:190px;display:grid;place-items:center;text-align:center;border:1px dashed var(--line);border-radius:20px;padding:24px;background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(15,118,110,.08));cursor:pointer;font-size:18px;font-weight:800}.flashcard .answer{display:none;font-weight:650;font-size:16px;color:var(--muted)}.flashcard.flipped .question{display:none}.flashcard.flipped .answer{display:block}
+  .quizbox{border:1px solid var(--line);border-radius:20px;padding:16px;background:rgba(127,127,127,.04)}.option{display:block;width:100%;text-align:left;margin:8px 0;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-weight:600}.option.correct{border-color:var(--ok);background:var(--soft2)}.option.wrong{border-color:var(--danger);background:rgba(185,28,28,.10)}.quizmeta{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center}.explain{border-radius:14px;padding:12px;margin-top:10px;background:var(--soft);display:none}
+  .matchgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.matchitem{padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--card)}select,input[type="text"]{border:1px solid var(--line);border-radius:12px;padding:9px;background:var(--card);color:var(--ink);width:100%}
+  .timeline{position:relative;margin:16px 0;padding-left:25px}.timeline:before{content:"";position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--line)}.step{position:relative;margin:0 0 14px;background:rgba(127,127,127,.04);border:1px solid var(--line);border-radius:16px;padding:12px}.step:before{content:"";position:absolute;left:-22px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+  .kbd{border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;padding:1px 6px;font-size:12px;background:rgba(127,127,127,.06)}
+  .print-only{display:none}
+  .searchbox{display:flex;gap:8px;margin:12px 0}.searchbox input{flex:1}.hidden-by-search{display:none!important}.highlight{outline:2px solid var(--accent);outline-offset:3px}
+  @media(max-width:900px){.layout{grid-template-columns:1fr}nav{position:relative;top:0;height:auto}.grid.two,.grid.three,.grid.four,.matchgrid{grid-template-columns:1fr}.toolbar{justify-content:flex-start}.topbar{align-items:flex-start;flex-direction:column}}
+  @media print{header,nav,.toolbar,.module-check,.tabs,.quizbox button,.searchbox{display:none!important}.layout{display:block;padding:0}section{box-shadow:none;break-inside:avoid}.print-only{display:block}}
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">LBP</div>
+      <div><h1>Low Back Pain PM&R Interactive Revision Hub</h1><small>Basic science → clinical reasoning → rehabilitation → quiz hub</small></div>
+    </div>
+    <div class="toolbar">
+      <button id="themeBtn" class="ghost">Dark mode</button>
+      <button onclick="window.print()">Print</button>
+      <button id="resetProgress">Reset progress</button>
+    </div>
+    <div style="min-width:200px;flex:1;max-width:360px">
+      <small class="muted">Completion</small>
+      <div class="progresswrap"><div id="globalProgress" class="progressbar"></div></div>
+    </div>
+  </div>
+</header>
+<div class="layout">
+<nav id="sideNav">
+  <div class="navtitle">Study modules</div>
+  <a href="#overview">1. Map the problem</a>
+  <a href="#anatomy">2. Anatomy</a>
+  <a href="#biomechanics">3. Biomechanics</a>
+  <a href="#pathology">4. Pathology & pathophysiology</a>
+  <a href="#evaluation">5. Evaluation</a>
+  <a href="#management">6. Management</a>
+  <a href="#modalities">7. Modalities</a>
+  <a href="#programming">8. PM&R programming</a>
+  <a href="#cases">9. Case reasoning</a>
+  <a href="#quiz">10. Quiz hub</a>
+  <a href="#sources">Sources</a>
+  <div class="navtitle">Tools</div>
+  <a href="#quicktables">Quick tables</a>
+  <a href="#redflags">Red flags</a>
+  <a href="#radiculopathy">Root localization</a>
+</nav>
+<main>
+<section id="overview" data-module="overview">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="overview"> mark complete</label>
+  <h2>1. First, map the low back pain problem</h2>
+  <p class="lead">For PM&R, low back pain is not only a pain diagnosis. It is a functional problem involving tissue irritability, movement control, neurologic safety, psychosocial risk, work demands, and recurrence prevention.</p>
+  <div class="grid four">
+    <div class="card"><span class="pill blue">Category 1</span><h3>Nonspecific mechanical LBP</h3><p>Most common. Pain arises from muscle, ligament, disc, facet, or movement-system dysfunction, but no single dangerous structural pathology dominates.</p></div>
+    <div class="card"><span class="pill orange">Category 2</span><h3>Radiculopathy or stenosis</h3><p>Leg pain, paresthesia, weakness, reflex change, neurogenic claudication, or positive neural tension testing suggests neural involvement.</p></div>
+    <div class="card"><span class="pill green">Category 3</span><h3>Referred nonspinal pain</h3><p>Renal, vascular, gastrointestinal, pelvic, or systemic conditions can present as back pain. Pattern recognition matters.</p></div>
+    <div class="card"><span class="pill red">Category 4</span><h3>Specific spinal pathology</h3><p>Fracture, infection, malignancy, inflammatory disease, cauda equina syndrome, or progressive neurologic compromise.</p></div>
+  </div>
+  <div class="callout ok"><strong>Board-exam anchor:</strong> classify first, then decide whether the patient needs reassurance and active rehabilitation, imaging, laboratory tests, pain intervention, or urgent referral.</div>
+  <details open><summary>The PM&R mental model</summary>
+    <div class="timeline">
+      <div class="step"><strong>Screen safety.</strong> Red flags, neurologic deficits, bladder/bowel symptoms, fever, cancer history, trauma, corticosteroid use, osteoporosis, inflammatory signs.</div>
+      <div class="step"><strong>Identify pain generator pattern.</strong> Mechanical axial pain, discogenic pain, facet pain, SIJ pain, radicular pain, stenotic claudication, or referred pain.</div>
+      <div class="step"><strong>Assess function.</strong> Sitting, standing, walking tolerance, sleep, work, lifting, fear avoidance, self-efficacy, recurrence history.</div>
+      <div class="step"><strong>Choose entry point.</strong> Education, graded activity, directional preference, motor control, strengthening, endurance, manual therapy, medication, or referral.</div>
+      <div class="step"><strong>Prevent chronicity.</strong> Reduce fear, restore confidence, build capacity, modify exposure, and return the patient to meaningful tasks.</div>
+    </div>
+  </details>
+</section>
+
+<section id="anatomy" data-module="anatomy">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="anatomy"> mark complete</label>
+  <h2>2. Basic anatomy you must own</h2>
+  <p class="lead">The lumbar spine is built from repeated motion segments. Each segment contains a disc, paired facet joints, ligaments, muscles, and exiting/traversing nerve roots.</p>
+  <div class="grid two">
+    <div class="svgbox">
+      <svg viewBox="0 0 620 420" width="100%" height="100%" role="img" aria-label="Interactive lumbar motion segment diagram">
+        <defs>
+          <filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.18"/></filter>
+        </defs>
+        <rect x="155" y="60" width="310" height="55" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="hotspot" data-info="body" filter="url(#shadow)"/>
+        <rect x="155" y="265" width="310" height="55" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="hotspot" data-info="body" filter="url(#shadow)"/>
+        <ellipse cx="310" cy="192" rx="132" ry="63" fill="#fde68a" stroke="#b45309" stroke-width="2" class="hotspot" data-info="disc" filter="url(#shadow)"/>
+        <ellipse cx="310" cy="192" rx="57" ry="30" fill="#fef3c7" stroke="#b45309" stroke-width="2" class="hotspot" data-info="nucleus"/>
+        <path d="M190 126 C255 160,365 160,430 126" fill="none" stroke="#6b7280" stroke-width="5" class="hotspot" data-info="ligament"/>
+        <path d="M190 257 C255 224,365 224,430 257" fill="none" stroke="#6b7280" stroke-width="5" class="hotspot" data-info="ligament"/>
+        <path d="M464 112 C545 135,548 253,464 276" fill="none" stroke="#22c55e" stroke-width="13" stroke-linecap="round" class="hotspot" data-info="facet"/>
+        <path d="M156 112 C75 135,72 253,156 276" fill="none" stroke="#22c55e" stroke-width="13" stroke-linecap="round" class="hotspot" data-info="facet"/>
+        <path d="M310 90 C326 125,330 155,327 189 C325 223,322 258,310 292" fill="none" stroke="#ef4444" stroke-width="9" stroke-linecap="round" class="hotspot" data-info="canal"/>
+        <path d="M332 173 C405 148,472 151,548 176" fill="none" stroke="#a855f7" stroke-width="7" stroke-linecap="round" class="hotspot" data-info="nerve"/>
+        <path d="M288 211 C215 236,148 233,72 208" fill="none" stroke="#a855f7" stroke-width="7" stroke-linecap="round" class="hotspot" data-info="nerve"/>
+        <text x="310" y="93" text-anchor="middle" font-size="16" font-weight="800" fill="#1e40af">Vertebral body</text>
+        <text x="310" y="198" text-anchor="middle" font-size="16" font-weight="800" fill="#92400e">Disc</text>
+        <text x="508" y="214" font-size="14" font-weight="800" fill="#166534">Facet</text>
+        <text x="455" y="166" font-size="14" font-weight="800" fill="#6d28d9">Nerve root</text>
+        <text x="318" y="145" font-size="14" font-weight="800" fill="#991b1b">Canal</text>
+      </svg>
+    </div>
+    <div class="tooltipbox" id="anatomyInfo">
+      <h3>Click a structure</h3>
+      <p>Use the diagram to revise the motion segment. Start with the disc, facet joints, canal, and nerve root.</p>
+    </div>
+  </div>
+  <h3>Key tissue pain generators</h3>
+  <div class="grid three">
+    <div class="card"><h4>Intervertebral disc</h4><p>Annulus fibrosus and endplate can become nociceptive. Degeneration involves proteoglycan loss, dehydration, annular fissure, abnormal load transfer, and inflammatory mediator release.</p></div>
+    <div class="card"><h4>Facet joint</h4><p>Synovial joint. Extension and rotation increase facet loading. Capsular strain, synovitis, cartilage wear, and osteophytes may cause axial or referred pain.</p></div>
+    <div class="card"><h4>Nerve root</h4><p>Compression plus chemical inflammation produces radicular pain. Neurologic examination localizes affected root through myotome, dermatome, and reflex change.</p></div>
+  </div>
+  <div id="radiculopathy">
+    <h3>Root localization table</h3>
+    <table>
+      <thead><tr><th>Root</th><th>Motor emphasis</th><th>Sensory emphasis</th><th>Reflex</th><th>Common clinical clue</th></tr></thead>
+      <tbody>
+        <tr><td>L2-L3</td><td>Hip flexion, hip adduction</td><td>Anterior thigh</td><td>Usually none reliable</td><td>Groin/anterior thigh pain can mimic hip pathology.</td></tr>
+        <tr><td>L4</td><td>Knee extension, ankle dorsiflexion contribution</td><td>Medial leg, medial malleolus</td><td>Patellar reflex</td><td>Quadriceps weakness, reduced knee jerk.</td></tr>
+        <tr><td>L5</td><td>Great-toe extension, ankle dorsiflexion, hip abduction</td><td>Dorsum of foot, first web space</td><td>Medial hamstring sometimes used</td><td>Foot drop tendency, weak EHL.</td></tr>
+        <tr><td>S1</td><td>Ankle plantarflexion, hip extension</td><td>Lateral foot, sole</td><td>Achilles reflex</td><td>Weak heel raise, reduced ankle jerk.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="biomechanics" data-module="biomechanics">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="biomechanics"> mark complete</label>
+  <h2>3. Lumbar biomechanics: how loading becomes symptoms</h2>
+  <p class="lead">The spine works as a load-bearing column and a movement system. Pain often appears when tissue capacity is lower than the mechanical demand.</p>
+  <div class="tabs" data-tabs="bioTabs">
+    <button class="tab active" data-tab="motion">Motion segment</button>
+    <button class="tab" data-tab="load">Load sharing</button>
+    <button class="tab" data-tab="stability">Stability system</button>
+    <button class="tab" data-tab="lpr">Lumbopelvic rhythm</button>
+    <button class="tab" data-tab="movement">Movement patterns</button>
+  </div>
+  <div class="tabpane active" id="bioTabs-motion">
+    <div class="grid three">
+      <div class="card"><h3>Flexion</h3><p>Increases posterior annular tension and may provoke discogenic or radicular symptoms in flexion-sensitive patients. It also opens facets and can relieve stenotic symptoms.</p></div>
+      <div class="card"><h3>Extension</h3><p>Increases facet approximation and may narrow the canal/foramina. It may relieve posterior disc derangement in some directional-preference patterns.</p></div>
+      <div class="card"><h3>Rotation</h3><p>Coupled with flexion or compression, rotation increases annular and facet stress. Repetitive twisting is relevant in occupational LBP.</p></div>
+    </div>
+  </div>
+  <div class="tabpane" id="bioTabs-load">
+    <div class="callout"><strong>Disc-facet partnership:</strong> the disc resists compression and distributes load; facets resist shear and guide movement. Disc height loss can shift more load to posterior elements and alter foraminal size.</div>
+    <table><thead><tr><th>Load situation</th><th>Likely structure stressed</th><th>Clinical consequence</th></tr></thead><tbody>
+      <tr><td>Loaded flexion, repeated bending</td><td>Posterior annulus, paraspinals, posterior ligaments</td><td>Discogenic pain, strain, neural tension sensitivity.</td></tr>
+      <tr><td>Extension with rotation</td><td>Facet joint, pars interarticularis</td><td>Facet pain, spondylolysis in young athletes.</td></tr>
+      <tr><td>Prolonged sitting</td><td>Disc/endplate, passive posterior tissues</td><td>Flexion intolerance, deconditioning, movement fear.</td></tr>
+      <tr><td>Standing/walking in lumbar extension</td><td>Facets, canal/foramina in stenosis</td><td>Neurogenic claudication, relief with sitting/flexion.</td></tr>
+    </tbody></table>
+  </div>
+  <div class="tabpane" id="bioTabs-stability">
+    <div class="grid three">
+      <div class="card"><span class="pill blue">Passive subsystem</span><p>Vertebrae, discs, facets, ligaments. Provides structural limits and joint stiffness.</p></div>
+      <div class="card"><span class="pill green">Active subsystem</span><p>Trunk and hip muscles: multifidus, transversus abdominis, erector spinae, quadratus lumborum, gluteals, diaphragm, pelvic floor.</p></div>
+      <div class="card"><span class="pill orange">Neural subsystem</span><p>Motor control, proprioception, timing, threat perception, and anticipatory stabilization.</p></div>
+    </div>
+    <p>Motor control training is logical when the problem is not only weakness but poor timing, guarding, fear-based movement avoidance, or loss of segmental control.</p>
+  </div>
+  <div class="tabpane" id="bioTabs-lpr">
+    <div class="callout"><strong>Lumbopelvic rhythm</strong> is the coordinated sagittal-plane movement between the lumbar spine, pelvis, and hips during forward bending and return to upright. Clinically, it answers this question: is the patient moving through the hips and pelvis, or are they overusing a painful lumbar segment?</div>
+    <div class="grid three">
+      <div class="card"><h3>Forward bending</h3><p>Normal movement uses both lumbar flexion and anterior pelvic rotation over the femoral heads. A practical teaching estimate is that full trunk flexion is roughly shared between lumbar flexion and hip/pelvic motion, with a larger total contribution from the hips/pelvis in end range.</p></div>
+      <div class="card"><h3>Return from flexion</h3><p>The hip extensors and lumbar extensors reverse the movement. Poor gluteal control, hamstring guarding, or fear of movement may cause a jerky return, early lumbar extension, or painful lumbar hinging.</p></div>
+      <div class="card"><h3>Clinical implication</h3><p>Reduced hip mobility, hamstring tightness, hip flexion contracture, weak gluteals, or poor hip-hinge skill can shift load toward the lumbar spine and perpetuate recurrent low back pain.</p></div>
+    </div>
+    <h3>How to observe it quickly</h3>
+    <table><thead><tr><th>Observation</th><th>Possible interpretation</th><th>Rehabilitation cue</th></tr></thead><tbody>
+      <tr><td>Excessive lumbar flexion with little pelvic rotation</td><td>Limited hip flexion, hamstring stiffness, poor hip-hinge strategy</td><td>Teach hip hinge, improve posterior-chain mobility, strengthen gluteals.</td></tr>
+      <tr><td>Early painful lumbar extension during return</td><td>Lumbar extensor overdominance or weak hip extensors</td><td>Cue “push the floor away,” gluteal activation, graded deadlift pattern.</td></tr>
+      <tr><td>Extension hinge at one lumbar level</td><td>Segmental movement-control impairment, facet/pars sensitivity</td><td>Neutral-spine control, abdominal bracing, hip mobility, avoid repeated provocative hinging early.</td></tr>
+      <tr><td>Rigid guarded trunk with minimal lumbar and pelvic motion</td><td>High irritability, fear avoidance, protective guarding</td><td>Start with pain education, breathing, unloaded mobility, graded exposure.</td></tr>
+    </tbody></table>
+    <details><summary>Exam phrase to memorize</summary><p>“I assess lumbopelvic rhythm because low back pain may result from poor load sharing between the lumbar spine and hips. If hip motion or pelvic control is limited, the lumbar spine may compensate with excessive flexion, extension, or segmental hinging.”</p></details>
+  </div>
+  <div class="tabpane" id="bioTabs-movement">
+    <details open><summary>Common maladaptive movement patterns</summary>
+      <ul>
+        <li><strong>Flexion dominant:</strong> repeated flexion with limited hip hinge, often provokes discogenic pattern.</li>
+        <li><strong>Extension dominant:</strong> excessive lordosis/hinging at lower lumbar segments, often provokes facet or pars stress.</li>
+        <li><strong>Rotation dominant:</strong> trunk twists rather than hip/thoracic contribution, relevant for sport and work.</li>
+        <li><strong>Guarded movement:</strong> global stiffness due to pain threat, fear avoidance, or central sensitization.</li>
+        <li><strong>Deconditioned pattern:</strong> low endurance and poor load tolerance after prolonged rest.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<section id="pathology" data-module="pathology">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="pathology"> mark complete</label>
+  <h2>4. Common pathology and pathophysiology</h2>
+  <p class="lead">Learn the pain behavior. The exact MRI finding is often less important than whether the clinical pattern fits the patient.</p>
+  <div class="searchbox"><input id="pathSearch" type="text" placeholder="Search pathology cards, e.g. stenosis, facet, disc, fracture"><button onclick="clearPathSearch()">Clear</button></div>
+  <div class="grid two" id="pathCards">
+    <div class="card path-card"><span class="pill blue">Mechanical</span><h3>Muscle strain / ligament sprain</h3><p><strong>Pathophysiology:</strong> overload, eccentric microtearing, inflammatory mediator release, reflex spasm, restricted motion.</p><p><strong>Pain behavior:</strong> localized pain, worse with movement, tender paraspinals, usually normal neurologic exam.</p><p><strong>PM&R key:</strong> reassure, relative rest only briefly, progressive mobility and strengthening.</p></div>
+    <div class="card path-card"><span class="pill orange">Disc</span><h3>Discogenic pain</h3><p><strong>Pathophysiology:</strong> annular fissure, endplate injury, proteoglycan loss, disc dehydration, abnormal load transfer, nociceptive and vascular ingrowth.</p><p><strong>Pain behavior:</strong> axial pain often worse with sitting, flexion, cough/strain if irritated.</p><p><strong>PM&R key:</strong> directional preference, graded exposure, trunk endurance, avoid excessive fear around imaging.</p></div>
+    <div class="card path-card"><span class="pill orange">Neural</span><h3>Lumbar disc herniation with radiculopathy</h3><p><strong>Pathophysiology:</strong> mechanical compression plus chemical radiculitis.</p><p><strong>Pain behavior:</strong> leg pain below knee, dermatomal sensory changes, myotomal weakness, reflex loss, positive SLR/crossed SLR.</p><p><strong>PM&R key:</strong> neuro screen repeatedly, modify irritability, consider MRI/referral if severe or persistent.</p></div>
+    <div class="card path-card"><span class="pill green">Facet</span><h3>Facet arthropathy</h3><p><strong>Pathophysiology:</strong> synovial joint degeneration, capsular stretch, osteophytes, local inflammation.</p><p><strong>Pain behavior:</strong> axial LBP, may refer to buttock/thigh, worse extension/rotation, usually not below knee.</p><p><strong>PM&R key:</strong> extension control, hip mobility, trunk endurance, diagnostic blocks if interventional planning.</p></div>
+    <div class="card path-card"><span class="pill green">SIJ</span><h3>Sacroiliac joint pain</h3><p><strong>Pathophysiology:</strong> load-transfer dysfunction or inflammatory SI involvement.</p><p><strong>Pain behavior:</strong> buttock/posterior pelvic pain, Fortin area, provoked by transitions, single-leg loading, several positive SI provocation tests.</p><p><strong>PM&R key:</strong> pelvic girdle strengthening, load management, image-guided diagnostic injection when needed.</p></div>
+    <div class="card path-card"><span class="pill orange">Stenosis</span><h3>Lumbar spinal stenosis</h3><p><strong>Pathophysiology:</strong> degenerative canal/foraminal narrowing from disc bulge, facet hypertrophy, ligamentum flavum thickening, spondylolisthesis.</p><p><strong>Pain behavior:</strong> neurogenic claudication, worse standing/walking/extension, better sitting/flexion.</p><p><strong>PM&R key:</strong> flexion-biased conditioning, walking/cycling tolerance, neurologic monitoring, referral if progressive deficit.</p></div>
+    <div class="card path-card"><span class="pill blue">Young athlete</span><h3>Spondylolysis / spondylolisthesis</h3><p><strong>Pathophysiology:</strong> pars stress injury, often extension/rotation loading.</p><p><strong>Pain behavior:</strong> extension-provoked LBP, hamstring tightness, positive Stork test sometimes, adolescent athlete profile.</p><p><strong>PM&R key:</strong> activity modification, neutral-spine strengthening, return-to-sport progression.</p></div>
+    <div class="card path-card"><span class="pill red">Red flag</span><h3>Compression fracture</h3><p><strong>Pathophysiology:</strong> trauma, osteoporosis, chronic steroid use, malignancy-related weakening.</p><p><strong>Pain behavior:</strong> focal midline pain, point tenderness, worse flexion/loading, older age or risk factors.</p><p><strong>PM&R key:</strong> image when suspected, analgesia, bracing selectively, osteoporosis management, safe mobilization.</p></div>
+    <div class="card path-card"><span class="pill red">Systemic</span><h3>Infection or malignancy</h3><p><strong>Pathophysiology:</strong> vertebral osteomyelitis, discitis, epidural abscess, metastatic disease, hematologic malignancy.</p><p><strong>Pain behavior:</strong> fever, night pain, unremitting rest pain, weight loss, immunosuppression, IV drug use, cancer history.</p><p><strong>PM&R key:</strong> do not treat as routine mechanical LBP. Expedite imaging/labs/referral.</p></div>
+    <div class="card path-card"><span class="pill blue">Chronic pain</span><h3>Central sensitization and yellow flags</h3><p><strong>Pathophysiology:</strong> persistent nociceptive drive plus altered pain modulation, threat perception, sleep disturbance, mood, fear avoidance.</p><p><strong>Pain behavior:</strong> disproportionate pain, widespread symptoms, high disability, fear of movement.</p><p><strong>PM&R key:</strong> pain neuroscience education, graded exposure, CBT-informed rehab, functional goals.</p></div>
+  </div>
+</section>
+
+<section id="evaluation" data-module="evaluation">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="evaluation"> mark complete</label>
+  <h2>5. Evaluation: clinical reasoning sequence</h2>
+  <p class="lead">History and physical examination are sufficient for most atraumatic acute low back pain when red flags are absent. Imaging should serve the clinical question, not replace the examination.</p>
+  <div id="redflags" class="callout danger"><strong>Emergency pattern:</strong> new urinary retention or overflow incontinence, saddle anesthesia, bowel dysfunction, bilateral sciatica, rapidly progressive weakness, fever with neurologic deficit, suspected unstable fracture, or cancer/infection with neurologic compromise.</div>
+  <div class="tabs" data-tabs="evalTabs">
+    <button class="tab active" data-tab="history">History</button>
+    <button class="tab" data-tab="exam">Physical exam</button>
+    <button class="tab" data-tab="imaging">Imaging/labs</button>
+    <button class="tab" data-tab="special">Special tests</button>
+  </div>
+  <div class="tabpane active" id="evalTabs-history">
+    <table><thead><tr><th>Question</th><th>Why it matters</th></tr></thead><tbody>
+      <tr><td>Onset, mechanism, duration</td><td>Acute &lt;6 weeks, subacute 6-12 weeks, chronic &gt;12 weeks. Trauma changes imaging threshold.</td></tr>
+      <tr><td>Pain location and radiation</td><td>Axial vs radicular vs referred nonspinal source.</td></tr>
+      <tr><td>Aggravating/easing factors</td><td>Flexion-sensitive disc pattern, extension-sensitive facet/stenosis pattern, inflammatory pattern.</td></tr>
+      <tr><td>Neurologic symptoms</td><td>Weakness, numbness, gait change, falls, bilateral symptoms.</td></tr>
+      <tr><td>Bladder, bowel, saddle sensation</td><td>Screen cauda equina/conus involvement.</td></tr>
+      <tr><td>Fever, weight loss, cancer, immunosuppression, TB exposure</td><td>Screen infection or malignancy.</td></tr>
+      <tr><td>Work/sport demands, sleep, mood, beliefs</td><td>Functional prescription and risk of chronicity.</td></tr>
+    </tbody></table>
+  </div>
+  <div class="tabpane" id="evalTabs-exam">
+    <div class="timeline">
+      <div class="step"><strong>Observe:</strong> posture, list, scoliosis, gait, transfers, willingness to move, neurologic gait signs.</div>
+      <div class="step"><strong>Screen neurologic safety:</strong> myotomes L2-S1, dermatomes, reflexes, upper motor neuron signs if indicated, perineal/sphincter screen if cauda equina suspected.</div>
+      <div class="step"><strong>Check lumbar movement:</strong> flexion, extension, side glide/side bending, repeated movements, centralization/peripheralization.</div>
+      <div class="step"><strong>Palpate and provoke:</strong> paraspinals, spinous process tenderness, SI region, hip screen, neural tension.</div>
+      <div class="step"><strong>Functional tests:</strong> sit-to-stand, squat/hip hinge, walking tolerance, single-leg stance, lifting simulation when safe.</div>
+    </div>
+  </div>
+  <div class="tabpane" id="evalTabs-imaging">
+    <div class="grid two">
+      <div class="card"><h3>Do not image immediately when...</h3><p>Atraumatic acute nonspecific LBP, no red flags, no progressive neurologic deficit, and symptoms fit a mechanical pattern.</p></div>
+      <div class="card"><h3>Consider imaging when...</h3><p>Persistent symptoms beyond about 6 weeks despite adequate conservative care, progressive neurologic deficit, suspected infection, malignancy, fracture, inflammatory disease, or cauda equina syndrome.</p></div>
+    </div>
+    <table><thead><tr><th>Test</th><th>Use</th><th>PM&R caution</th></tr></thead><tbody>
+      <tr><td>X-ray</td><td>Fracture, alignment, spondylolisthesis, structural deformity, bony disease.</td><td>Poor for discs and nerves; degenerative findings may be incidental.</td></tr>
+      <tr><td>MRI</td><td>Nerve root, disc, canal, infection, malignancy, inflammatory pathology.</td><td>Interpret with clinical pattern because asymptomatic disc and facet changes are common.</td></tr>
+      <tr><td>CT</td><td>Bony detail, fracture, pars defects, when MRI contraindicated.</td><td>Radiation burden; less useful for soft tissue than MRI.</td></tr>
+      <tr><td>ESR/CRP/CBC/blood cultures</td><td>Suspected infection, inflammatory disease, malignancy clues.</td><td>Not routine for uncomplicated mechanical LBP.</td></tr>
+      <tr><td>EMG/NCS</td><td>Radiculopathy vs plexopathy/peripheral neuropathy, especially when diagnosis is unclear or prior surgery exists.</td><td>Timing matters; acute radiculopathy may not yet show denervation.</td></tr>
+    </tbody></table>
+  </div>
+  <div class="tabpane" id="evalTabs-special">
+    <div class="callout"><strong>Rule:</strong> use special tests to support a clinical hypothesis, not as isolated diagnostic proof. Reproduce the patient’s familiar pain, compare sides, and combine tests into patterns.</div>
+    <h3>Neural tension and radiculopathy tests</h3>
+    <table><thead><tr><th>Test</th><th>Brief technique</th><th>Positive finding</th><th>Suggests</th><th>Limitation</th></tr></thead><tbody>
+      <tr><td>Straight leg raise / Lasègue</td><td>Supine, passively raise straight leg.</td><td>Familiar radicular leg pain, often 30-70°.</td><td>L4-S1 nerve root irritation, commonly disc herniation.</td><td>Hamstring stretch alone is not positive.</td></tr>
+      <tr><td>Crossed SLR</td><td>Raise the asymptomatic leg.</td><td>Contralateral symptomatic leg pain.</td><td>More specific for disc herniation.</td><td>Lower sensitivity.</td></tr>
+      <tr><td>Slump test</td><td>Sitting spinal flexion, neck flexion, knee extension, ankle dorsiflexion; release neck to confirm neural response.</td><td>Neural symptoms modified by sensitizing/desensitizing position.</td><td>Neural mechanosensitivity.</td><td>Interpret with symptom quality and side-to-side comparison.</td></tr>
+      <tr><td>Femoral nerve stretch / prone knee bend</td><td>Prone, flex knee; add hip extension if needed.</td><td>Anterior thigh pain or paresthesia.</td><td>Upper lumbar radiculopathy, usually L2-L4.</td><td>Can also provoke quadriceps tightness or hip pathology.</td></tr>
+      <tr><td>Valsalva/cough/sneeze history</td><td>Ask whether cough, sneeze, or straining worsens leg pain.</td><td>Radicular pain reproduced.</td><td>Disc or canal pressure sensitivity.</td><td>Not diagnostic alone.</td></tr>
+    </tbody></table>
+
+    <h3>Sacroiliac joint pain provocation cluster</h3>
+    <p class="small muted">Single SIJ tests are weak. A cluster is more useful, especially when 3 or more pain provocation tests reproduce the familiar pain.</p>
+    <table><thead><tr><th>Test</th><th>Brief technique</th><th>Positive finding</th><th>Clinical note</th></tr></thead><tbody>
+      <tr><td>Distraction / gapping</td><td>Supine, apply posterolateral force to both ASIS.</td><td>Familiar SI/buttock pain.</td><td>Stresses anterior SI ligaments.</td></tr>
+      <tr><td>Compression</td><td>Side-lying, apply downward force through iliac crest.</td><td>Familiar SI/buttock pain.</td><td>Compresses SIJ.</td></tr>
+      <tr><td>Thigh thrust / posterior shear</td><td>Supine, hip flexed to 90°, axial force through femur.</td><td>Familiar posterior pelvic pain.</td><td>Often one of the more useful SIJ provocation tests.</td></tr>
+      <tr><td>Gaenslen test</td><td>Supine near table edge; one hip flexed, opposite hip extended.</td><td>Familiar SI pain.</td><td>Creates torsional stress across pelvis.</td></tr>
+      <tr><td>Sacral thrust</td><td>Prone, apply anterior force through sacrum.</td><td>Familiar SI pain.</td><td>Compresses SIJ through sacrum.</td></tr>
+      <tr><td>FABER / Patrick</td><td>Supine figure-four position; stabilize opposite pelvis and gently press flexed knee downward.</td><td>Posterior SI pain suggests SIJ; groin pain suggests hip.</td><td>Useful bridge test between hip and SIJ screening.</td></tr>
+    </tbody></table>
+
+    <h3>Hip and lumbopelvic contributors</h3>
+    <table><thead><tr><th>Test</th><th>Brief technique</th><th>Positive finding</th><th>Why it matters in LBP</th></tr></thead><tbody>
+      <tr><td>Thomas test</td><td>Supine at table edge, patient pulls one knee to chest while other leg hangs.</td><td>Opposite thigh cannot reach table or lumbar lordosis increases.</td><td>Hip flexion contracture or iliopsoas tightness can increase anterior pelvic tilt and lumbar extension load.</td></tr>
+      <tr><td>Modified Thomas test</td><td>Same position, observe hip extension, knee angle, and thigh abduction.</td><td>Hip extension limit, knee extension tendency, or thigh abduction.</td><td>Helps differentiate iliopsoas, rectus femoris, and TFL/ITB contributions.</td></tr>
+      <tr><td>Ely test</td><td>Prone, passively flex knee.</td><td>Pelvis lifts or anterior hip/thigh tightness.</td><td>Rectus femoris tightness may alter pelvic control and lumbar mechanics.</td></tr>
+      <tr><td>Ober test</td><td>Side-lying, extend and adduct upper hip.</td><td>Thigh remains abducted/elevated.</td><td>TFL/ITB tightness may affect pelvic control and gait mechanics.</td></tr>
+      <tr><td>Hamstring length / passive SLR angle</td><td>Supine, raise leg while keeping knee extended.</td><td>Limited range without neural symptoms.</td><td>May reduce pelvic rotation during forward bending and increase lumbar flexion demand.</td></tr>
+      <tr><td>Hip screen: FADIR</td><td>Hip flexion, adduction, internal rotation.</td><td>Groin/anterior hip pain.</td><td>Hip impingement or intra-articular hip pain can mimic or perpetuate LBP.</td></tr>
+      <tr><td>Hip screen: FABER</td><td>Figure-four position.</td><td>Groin pain or limited motion.</td><td>Groin pain points more toward hip; posterior pelvic pain points more toward SIJ.</td></tr>
+      <tr><td>Trendelenburg / single-leg stance</td><td>Stand on one leg and observe pelvis.</td><td>Contralateral pelvic drop or trunk compensation.</td><td>Gluteus medius weakness can impair pelvic stability and increase lumbar compensation.</td></tr>
+    </tbody></table>
+
+    <h3>Lumbar segmental and loading tests</h3>
+    <table><thead><tr><th>Test</th><th>Brief technique</th><th>Positive finding</th><th>Suggests</th></tr></thead><tbody>
+      <tr><td>Repeated movement testing</td><td>Repeated flexion, extension, or side glide depending on presentation.</td><td>Centralization, peripheralization, or clear pain reduction.</td><td>Directional preference and treatment entry point.</td></tr>
+      <tr><td>Prone instability test</td><td>Prone trunk on table, feet on floor; PA pressure to painful segment, then repeat with active leg lift.</td><td>Pain decreases when spinal extensors are activated.</td><td>Possible lumbar instability/motor-control subgroup.</td></tr>
+      <tr><td>Passive lumbar extension test</td><td>Prone, lift both legs together to extend lumbar spine.</td><td>Low back pain, heaviness, or giving-way feeling.</td><td>Possible lumbar instability; interpret cautiously.</td></tr>
+      <tr><td>Stork / single-leg hyperextension</td><td>Standing on one leg, extend lumbar spine.</td><td>Focal pain, especially in adolescent athlete.</td><td>Spondylolysis possibility, although test accuracy is limited.</td></tr>
+      <tr><td>Quadrant / Kemp test</td><td>Extension, side bending, and rotation toward symptomatic side.</td><td>Axial local pain or leg symptoms.</td><td>Facet loading or foraminal narrowing; not specific alone.</td></tr>
+      <tr><td>PA spring testing</td><td>Prone posterior-anterior pressure over spinous/transverse process.</td><td>Segmental pain or stiffness reproduction.</td><td>Mobility deficit or local pain provocation, not standalone diagnosis.</td></tr>
+    </tbody></table>
+  </div>
+</section>
+
+<section id="management" data-module="management">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="management"> mark complete</label>
+  <h2>6. Management options: from first visit to referral</h2>
+  <p class="lead">The safest core management is education, staying active as tolerated, and progressive rehabilitation. More invasive options are reserved for selected patterns and failed conservative care.</p>
+  <div class="grid three">
+    <div class="card"><span class="pill blue">Acute/subacute</span><h3>First-line</h3><p>Reassurance, education, remain active, avoid bed rest, avoid heavy provocative activity briefly, superficial heat, simple analgesic strategy when needed, early function restoration.</p></div>
+    <div class="card"><span class="pill green">Chronic</span><h3>First-line</h3><p>Exercise therapy, motor control or trunk endurance training, graded activity/exposure, CBT-informed approach, sleep and lifestyle management, work participation planning.</p></div>
+    <div class="card"><span class="pill orange">Radicular/stenotic</span><h3>Selected care</h3><p>NSAID if appropriate, activity modification, neural mobility when tolerated, directional preference, flexion-biased conditioning for stenosis, epidural steroid injection or surgical evaluation in selected cases.</p></div>
+  </div>
+  <details open><summary>Lumbar bracing and orthosis decision-making</summary>
+    <div class="callout warn"><strong>Key principle:</strong> lumbar bracing is an adjunct for selected indications, not routine long-term treatment for uncomplicated nonspecific LBP.</div>
+    <table><thead><tr><th>Orthosis / brace</th><th>Typical indication</th><th>Main effect</th><th>PM&R caution</th></tr></thead><tbody>
+      <tr><td>Elastic lumbar corset / soft lumbar support</td><td>Short-term symptom relief during acute flare, work transition, or painful ADL.</td><td>Warmth, proprioceptive cueing, mild abdominal compression, movement confidence.</td><td>Avoid dependency; pair with exercise and wean as function improves.</td></tr>
+      <tr><td>Semi-rigid lumbosacral orthosis (LSO)</td><td>More irritable pain, suspected mechanical instability, spondylolisthesis symptoms, selected post-procedure protection.</td><td>Limits painful end-range motion, increases trunk stiffness, reminds patient to avoid provocative loading.</td><td>Use time-limited; monitor skin, breathing comfort, and deconditioning risk.</td></tr>
+      <tr><td>Rigid LSO / TLSO</td><td>Stable compression fracture, post-operative or post-trauma protection when prescribed by spine team, selected severe deformity or instability.</td><td>Greater motion restriction and load sharing.</td><td>Requires clear indication, fit check, pressure-area monitoring, and a weaning plan.</td></tr>
+      <tr><td>Sacroiliac belt / pelvic belt</td><td>Pregnancy/postpartum pelvic girdle pain or SIJ load-transfer pain pattern.</td><td>External compression to improve force closure around pelvis.</td><td>Place low around pelvis near ASIS/greater trochanter region; reassess walking and transitions.</td></tr>
+    </tbody></table>
+    <h3>When I would prescribe bracing</h3>
+    <ul>
+      <li>Short-term support for severe acute pain when it helps the patient mobilize safely.</li>
+      <li>Stable vertebral compression fracture or post-operative/post-trauma protection according to spine-team restrictions.</li>
+      <li>Symptomatic spondylolisthesis, pars stress injury, or mechanical instability pattern where motion control helps symptoms.</li>
+      <li>SIJ/pelvic girdle pain where pelvic compression improves transfer, gait, or single-leg loading.</li>
+    </ul>
+    <h3>When I would avoid routine bracing</h3>
+    <ul>
+      <li>Uncomplicated nonspecific LBP that can be managed with education, activity, and exercise.</li>
+      <li>Long-term passive use without functional gains.</li>
+      <li>Patient belief that the spine is fragile and cannot move without the brace.</li>
+    </ul>
+    <p><strong>Typical instruction:</strong> wear during painful upright tasks or higher-risk transitions for a limited period, remove during rest and supervised exercise unless otherwise indicated, reassess within 1-2 weeks, and start weaning as pain and confidence improve.</p>
+  </details>
+  <details open><summary>Medication logic</summary>
+    <table><thead><tr><th>Option</th><th>Role</th><th>Caution</th></tr></thead><tbody>
+      <tr><td>NSAIDs</td><td>Common first pharmacologic option if no contraindication.</td><td>GI, renal, cardiovascular risk; use lowest effective dose.</td></tr>
+      <tr><td>Skeletal muscle relaxants</td><td>Short-term option for acute/subacute pain with spasm.</td><td>Sedation, falls, driving risk.</td></tr>
+      <tr><td>Acetaminophen</td><td>May be used for general analgesia but evidence for LBP-specific benefit is limited.</td><td>Liver dose ceiling.</td></tr>
+      <tr><td>Duloxetine</td><td>Option in chronic LBP after inadequate non-drug therapy, especially with mood/sleep overlap.</td><td>Drug interactions, nausea, BP, withdrawal effects.</td></tr>
+      <tr><td>Opioids</td><td>Last option only when benefits clearly outweigh risks after failure of safer approaches.</td><td>Dependence, overdose, constipation, sedation, poor long-term risk-benefit.</td></tr>
+      <tr><td>Systemic steroids</td><td>Not routinely useful for acute/subacute nonradicular LBP.</td><td>Metabolic and immunologic adverse effects.</td></tr>
+    </tbody></table>
+  </details>
+  <details><summary>Referral logic</summary>
+    <ul>
+      <li><strong>Urgent surgical referral:</strong> cauda equina syndrome, progressive/severe neurologic deficit, suspected spinal infection with neurologic compromise, unstable fracture, malignancy with neurologic compromise.</li>
+      <li><strong>Pain management referral:</strong> persistent function-limiting pain despite adequate conservative care, refractory radicular or stenotic symptoms, need for diagnostic or therapeutic injections.</li>
+      <li><strong>Rheumatology:</strong> inflammatory back pain pattern, morning stiffness, sacroiliitis, systemic inflammatory features.</li>
+      <li><strong>Psychology/behavioral health:</strong> high fear avoidance, catastrophizing, depression/anxiety, trauma history, disproportionate disability.</li>
+    </ul>
+  </details>
+</section>
+
+<section id="modalities" data-module="modalities">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="modalities"> mark complete</label>
+  <h2>7. Physical and therapeutic modality options</h2>
+  <p class="lead">Modalities can reduce symptoms enough to let the patient move, but they should not replace active rehabilitation unless there is a specific reason.</p>
+  <table><thead><tr><th>Modality</th><th>Best role</th><th>Typical dose / FITT-style prescription</th><th>Practical PM&R comment</th></tr></thead><tbody>
+    <tr><td>Superficial heat / infrared / hot pack</td><td>Acute/subacute muscle spasm, stiffness, pain modulation.</td><td>10-20 minutes, 1-3 times/day as needed. Use before mobility or stretching.</td><td>Monitor skin; avoid impaired sensation, poor circulation, acute bleeding, or inability to report heat.</td></tr>
+    <tr><td>Cryotherapy</td><td>Acute inflammatory flare, post-activity flare, patient-preferred analgesia.</td><td>10-15 minutes, wrapped, repeated every few hours in acute phase if helpful.</td><td>Cold reduces nerve conduction and pain but decreases tissue extensibility; usually avoid immediately before stretching.</td></tr>
+    <tr><td>TENS</td><td>Short-term analgesic trial in selected patients.</td><td>Conventional: high frequency 80-120 Hz, pulse width 50-100 μs, comfortable sensory intensity, 20-30 minutes. Acupuncture-like: 2-10 Hz, higher tolerated intensity.</td><td>Continue only if pain reduction leads to better movement, sleep, or function.</td></tr>
+    <tr><td>Therapeutic ultrasound</td><td>Selected soft-tissue pain when used locally; not a core LBP treatment.</td><td>Common clinical range: 1 MHz for deeper tissue, 3 MHz superficial; 0.5-1.5 W/cm² for 5-10 minutes depending on area and goal.</td><td>Evidence for nonspecific LBP is limited; prioritize exercise and education.</td></tr>
+    <tr><td>Low-level laser therapy</td><td>Adjunct for selected chronic LBP pain modulation.</td><td>Dose depends on wavelength, power, spot size, and target depth. Follow device protocol and document J/point or J/cm².</td><td>Use as adjunct, not sole treatment; reassess functional response.</td></tr>
+    <tr><td>Traction</td><td>Selected radicular presentation if trial produces centralization or meaningful symptom reduction.</td><td>Intermittent traction trial 10-15 minutes initially, adjust force and position to response.</td><td>Stop if symptoms peripheralize, neurologic symptoms worsen, or no functional benefit after trial sessions.</td></tr>
+    <tr><td>Manual therapy / mobilization / manipulation</td><td>Short-term pain and mobility improvement, often combined with exercise.</td><td>1-2 sessions/week initially, then taper as self-management improves.</td><td>Pair with active exercise so gains persist.</td></tr>
+    <tr><td>Massage / soft-tissue technique</td><td>Guarding, pain-related muscle tone, relaxation, readiness for movement.</td><td>10-20 minutes, short course, followed by mobility or exercise.</td><td>Avoid making passive care the main treatment plan.</td></tr>
+    <tr><td>Acupuncture</td><td>Adjunct for chronic or recurrent pain when available and preferred.</td><td>Usually 1-2 sessions/week for a time-limited trial; reassess pain and function.</td><td>Consider cost, access, contraindications, and patient preference.</td></tr>
+    <tr><td>EMG biofeedback</td><td>Chronic LBP with excessive guarding, poor relaxation, or poor selective activation.</td><td>15-30 minutes/session, 1-2 times/week plus home relaxation/activation drills.</td><td>Useful to teach down-training of overactive paraspinals or activation of stabilizers.</td></tr>
+  </tbody></table>
+
+  <h3>Exercise dosage: practical FITT guide</h3>
+  <table><thead><tr><th>Exercise category</th><th>Frequency</th><th>Intensity</th><th>Time / volume</th><th>Progression</th></tr></thead><tbody>
+    <tr><td>Walking / aerobic conditioning</td><td>Most days/week</td><td>Light to moderate; pain acceptable if tolerable and settles after activity.</td><td>Start 5-15 minutes; progress toward 20-30 minutes.</td><td>Increase duration first, then pace or incline. Cycling may suit stenosis.</td></tr>
+    <tr><td>Mobility / directional preference</td><td>Daily or multiple short bouts/day</td><td>Low irritability; symptoms should centralize, reduce, or remain acceptable.</td><td>1-3 sets of 10 repetitions or 1-3 minutes per movement.</td><td>Unloaded → loaded → functional movement.</td></tr>
+    <tr><td>Motor control / TrA-multifidus activation</td><td>4-7 days/week early</td><td>Low load, high quality, normal breathing.</td><td>5-10 second holds, 5-10 repetitions, 1-3 sets.</td><td>Static activation → limb movement → unstable or task-specific control.</td></tr>
+    <tr><td>Trunk endurance</td><td>3-5 days/week</td><td>Submaximal, stop before form breakdown.</td><td>10-30 second holds or 6-12 controlled reps, 2-4 sets.</td><td>Longer hold → longer lever → load → sport/work-specific demand.</td></tr>
+    <tr><td>Strengthening hip/trunk/lower limb</td><td>2-3 days/week</td><td>Moderate effort, RPE about 5-7/10 when tolerated.</td><td>2-4 sets of 6-15 repetitions.</td><td>Increase load gradually while monitoring next-day symptom response.</td></tr>
+    <tr><td>Graded exposure</td><td>2-5 days/week depending on task</td><td>Below panic/flare threshold, but meaningful enough to challenge fear.</td><td>Task quota, e.g. 5 bends, 3 lifts, 5 minutes sitting, then progress.</td><td>Increase one variable at a time: range, load, speed, duration, complexity.</td></tr>
+  </tbody></table>
+  <div class="callout warn"><strong>Exam sentence:</strong> “I use modalities as symptom modulators to facilitate active rehabilitation, and I dose exercise according to irritability, movement response, and functional goals.”</div>
+</section>
+
+<section id="programming" data-module="programming">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="programming"> mark complete</label>
+  <h2>8. PM&R rehabilitation programming</h2>
+  <p class="lead">A good LBP program is chosen by irritability, directional preference, neurologic safety, psychosocial profile, and functional goal.</p>
+  <div class="tabs" data-tabs="progTabs">
+    <button class="tab active" data-tab="phase">Phased program</button>
+    <button class="tab" data-tab="exercise">Exercise menu</button>
+    <button class="tab" data-tab="fitt">FITT prescriptions</button>
+    <button class="tab" data-tab="return">Return to work/sport</button>
+    <button class="tab" data-tab="education">Patient education</button>
+  </div>
+  <div class="tabpane active" id="progTabs-phase">
+    <div class="timeline">
+      <div class="step"><strong>Phase 1: calm symptoms and protect safety.</strong> Screen red flags, reduce irritability, teach relative activity, walking, comfortable positions, heat or analgesia if needed.</div>
+      <div class="step"><strong>Phase 2: restore movement.</strong> Directional preference, gentle mobility, hip and thoracic contribution, neural mobility if tolerated.</div>
+      <div class="step"><strong>Phase 3: rebuild control and capacity.</strong> Trunk motor control, multifidus/TrA coordination, gluteal strengthening, progressive endurance.</div>
+      <div class="step"><strong>Phase 4: task-specific loading.</strong> Lifting, carrying, sitting tolerance, occupational tasks, sport-specific trunk and hip demands.</div>
+      <div class="step"><strong>Phase 5: recurrence prevention.</strong> Independent program, graded exposure to feared tasks, lifestyle risk modification, relapse plan.</div>
+    </div>
+  </div>
+  <div class="tabpane" id="progTabs-exercise">
+    <table><thead><tr><th>Exercise type</th><th>When useful</th><th>Examples</th><th>Progression</th></tr></thead><tbody>
+      <tr><td>Directional preference / McKenzie-style</td><td>Symptoms centralize or reduce with repeated movement</td><td>Repeated extension, flexion, side glide depending on response</td><td>Repeated movement → loaded functional pattern.</td></tr>
+      <tr><td>Motor control</td><td>Poor segmental control, recurrence, guarding, low confidence</td><td>Abdominal drawing-in, multifidus activation, dead bug, bird dog</td><td>Low-load control → dynamic limb movement → functional load.</td></tr>
+      <tr><td>Trunk endurance</td><td>Chronic/recurrent LBP, deconditioning</td><td>Modified curl-up, side plank, bridge, carry variations</td><td>Time under tension → lever length → unstable/task-specific demands.</td></tr>
+      <tr><td>Hip and lower limb strengthening</td><td>Poor load transfer, weak gluteals, hip mobility limitation</td><td>Clamshell, hip hinge, squat, lunge, step-up</td><td>Bodyweight → resistance → occupational/sport task.</td></tr>
+      <tr><td>Aerobic conditioning</td><td>Chronic pain, obesity, low endurance, stenosis</td><td>Walking, cycling, aquatic exercise</td><td>Duration first, then intensity.</td></tr>
+      <tr><td>Graded exposure</td><td>Fear avoidance, high disability, movement anxiety</td><td>Hierarchy of feared tasks: bend, lift, carry, sit, run</td><td>Controlled exposure → real-life exposure.</td></tr>
+    </tbody></table>
+  </div>
+  <div class="tabpane" id="progTabs-fitt">
+    <div class="grid two">
+      <div class="card"><h3>Acute irritable LBP</h3><p><strong>Frequency:</strong> short bouts daily. <strong>Intensity:</strong> comfortable, non-threatening movement. <strong>Time:</strong> 5-10 minutes per bout. <strong>Type:</strong> walking, breathing, pelvic tilt, gentle directional preference, heat if useful.</p></div>
+      <div class="card"><h3>Subacute recovery</h3><p><strong>Frequency:</strong> 3-5 exercise days/week. <strong>Intensity:</strong> low-moderate. <strong>Time:</strong> 20-30 minutes. <strong>Type:</strong> mobility, motor control, hip strengthening, trunk endurance, graded ADL exposure.</p></div>
+      <div class="card"><h3>Chronic/recurrent LBP</h3><p><strong>Frequency:</strong> aerobic most days, strengthening 2-3 days/week, motor control 3-5 days/week. <strong>Intensity:</strong> progressive but tolerable. <strong>Type:</strong> multimodal exercise, trunk endurance, aerobic, graded exposure.</p></div>
+      <div class="card"><h3>Stenosis pattern</h3><p><strong>Frequency:</strong> most days. <strong>Intensity:</strong> light-moderate. <strong>Type:</strong> flexion-biased conditioning such as cycling, treadmill with slight incline if tolerated, hip mobility, lower limb strengthening.</p></div>
+    </div>
+    <details open><summary>How to progress safely</summary>
+      <ul>
+        <li>Use the “24-hour response”: symptoms during exercise are acceptable if mild/moderate and return to baseline by the next day.</li>
+        <li>Progress only one variable at a time: range, duration, resistance, speed, complexity, or frequency.</li>
+        <li>If pain peripheralizes, neurologic symptoms worsen, or function drops, reduce load and reassess diagnosis.</li>
+      </ul>
+    </details>
+  </div>
+  <div class="tabpane" id="progTabs-return">
+    <details open><summary>Return-to-work reasoning</summary>
+      <ul>
+        <li>Define job demands: sitting, standing, lifting, twisting, vibration, driving, night shift, psychosocial stress.</li>
+        <li>Use graded return: reduced load, shorter duration, task rotation, ergonomic changes, progressive exposure.</li>
+        <li>Functional tests should reflect the job: loaded carry, floor-to-waist lift, sustained sitting tolerance, repeated sit-to-stand.</li>
+      </ul>
+    </details>
+    <details><summary>Return-to-sport reasoning</summary>
+      <ul>
+        <li>Restore pain-free baseline movement, then trunk endurance and hip control.</li>
+        <li>Progress from linear movement to multidirectional, rotation, speed, and sport-specific load.</li>
+        <li>Return criteria: stable neurologic status, tolerable symptoms, no next-day flare beyond expected, adequate strength/endurance, confidence.</li>
+      </ul>
+    </details>
+  </div>
+  <div class="tabpane" id="progTabs-education">
+    <div class="grid two">
+      <div class="card"><h3>What to say</h3><p>“Most acute low back pain improves. The spine is strong. We avoid prolonged bed rest because movement helps recovery. The goal is to find safe movement and gradually rebuild capacity.”</p></div>
+      <div class="card"><h3>What not to say</h3><p>Avoid language that makes the patient feel fragile, such as “your spine is worn out,” “your disc is crushed,” or “you must never bend.”</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="quicktables" data-module="quicktables">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="quicktables"> mark complete</label>
+  <h2>Quick tables for revision</h2>
+  <h3>Mechanical pattern recognition</h3>
+  <table><thead><tr><th>Pattern</th><th>Worse</th><th>Better</th><th>Think</th></tr></thead><tbody>
+    <tr><td>Flexion-sensitive</td><td>Sitting, bending, lifting</td><td>Standing/walking/extension sometimes</td><td>Discogenic or posterior tissue sensitivity</td></tr>
+    <tr><td>Extension-sensitive</td><td>Standing, walking downhill, extension/rotation</td><td>Sitting, flexion</td><td>Facet, stenosis, spondylolysis</td></tr>
+    <tr><td>Neural/radicular</td><td>Cough, sneeze, neural tension, prolonged sitting</td><td>Positions that unload nerve</td><td>Disc herniation, foraminal stenosis</td></tr>
+    <tr><td>Inflammatory</td><td>Rest, morning</td><td>Activity, heat</td><td>Spondyloarthropathy</td></tr>
+    <tr><td>Vascular/referred</td><td>Variable, not clearly mechanical</td><td>Variable</td><td>Aortic, renal, visceral, pelvic source</td></tr>
+  </tbody></table>
+  <h3>LBP status note skeleton</h3>
+  <div class="card">
+    <p><strong>Diagnosis:</strong> LBP pattern, suspected pain generator, neurologic status, red/yellow flags.</p>
+    <p><strong>Problem list:</strong> pain, ROM limitation, neurologic deficit, activity limitation, participation limitation, sleep/work/sport limitation, psychosocial factors.</p>
+    <p><strong>Goals:</strong> pain control, safe mobility, ADL/work tolerance, trunk/hip capacity, recurrence prevention.</p>
+    <p><strong>Program:</strong> education, activity advice, exercise prescription, modality if needed, medication/referral coordination, follow-up outcome measure.</p>
+  </div>
+</section>
+
+<section id="cases" data-module="cases">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="cases"> mark complete</label>
+  <h2>9. Case reasoning practice</h2>
+  <p class="lead">Choose the best category first. Then decide management.</p>
+  <div class="quizbox">
+    <div class="quizmeta"><strong id="caseTitle">Case 1</strong><span class="pill blue" id="caseCount">1 / 5</span></div>
+    <p id="caseText"></p>
+    <div id="caseOptions"></div>
+    <div id="caseFeedback" class="explain"></div>
+    <button class="primary" id="nextCaseBtn">Next case</button>
+  </div>
+</section>
+
+<section id="quiz" data-module="quiz">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="quiz"> mark complete</label>
+  <h2>10. Quiz hub</h2>
+  <p class="lead">Use this at the end of revision. The questions are designed for PM&R board-style reasoning, not only memorization.</p>
+  <div class="grid two">
+    <div class="quizbox">
+      <div class="quizmeta"><strong>Multiple-choice quiz</strong><span id="scoreBadge" class="pill blue">Score: 0 / 0</span></div>
+      <p id="quizQuestion"></p>
+      <div id="quizOptions"></div>
+      <div id="quizExplain" class="explain"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button class="primary" id="nextQuizBtn">Next question</button>
+        <button id="restartQuizBtn">Restart quiz</button>
+      </div>
+    </div>
+    <div class="quizbox">
+      <div class="quizmeta"><strong>Flashcard deck</strong><span id="flashCount" class="pill green">1 / 12</span></div>
+      <div id="flashcard" class="flashcard"><div class="question"></div><div class="answer"></div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button id="prevFlash">Previous</button><button class="primary" id="nextFlash">Next</button><button id="shuffleFlash">Shuffle</button>
+      </div>
+      <p class="small muted">Click the card to reveal the answer.</p>
+    </div>
+  </div>
+  <h3>Match the pattern</h3>
+  <div class="quizbox">
+    <div class="matchgrid" id="matchGrid"></div>
+    <div style="display:flex;gap:8px;margin-top:10px"><button class="primary" onclick="checkMatches()">Check matches</button><button onclick="resetMatches()">Reset</button></div>
+    <div id="matchFeedback" class="explain"></div>
+  </div>
+</section>
+
+<section id="sources" data-module="sources">
+  <label class="module-check"><input type="checkbox" class="completeBox" data-id="sources"> mark complete</label>
+  <h2>Sources and evidence anchors</h2>
+  <p>This tool was built as a revision aid. It should not replace patient-specific clinical judgment, local protocols, or urgent referral when red flags are present.</p>
+  <ol>
+    <li>Margetis K, Singh C, Casiano VE, Varacallo MA. <em>Low Back Pain: Evaluation and Management.</em> StatPearls. NCBI Bookshelf. Last update: December 13, 2025. <a href="https://www.ncbi.nlm.nih.gov/books/NBK538173/" target="_blank" rel="noopener">NCBI Bookshelf</a>.</li>
+    <li>Qaseem A, Wilt TJ, McLean RM, Forciea MA. <em>Noninvasive treatments for acute, subacute, and chronic low back pain: a clinical practice guideline from the American College of Physicians.</em> Ann Intern Med. 2017;166(7):514-530. doi:10.7326/M16-2367.</li>
+    <li>George SZ, Fritz JM, Silfies SP, et al. <em>Interventions for the Management of Acute and Chronic Low Back Pain: Revision 2021.</em> J Orthop Sports Phys Ther. 2021;51(11):CPG1-CPG60. doi:10.2519/jospt.2021.0304.</li>
+    <li>Laslett M, Aprill CN, McDonald B, Young SB. <em>Diagnosis of sacroiliac joint pain: validity of individual provocation tests and composites of tests.</em> Man Ther. 2005;10(3):207-218. doi:10.1016/j.math.2005.01.003.</li>
+    <li>Tsang SMH, Szeto GPY, Li LMW, Wong DWC, Yip MMP, Lee RYW. <em>Recovery of the lumbopelvic movement and muscle recruitment patterns using motor control exercise program in people with chronic nonspecific low back pain.</em> BMC Musculoskelet Disord. 2021;22:949.</li>
+    <li>Hayden JA, Ellis J, Ogilvie R, Malmivaara A, van Tulder MW. <em>Exercise therapy for chronic low back pain.</em> Cochrane Database Syst Rev. 2021;9:CD009790.</li>
+    <li>van Duijvenbode ICD, Jellema P, van Poppel MNM, van Tulder MW. <em>Lumbar supports for prevention and treatment of low back pain.</em> Cochrane Database Syst Rev. 2008;CD001823.</li>
+    <li>Textbook framework adapted for PM&R revision from common principles in Braddom's Physical Medicine and Rehabilitation, DeLisa's Physical Medicine and Rehabilitation, Kisner & Colby Therapeutic Exercise, and Neumann Kinesiology of the Musculoskeletal System.</li>
+  </ol>
+  <div class="print-only"><p>Printed from Low Back Pain PM&R Interactive Revision Hub.</p></div>
+</section>
+</main>
+</div>
+
+<script>
+const anatomyDetails = {
+  body:{title:'Vertebral body', text:'Main anterior load-bearing structure. Compression fracture, malignancy, infection, and osteoporosis become clinically important when pain is focal, traumatic, systemic, or progressive.'},
+  disc:{title:'Intervertebral disc', text:'Annulus fibrosus resists tension and nucleus pulposus distributes compression. Degeneration may cause annular fissure, dehydration, height loss, inflammatory mediator release, and abnormal load transfer.'},
+  nucleus:{title:'Nucleus pulposus', text:'Hydrated center of the disc. With aging and degeneration, proteoglycan and water content decrease, reducing shock absorption and changing segment mechanics.'},
+  ligament:{title:'Spinal ligaments', text:'Passive stabilizers that limit excessive motion. Repeated or traumatic loading can create sprain and mechanosensitive pain.'},
+  facet:{title:'Facet joint', text:'Paired posterior synovial joints. Extension and rotation increase loading. Facet arthropathy can refer pain to the back, buttock, and thigh.'},
+  canal:{title:'Spinal canal', text:'Contains cauda equina in lumbar region. Canal narrowing can produce neurogenic claudication; severe compression with bladder/bowel/saddle symptoms is an emergency.'},
+  nerve:{title:'Nerve root', text:'Compression and inflammation produce radicular pain. Localize using myotomes, dermatomes, reflexes, and neural tension tests.'}
+};
+document.querySelectorAll('.hotspot').forEach(el=>el.addEventListener('click',()=>{
+  const d=anatomyDetails[el.dataset.info];
+  document.getElementById('anatomyInfo').innerHTML=`<h3>${d.title}</h3><p>${d.text}</p><p class="small muted">Clinical question: does the patient’s pain behavior match this structure?</p>`;
+}));
+
+function initTabs(){
+  document.querySelectorAll('.tabs').forEach(group=>{
+    const name=group.dataset.tabs;
+    group.querySelectorAll('.tab').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        group.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll(`[id^="${name}-"]`).forEach(p=>p.classList.remove('active'));
+        document.getElementById(`${name}-${btn.dataset.tab}`).classList.add('active');
+      });
+    });
+  });
+}
+initTabs();
+
+const checks = document.querySelectorAll('.completeBox');
+function updateProgress(){
+  let done=0; checks.forEach(c=>{ if(c.checked) done++; localStorage.setItem('lbp_'+c.dataset.id, c.checked?'1':'0'); });
+  const pct = Math.round(done/checks.length*100);
+  document.getElementById('globalProgress').style.width = pct+'%';
+}
+checks.forEach(c=>{ c.checked = localStorage.getItem('lbp_'+c.dataset.id)==='1'; c.addEventListener('change',updateProgress);}); updateProgress();
+document.getElementById('resetProgress').addEventListener('click',()=>{checks.forEach(c=>{c.checked=false;localStorage.removeItem('lbp_'+c.dataset.id)});updateProgress();});
+
+const themeBtn=document.getElementById('themeBtn');
+function setTheme(mode){document.documentElement.dataset.theme=mode;localStorage.setItem('lbp_theme',mode);themeBtn.textContent=mode==='dark'?'Light mode':'Dark mode';}
+setTheme(localStorage.getItem('lbp_theme')||'light');
+themeBtn.addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
+
+const navLinks=[...document.querySelectorAll('#sideNav a')];
+const sections=[...document.querySelectorAll('main section')];
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id));}})},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>obs.observe(s));
+
+const pathSearch=document.getElementById('pathSearch');
+pathSearch.addEventListener('input',()=>{
+  const q=pathSearch.value.toLowerCase().trim();
+  document.querySelectorAll('.path-card').forEach(card=>{
+    card.classList.toggle('hidden-by-search', q && !card.textContent.toLowerCase().includes(q));
+  });
+});
+function clearPathSearch(){pathSearch.value='';pathSearch.dispatchEvent(new Event('input'));}
+
+const cases=[
+  {t:'Case 1', text:'A 32-year-old office worker has acute low back pain after lifting a box. Pain is localized to the lumbar region, neurologic exam is normal, no fever, no trauma beyond lifting, and no bladder or bowel symptoms.', opts:['Immediate lumbar MRI','Reassure, advise activity as tolerated, symptom control, and early functional rehab','Urgent surgical referral','Strict bed rest for one week'], ans:1, exp:'This fits acute nonspecific mechanical LBP without red flags. Imaging is usually deferred; education and active recovery are central.'},
+  {t:'Case 2', text:'A 46-year-old patient has low back pain with leg pain below the knee, numbness over the first web space, weak great-toe extension, and positive SLR.', opts:['L5 radiculopathy pattern','Facet joint pain only','Inflammatory back pain','S1 radiculopathy pattern'], ans:0, exp:'First web space sensory change and weak EHL/great-toe extension suggest L5 root involvement.'},
+  {t:'Case 3', text:'A 72-year-old woman with osteoporosis and chronic steroid use has sudden focal midline lumbar pain after a minor fall. Pain is worse with flexion and standing.', opts:['Routine chronic nonspecific LBP','Compression fracture until proven otherwise','Pure SIJ pain','Psychogenic pain only'], ans:1, exp:'Age, osteoporosis, steroid use, trauma, and focal midline tenderness increase suspicion for vertebral compression fracture.'},
+  {t:'Case 4', text:'A 68-year-old man reports leg heaviness and paresthesia after walking 100 meters. Symptoms improve when sitting or leaning forward on a shopping cart.', opts:['Lumbar spinal stenosis with neurogenic claudication','Acute muscle strain','Inflammatory spondyloarthropathy','Aortic dissection'], ans:0, exp:'Extension/walking provocation and flexion/sitting relief is classic for lumbar spinal stenosis.'},
+  {t:'Case 5', text:'A patient reports new urinary retention, saddle anesthesia, bilateral sciatica, and rapidly worsening leg weakness.', opts:['Trial TENS and home exercise','Routine outpatient MRI in 6 weeks','Immediate urgent evaluation for cauda equina syndrome','Massage and heat only'], ans:2, exp:'This constellation is a surgical emergency pattern. Urgent imaging and spine referral are required.'}
+];
+let caseIndex=0;
+function renderCase(){
+  const c=cases[caseIndex];
+  document.getElementById('caseTitle').textContent=c.t;
+  document.getElementById('caseCount').textContent=`${caseIndex+1} / ${cases.length}`;
+  document.getElementById('caseText').textContent=c.text;
+  const wrap=document.getElementById('caseOptions'); wrap.innerHTML='';
+  document.getElementById('caseFeedback').style.display='none';
+  c.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='option';b.textContent=o;b.onclick=()=>{
+    wrap.querySelectorAll('button').forEach(x=>x.disabled=true);
+    b.classList.add(i===c.ans?'correct':'wrong');
+    if(i!==c.ans) wrap.children[c.ans].classList.add('correct');
+    const fb=document.getElementById('caseFeedback');fb.innerHTML=`<strong>${i===c.ans?'Correct.':'Not quite.'}</strong> ${c.exp}`;fb.style.display='block';
+  };wrap.appendChild(b);});
+}
+document.getElementById('nextCaseBtn').addEventListener('click',()=>{caseIndex=(caseIndex+1)%cases.length;renderCase();}); renderCase();
+
+const quiz=[
+  {q:'Which statement best describes most cases of low back pain?', o:['Most are caused by malignancy','Most are nonspecific or mechanical','Most require MRI within 48 hours','Most require surgical evaluation'], a:1, e:'Most LBP is nonspecific/mechanical and initially managed conservatively if red flags are absent.'},
+  {q:'Which finding is most concerning for cauda equina syndrome?', o:['Pain after prolonged sitting','Unilateral paraspinal tenderness','New urinary retention with saddle anesthesia','Pain improved by walking'], a:2, e:'Urinary retention, saddle anesthesia, bilateral sciatica, and progressive weakness are emergency signs.'},
+  {q:'A positive crossed straight-leg raise is more specific for which condition?', o:['Lumbar disc herniation','SIJ dysfunction','Facet arthropathy','Osteoporotic fracture'], a:0, e:'Crossed SLR is less sensitive but more specific for disc herniation than standard SLR.'},
+  {q:'Which pattern best suggests lumbar spinal stenosis?', o:['Worse with sitting and flexion','Leg symptoms worse with standing/walking and relieved by sitting/flexion','Night pain with fever','Pain only during coughing'], a:1, e:'Neurogenic claudication classically worsens with extension/standing/walking and improves with flexion/sitting.'},
+  {q:'For uncomplicated acute nonspecific low back pain, the most appropriate first message is:', o:['Avoid all bending forever','Stay active as tolerated and return gradually to normal activity','Bed rest until pain is completely gone','MRI is needed before exercise'], a:1, e:'Education and activity as tolerated are first-line.'},
+  {q:'Which root is most associated with weak great-toe extension?', o:['L3','L4','L5','S1'], a:2, e:'L5 commonly affects EHL and dorsum/first web-space sensation.'},
+  {q:'Which root is most associated with reduced Achilles reflex?', o:['L2','L3','L4','S1'], a:3, e:'The Achilles reflex is mainly S1.'},
+  {q:'Disc degeneration can become painful partly because of:', o:['Proteoglycan loss, annular fissure, inflammatory mediators, and abnormal load transfer','Complete absence of all nerve endings in the annulus','Improved shock absorption','Permanent spinal instability in every adult'], a:0, e:'Degeneration can alter mechanics and sensitize disc-related nociceptive structures.'},
+  {q:'Which modality should be framed mainly as a symptom modulator rather than a stand-alone cure?', o:['Heat/TENS/ultrasound/laser-type modalities','Progressive exercise only','Functional restoration only','Return-to-work planning only'], a:0, e:'Passive modalities can help symptoms but should usually facilitate active rehab.'},
+  {q:'Which is a reasonable first-line chronic LBP strategy?', o:['Prolonged bed rest','Exercise therapy with CBT-informed or graded activity approach when needed','Immediate opioids','Avoid work until MRI normalizes'], a:1, e:'Exercise, behavioral approaches, and multidisciplinary rehab are key chronic LBP strategies.'},
+  {q:'Why should imaging findings be interpreted cautiously?', o:['MRI cannot detect discs','Degenerative changes are common even in asymptomatic adults','X-ray always explains pain','Facet joints cannot be imaged'], a:1, e:'Disc bulges, degeneration, and facet arthropathy may be incidental unless they fit the clinical pattern.'},
+  {q:'What is the PM&R priority after ruling out red flags?', o:['Find one passive modality for long-term use','Restore function, confidence, capacity, and self-management','Tell patient pain equals harm','Refer every case to surgery'], a:1, e:'PM&R care focuses on function, graded capacity, and recurrence prevention.'},
+  {q:'Which finding supports inflammatory back pain more than mechanical strain?', o:['Pain improves with rest only','Morning stiffness >30 minutes and improvement with activity','Pain only after lifting','Normal morning then worse with movement'], a:1, e:'Inflammatory pain often has morning stiffness and improves with activity.'},
+  {q:'In suspected spinal infection, which test pathway is more appropriate?', o:['No labs or imaging because most LBP is mechanical','ESR/CRP/CBC and early MRI depending on presentation','Only TENS trial','Only home stretching'], a:1, e:'Fever, immunosuppression, IV drug use, recent spinal procedure, or focal tenderness can require lab and imaging evaluation.'},
+  {q:'Which exercise approach is most logical for flexion-sensitive discogenic symptoms that centralize with extension?', o:['Repeated flexion under load','Directional preference extension progression as tolerated','Avoid all movement','Only hamstring stretching'], a:1, e:'Directional preference exercises follow symptom response and centralization.'},
+  {q:'A patient with chronic LBP fears bending because “my disc will slip out.” Best first intervention?', o:['Confirm the spine is fragile','Pain neuroscience education plus graded exposure to bending','Avoid bending permanently','Immediate surgery referral'], a:1, e:'Fear avoidance is a modifiable yellow flag addressed with education and graded exposure.'},
+  {q:'Spondylolysis is most mechanically associated with:', o:['Repetitive extension/rotation stress','Only prolonged sitting','Only abdominal weakness','Only infection'], a:0, e:'Pars stress injury commonly relates to extension and rotation loading, especially in young athletes.'},
+  {q:'Which medication statement is most appropriate?', o:['Opioids are first-line for chronic nonspecific LBP','NSAIDs can be considered when appropriate; opioids are last option only after safer options fail','Systemic steroids are routine for all acute LBP','Acetaminophen is clearly superior to placebo for LBP'], a:1, e:'NSAIDs are common when no contraindication exists. Opioids require caution and are generally last-line.'},
+  {q:'What does centralization mean?', o:['Pain moves more distally into the leg','Pain becomes more widespread','Distal symptoms retreat proximally toward the spine during repeated movement/loading','Pain becomes constant at night'], a:2, e:'Centralization is often a useful sign during repeated movement assessment.'},
+  {q:'Which statement best represents therapeutic ultrasound for nonspecific LBP?', o:['It should replace exercise','Evidence is limited/inconsistent, so it is not usually a priority','It is mandatory for all acute LBP','It detects cauda equina syndrome'], a:1, e:'Ultrasound is not a core guideline-based treatment for nonspecific LBP compared with education, activity, exercise, and selected manual therapy.'},
+  {q:'What does abnormal lumbopelvic rhythm commonly imply in recurrent LBP?', o:['The lumbar spine is always structurally unstable','Poor load sharing between lumbar spine, pelvis, and hips','MRI is mandatory','Exercise should be avoided'], a:1, e:'Lumbopelvic rhythm describes lumbar-hip-pelvic coordination. Hip stiffness or poor pelvic control can increase lumbar loading.'},
+  {q:'Which test is best used to identify hip flexion contracture contributing to lumbar extension loading?', o:['Thomas test','Crossed SLR','Sacral thrust','Tinel test'], a:0, e:'The Thomas or modified Thomas test screens hip flexor length and can reveal hip flexion contracture.'},
+  {q:'For SIJ pain, which approach is most appropriate?', o:['Rely on one SIJ test only','Use a cluster of pain provocation tests that reproduce familiar pain','Diagnose SIJ pain only by lumbar MRI','Ignore hip screening'], a:1, e:'Clusters of SIJ provocation tests are more clinically useful than any single isolated test.'},
+  {q:'Which bracing statement is most appropriate for uncomplicated nonspecific LBP?', o:['Rigid TLSO is routine for all patients','Bracing may be short-term adjunct if it improves function, but it should be paired with active rehab and weaning','Bracing replaces exercise','Bracing proves the spine is fragile'], a:1, e:'Lumbar support is not routine definitive care for uncomplicated LBP. It may be used briefly to support function while rehabilitation progresses.'}
+];
+let quizOrder=[], qi=0, score=0, answered=0;
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+function startQuiz(){quizOrder=shuffle(quiz.map((_,i)=>i));qi=0;score=0;answered=0;renderQuiz();}
+function renderQuiz(){
+  const item=quiz[quizOrder[qi]];
+  document.getElementById('quizQuestion').textContent=`Q${qi+1}. ${item.q}`;
+  document.getElementById('scoreBadge').textContent=`Score: ${score} / ${answered}`;
+  document.getElementById('quizExplain').style.display='none';
+  const wrap=document.getElementById('quizOptions'); wrap.innerHTML='';
+  item.o.forEach((o,i)=>{const b=document.createElement('button');b.className='option';b.textContent=o;b.onclick=()=>{
+    if([...wrap.children].some(x=>x.disabled)) return;
+    answered++; if(i===item.a) score++;
+    [...wrap.children].forEach((x,j)=>{x.disabled=true;if(j===item.a)x.classList.add('correct')});
+    if(i!==item.a)b.classList.add('wrong');
+    const ex=document.getElementById('quizExplain');ex.innerHTML=`<strong>${i===item.a?'Correct.':'Not quite.'}</strong> ${item.e}`;ex.style.display='block';
+    document.getElementById('scoreBadge').textContent=`Score: ${score} / ${answered}`;
+  };wrap.appendChild(b);});
+}
+document.getElementById('nextQuizBtn').addEventListener('click',()=>{qi=(qi+1)%quizOrder.length;renderQuiz();});
+document.getElementById('restartQuizBtn').addEventListener('click',startQuiz);startQuiz();
+
+const flashcards=[
+  ['What are the four diagnostic categories of LBP?', 'Nonspecific mechanical, radiculopathy/stenosis, referred nonspinal pain, and specific/nonmechanical spinal pathology.'],
+  ['What is the core first-line message in acute nonspecific LBP?', 'Reassure, stay active as tolerated, avoid prolonged bed rest, and gradually return to normal activity.'],
+  ['What is centralization?', 'Distal symptoms retreat proximally toward the spine during repeated movement or loading.'],
+  ['Which symptoms suggest cauda equina syndrome?', 'New urinary retention, saddle anesthesia, bowel dysfunction, bilateral sciatica, or progressive bilateral weakness.'],
+  ['What is classic lumbar stenosis pain behavior?', 'Leg symptoms worsen with standing/walking/extension and improve with sitting or flexion.'],
+  ['Why can MRI overlead clinicians?', 'Degenerative findings are common in asymptomatic adults and must match the clinical pattern.'],
+  ['Which root affects great-toe extension?', 'L5.'],
+  ['Which reflex is S1?', 'Achilles reflex.'],
+  ['How should passive modalities be framed?', 'As symptom modulators to facilitate active rehabilitation, not isolated curative treatments.'],
+  ['What is a yellow flag?', 'A psychosocial factor such as fear avoidance, catastrophizing, depression, anxiety, low self-efficacy, or passive coping that increases chronicity risk.'],
+  ['What is a common extension-sensitive pathology?', 'Facet-mediated pain, stenosis, or spondylolysis depending on age and pattern.'],
+  ['What is the PM&R endpoint?', 'Restored function, capacity, confidence, participation, and recurrence prevention.'],
+  ['What is lumbopelvic rhythm?', 'Coordinated movement between lumbar spine, pelvis, and hips during forward bending and return to upright.'],
+  ['Why check the Thomas test in LBP?', 'Hip flexion contracture can increase anterior pelvic tilt and lumbar extension loading.'],
+  ['How do you interpret SIJ tests?', 'Use a provocation cluster. Several positive tests reproducing familiar pain support SIJ-mediated pain.'],
+  ['When is lumbar bracing useful?', 'Short-term functional support, selected instability, fracture/post-op protection, or pelvic/SIJ load-transfer problems, with a weaning plan.']
+];
+let fi=0, fdeck=flashcards;
+function renderFlash(){const c=fdeck[fi];const el=document.getElementById('flashcard');el.classList.remove('flipped');el.querySelector('.question').textContent=c[0];el.querySelector('.answer').textContent=c[1];document.getElementById('flashCount').textContent=`${fi+1} / ${fdeck.length}`;}
+document.getElementById('flashcard').addEventListener('click',e=>e.currentTarget.classList.toggle('flipped'));
+document.getElementById('nextFlash').addEventListener('click',()=>{fi=(fi+1)%fdeck.length;renderFlash();});
+document.getElementById('prevFlash').addEventListener('click',()=>{fi=(fi-1+fdeck.length)%fdeck.length;renderFlash();});
+document.getElementById('shuffleFlash').addEventListener('click',()=>{fdeck=shuffle(fdeck);fi=0;renderFlash();});renderFlash();
+
+const matchItems=[
+  ['Worse standing/walking, better sitting/flexion','Lumbar spinal stenosis'],
+  ['Weak EHL, first web-space sensory change','L5 radiculopathy'],
+  ['Morning stiffness >30 min, better with activity','Inflammatory back pain'],
+  ['Focal midline pain after minor fall in osteoporotic patient','Compression fracture'],
+  ['Extension/rotation pain in adolescent athlete','Spondylolysis']
+];
+const matchOptions=['Lumbar spinal stenosis','L5 radiculopathy','Inflammatory back pain','Compression fracture','Spondylolysis'];
+function renderMatches(){
+  const grid=document.getElementById('matchGrid'); grid.innerHTML='';
+  shuffle(matchItems).forEach((m,idx)=>{
+    const div=document.createElement('div'); div.className='matchitem';
+    div.innerHTML=`<strong>${m[0]}</strong><select data-answer="${m[1]}"><option value="">Choose diagnosis</option>${shuffle(matchOptions).map(o=>`<option>${o}</option>`).join('')}</select>`;
+    grid.appendChild(div);
+  });
+}
+function checkMatches(){let ok=0,total=0;document.querySelectorAll('#matchGrid select').forEach(s=>{total++;s.style.borderColor='';if(s.value===s.dataset.answer){ok++;s.style.borderColor='var(--ok)'}else{s.style.borderColor='var(--danger)'}});const fb=document.getElementById('matchFeedback');fb.innerHTML=`You matched <strong>${ok} / ${total}</strong> correctly.`;fb.style.display='block';}
+function resetMatches(){document.getElementById('matchFeedback').style.display='none';renderMatches();}renderMatches();
+</script>
+</body>
+</html>

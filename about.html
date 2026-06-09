@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About - PM&R Study Hub by Fahrin</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/topics.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <span class="logo">PM</span>
+        <span>PM&R Study Hub</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Index</a>
+        <a href="about.html">About</a>
+        <button class="icon-button" id="themeBtn" type="button">Night mode</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero-card">
+      <div class="kicker">About this offline hub</div>
+      <h1>How this study hub works</h1>
+      <p>
+        This is a lightweight offline webpage. It does not need an internet connection and it does not upload your files.
+        The index is generated from the HTML files inside your study folder.
+      </p>
+    </section>
+
+    <section class="about-layout" style="margin-top: 22px;">
+      <aside class="panel" style="padding: 24px;">
+        <h2>Current library</h2>
+        <ul class="list">
+          <li><strong id="topicCount">0</strong> topic files detected</li>
+          <li><strong id="categoryCount">0</strong> categories detected</li>
+          <li>Last update: <strong id="lastUpdated">-</strong></li>
+        </ul>
+      </aside>
+
+      <article class="panel" style="padding: 28px;">
+        <h2>How to update the index</h2>
+        <p>
+          Place all your PM&R HTML topic files in:
+          <code>C:\Users\Fahri\Documents\School Work\PM&R\SEM 8</code>
+        </p>
+
+        <ul class="list">
+          <li>Copy <code>build_pmr_hub.py</code> into that folder.</li>
+          <li>Double click <code>run_build_hub.bat</code>, or run <code>python build_pmr_hub.py</code> from Command Prompt.</li>
+          <li>The script will create or refresh <code>index.html</code>, <code>about.html</code>, and the <code>assets</code> folder.</li>
+          <li>Open <code>index.html</code> in your browser. You can pin or bookmark it.</li>
+          <li>Whenever you add, rename, or delete topic HTML files, run the builder again.</li>
+        </ul>
+
+        <h2 style="margin-top: 26px;">Suggested folder structure</h2>
+        <p>You can keep all files in one folder, or organize them into subfolders. Both approaches work.</p>
+        <ul class="list">
+          <li><code>SEM 8\Stroke\stroke_revision.html</code></li>
+          <li><code>SEM 8\Cardiac Rehab\cabg_rehab.html</code></li>
+          <li><code>SEM 8\Musculoskeletal\knee_acl_oa.html</code></li>
+          <li><code>SEM 8\index.html</code></li>
+        </ul>
+
+        <h2 style="margin-top: 26px;">Important note</h2>
+        <p>
+          A normal offline browser cannot automatically scan a Windows folder by itself for security reasons.
+          That is why this hub uses a local Python builder script to create the topic list.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    PM&R Study Hub by Fahrin.
+  </footer>
+</body>
+</html>

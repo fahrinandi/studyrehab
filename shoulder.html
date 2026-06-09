@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shoulder Rehabilitation Exam Guide</title>
+  <style>
+    :root {
+      --bg: #f5f4ee;
+      --panel: #ffffff;
+      --panel-2: #fbfaf6;
+      --ink: #21302c;
+      --muted: #66736f;
+      --accent: #6f8f82;
+      --accent-2: #c8d8ce;
+      --accent-3: #eaf0ec;
+      --danger: #a85b54;
+      --warn: #b58745;
+      --ok: #587f5b;
+      --line: #d8ded8;
+      --shadow: 0 10px 30px rgba(35, 48, 44, 0.10);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    [data-theme="dark"] {
+      --bg: #0f1614;
+      --panel: #16211e;
+      --panel-2: #1c2a26;
+      --ink: #e9f0ec;
+      --muted: #a9b8b1;
+      --accent: #9ec6b5;
+      --accent-2: #335048;
+      --accent-3: #22342f;
+      --danger: #df8f87;
+      --warn: #dfbd80;
+      --ok: #a5c79f;
+      --line: #2d433d;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: radial-gradient(circle at top left, var(--accent-3), transparent 35rem), var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .layout { display: grid; grid-template-columns: 310px 1fr; min-height: 100vh; }
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      padding: 24px;
+      border-right: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 88%, transparent);
+      backdrop-filter: blur(14px);
+    }
+    main { padding: 32px 42px 80px; max-width: 1280px; }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .logo {
+      width: 44px; height: 44px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid; place-items: center; color: white; font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+    .brand h1 { font-size: 18px; line-height: 1.15; margin: 0; }
+    .brand p { margin: 3px 0 0; color: var(--muted); font-size: 12px; }
+    .controls { display: grid; gap: 10px; margin: 18px 0 22px; }
+    input, select, button, textarea {
+      font: inherit;
+      color: var(--ink);
+    }
+    .search, select {
+      width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 12px;
+      background: var(--panel-2); outline: none;
+    }
+    .search:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+    .btn {
+      border: 1px solid var(--line); background: var(--panel-2); color: var(--ink);
+      border-radius: 12px; padding: 10px 12px; cursor: pointer; transition: 0.18s ease;
+    }
+    .btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: white; border-color: var(--accent); }
+    nav a {
+      display: block; padding: 9px 10px; border-radius: 10px; color: var(--ink); font-size: 14px;
+    }
+    nav a:hover, nav a.active { background: var(--accent-3); text-decoration: none; }
+    .tiny { font-size: 12px; color: var(--muted); }
+    .hero {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--panel) 92%, transparent), color-mix(in srgb, var(--accent-3) 75%, transparent));
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+    .hero h2 { font-size: clamp(32px, 4vw, 56px); margin: 0 0 12px; line-height: 1.02; letter-spacing: -0.03em; }
+    .hero p { max-width: 850px; color: var(--muted); margin: 0; font-size: 17px; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .badge, .cite {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid var(--line); background: var(--panel-2); border-radius: 999px;
+      padding: 4px 9px; font-size: 12px; color: var(--muted); white-space: nowrap;
+    }
+    .cite { cursor: pointer; color: var(--accent); font-weight: 650; }
+    section.card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 22px 0;
+      overflow: hidden;
+    }
+    .section-head {
+      padding: 22px 24px 12px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    }
+    .section-head h3 { margin: 0; font-size: 25px; letter-spacing: -0.01em; }
+    .section-head p { margin: 6px 0 0; color: var(--muted); }
+    .section-body { padding: 22px 24px 26px; }
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mini-card {
+      border: 1px solid var(--line); background: var(--panel-2); border-radius: 16px; padding: 16px;
+    }
+    .mini-card h4 { margin: 0 0 8px; font-size: 17px; }
+    .mini-card p, .mini-card li { color: var(--muted); }
+    .mini-card p:last-child { margin-bottom: 0; }
+    .callout {
+      border-left: 5px solid var(--accent);
+      background: var(--accent-3);
+      padding: 14px 16px;
+      border-radius: 14px;
+      margin: 14px 0;
+    }
+    .callout.warn { border-left-color: var(--warn); }
+    .callout.danger { border-left-color: var(--danger); }
+    .callout.ok { border-left-color: var(--ok); }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; border: 1px solid var(--line); font-size: 14px; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+    th { background: var(--accent-3); color: var(--ink); font-weight: 760; }
+    tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: color-mix(in srgb, var(--accent-3) 48%, transparent); }
+    .table-wrap { overflow-x: auto; margin: 14px 0; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; background: var(--accent-3); border: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+    details { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; background: var(--panel-2); margin: 10px 0; }
+    summary { cursor: pointer; font-weight: 760; }
+    summary::marker { color: var(--accent); }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .tab { border: 1px solid var(--line); padding: 9px 12px; border-radius: 999px; background: var(--panel-2); cursor: pointer; }
+    .tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .flow { display: grid; gap: 12px; }
+    .flow-row { display: grid; grid-template-columns: 1fr 48px 1fr; align-items: center; gap: 12px; }
+    .node { border: 1px solid var(--line); background: var(--panel-2); padding: 14px; border-radius: 14px; }
+    .arrow { text-align: center; color: var(--accent); font-size: 24px; font-weight: 800; }
+    .algorithm-list { counter-reset: step; display: grid; gap: 10px; }
+    .algorithm-list .step {
+      counter-increment: step;
+      display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start;
+      border: 1px solid var(--line); background: var(--panel-2); padding: 14px; border-radius: 14px;
+    }
+    .algorithm-list .step::before {
+      content: counter(step);
+      width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--accent); color: white; font-weight: 800;
+    }
+    .svg-wrap { background: var(--panel-2); border: 1px solid var(--line); border-radius: 18px; padding: 16px; margin: 12px 0; overflow: hidden; }
+    svg text { font-family: var(--sans); fill: var(--ink); }
+    svg .stroke { stroke: var(--accent); }
+    svg .fillAccent { fill: var(--accent-2); }
+    svg .muted { fill: var(--muted); }
+    .source-panel { position: fixed; right: 22px; bottom: 22px; width: min(460px, calc(100vw - 44px)); z-index: 20; display: none; }
+    .source-panel.show { display: block; }
+    .source-inner { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); padding: 16px; }
+    .source-inner h4 { margin: 0 0 8px; }
+    .source-inner p { margin: 6px 0; color: var(--muted); font-size: 14px; }
+    .close-x { float: right; border: none; background: transparent; color: var(--muted); cursor: pointer; font-size: 20px; }
+    .protocol-box { border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: var(--panel-2); }
+    .form-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .result { padding: 14px; border-radius: 14px; background: var(--accent-3); border: 1px solid var(--line); min-height: 96px; }
+    .quiz { display: grid; gap: 12px; }
+    .quiz-option { display: block; border: 1px solid var(--line); background: var(--panel-2); border-radius: 12px; padding: 10px 12px; cursor: pointer; margin: 8px 0; }
+    .quiz-option.correct { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 18%, var(--panel-2)); }
+    .quiz-option.wrong { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 16%, var(--panel-2)); }
+    .kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 12px 0; }
+    .kpi .mini-card strong { font-size: 28px; display: block; color: var(--accent); line-height: 1; }
+    .print-note { display: none; }
+    .hidden-by-search { display: none !important; }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: relative; height: auto; }
+      main { padding: 22px 16px 60px; }
+      .grid.two, .grid.three, .form-grid, .kpi { grid-template-columns: 1fr; }
+      .flow-row { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); }
+    }
+    @media print {
+      aside, .controls, .btn, .tabs, .source-panel { display: none !important; }
+      body { background: white; color: #111; }
+      main { padding: 0; max-width: none; }
+      section.card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+      .tab-panel { display: block !important; }
+      .print-note { display: block; }
+      a { color: #111; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <div class="brand">
+        <div class="logo">SR</div>
+        <div>
+          <h1>Shoulder Rehabilitation Exam Guide</h1>
+          <p>Biomechanics, pathology, physical exam, and prescription</p>
+        </div>
+      </div>
+      <div class="controls">
+        <input id="search" class="search" placeholder="Search: impingement, painful arc, phase 2..." />
+        <button class="btn" id="themeToggle">Night mode</button>
+        <button class="btn" onclick="window.print()">Print or save as PDF</button>
+      </div>
+      <nav id="toc">
+        <a href="#how">How to use this guide</a>
+        <a href="#anatomy">Anatomy and biomechanics</a>
+        <a href="#pathology">Pathology and differential diagnosis</a>
+        <a href="#exam">Physical examination sequence</a>
+        <a href="#algorithm">Clinical algorithms</a>
+        <a href="#conservative">Conservative rehabilitation</a>
+        <a href="#postop">Post-operative rotator cuff repair</a>
+        <a href="#prescription">Practical prescriptions</a>
+        <a href="#modalities">Therapeutic modalities</a>
+        <a href="#chooser">Interactive protocol chooser</a>
+        <a href="#quiz">Quiz hub</a>
+        <a href="#sources">Sources and citations</a>
+      </nav>
+      <p class="tiny" style="margin-top:18px">Built from the uploaded notes and updated evidence. Use surgeon-specific restrictions after repair.</p>
+    </aside>
+
+    <main>
+      <section class="hero searchable" id="how">
+        <h2>Structured shoulder rehabilitation exam guide</h2>
+        <p>This guide is built for PM&R exam revision and clinical reasoning. It starts from anatomy and shoulder kinematics, then moves into rotator cuff pathology, differential diagnosis, focused examination, and practical rehabilitation prescriptions for conservative care and post-arthroscopic rotator cuff repair.</p>
+        <div class="badge-row">
+          <span class="badge">Interactive protocols</span>
+          <span class="badge">Tables and algorithms</span>
+          <span class="badge">Night mode</span>
+          <span class="badge">Quiz hub</span>
+          <span class="badge">Citations included</span>
+        </div>
+      </section>
+
+      <section class="card searchable" id="anatomy">
+        <div class="section-head">
+          <h3>Anatomy and biomechanics</h3>
+          <p>Key structures that explain pain, weakness, instability, and rehabilitation priorities.</p>
+        </div>
+        <div class="section-body">
+          <div class="callout">
+            <strong>Core concept for exam:</strong> shoulder motion is not only glenohumeral motion. It is the integrated movement of the sternoclavicular, acromioclavicular, glenohumeral, and scapulothoracic components. Dysfunction in one part can disturb the entire shoulder complex. <span class="cite" data-source="S1">S1</span> <span class="cite" data-source="S2">S2</span>
+          </div>
+
+          <h4>Shoulder complex components</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Component</th><th>Primary role</th><th>Clinical implication</th><th>Exam relevance</th></tr></thead>
+              <tbody>
+                <tr><td>Sternoclavicular joint</td><td>True articulation linking upper limb to trunk. Allows clavicular elevation/depression, protraction/retraction, and axial rotation.</td><td>Loss of clavicular motion reduces scapular upward rotation during elevation.</td><td>Inspect clavicular alignment, palpate SC joint, check pain with end-range elevation.</td></tr>
+                <tr><td>Acromioclavicular joint</td><td>Plane joint between lateral clavicle and acromion. Allows scapular adjustment relative to clavicle, especially upward/downward rotation.</td><td>AC osteoarthritis or sprain may mimic rotator cuff pain and cause painful cross-body adduction.</td><td>Palpation, cross-body adduction, active compression test if labral/AC issue suspected.</td></tr>
+                <tr><td>Scapulothoracic articulation</td><td>Functional articulation, not a true synovial joint. Scapula glides over thoracic wall via muscular control.</td><td>Scapular dyskinesis can narrow subacromial space and increase rotator cuff load.</td><td>Observe winging, early shrug, downward rotation, anterior tilt, and asymmetry during elevation.</td></tr>
+                <tr><td>Glenohumeral joint</td><td>Convex humeral head on shallow concave glenoid. High mobility, lower passive stability.</td><td>Rotator cuff functions as dynamic stabilizer by compressing and centering humeral head.</td><td>Assess AROM, PROM, accessory mobility, resisted strength, and lag signs.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Rotator cuff anatomy</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Muscle</th><th>Origin</th><th>Insertion</th><th>Main action</th><th>Innervation</th><th>Clinical test emphasis</th></tr></thead>
+              <tbody>
+                <tr><td>Supraspinatus</td><td>Supraspinous fossa of scapula</td><td>Greater tubercle of humerus</td><td>Abduction initiation, compression of humeral head into glenoid</td><td>Suprascapular nerve, C5-C6</td><td>Jobe/empty can, drop arm, painful arc</td></tr>
+                <tr><td>Infraspinatus</td><td>Infraspinous fossa of scapula</td><td>Greater tubercle of humerus</td><td>External rotation, horizontal abduction, humeral head depression during elevation</td><td>Suprascapular nerve, C5-C6</td><td>External rotation resistance, external rotation lag</td></tr>
+                <tr><td>Teres minor</td><td>Axillary border of scapula</td><td>Greater tubercle of humerus</td><td>External rotation and horizontal abduction</td><td>Axillary nerve, C5-C6</td><td>Hornblower sign, ER at 90 degrees abduction</td></tr>
+                <tr><td>Subscapularis</td><td>Subscapular fossa of scapula</td><td>Lesser tubercle of humerus</td><td>Internal rotation, anterior cuff force couple, humeral head centering</td><td>Upper and lower subscapular nerves, C5-C6</td><td>Lift-off, belly press, bear hug, internal rotation lag</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="svg-wrap" aria-label="Scapulohumeral rhythm schematic">
+            <svg viewBox="0 0 920 330" width="100%" role="img">
+              <defs>
+                <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="var(--accent)"></path></marker>
+              </defs>
+              <rect x="20" y="20" width="880" height="290" rx="24" fill="transparent" stroke="var(--line)"></rect>
+              <text x="46" y="58" font-size="22" font-weight="800">Scapulohumeral rhythm during full abduction</text>
+              <text x="46" y="90" font-size="14" class="muted">Classic teaching ratio: 2:1 after early setting phase</text>
+              <circle cx="170" cy="215" r="52" fill="none" stroke="var(--line)" stroke-width="8"></circle>
+              <line x1="170" y1="215" x2="170" y2="95" stroke="var(--accent)" stroke-width="12" stroke-linecap="round"></line>
+              <path d="M120 222 Q170 165 220 222" fill="none" stroke="var(--accent-2)" stroke-width="18" stroke-linecap="round"></path>
+              <text x="108" y="288" font-size="14">Glenohumeral abduction</text>
+              <text x="127" y="312" font-size="26" font-weight="800">120 degrees</text>
+              <path d="M330 235 L450 175 L468 210 L348 270 Z" fill="var(--accent-2)" stroke="var(--accent)" stroke-width="2"></path>
+              <line x1="388" y1="235" x2="388" y2="110" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" transform="rotate(-28 388 235)"></line>
+              <path d="M355 225 A75 75 0 0 1 430 145" fill="none" stroke="var(--accent)" stroke-width="5" marker-end="url(#arrow)"></path>
+              <text x="330" y="288" font-size="14">Scapulothoracic upward rotation</text>
+              <text x="372" y="312" font-size="26" font-weight="800">60 degrees</text>
+              <line x1="595" y1="220" x2="730" y2="220" stroke="var(--accent)" stroke-width="8" stroke-linecap="round"></line>
+              <path d="M630 220 A58 58 0 0 1 695 165" fill="none" stroke="var(--accent)" stroke-width="5" marker-end="url(#arrow)"></path>
+              <path d="M720 220 A55 55 0 0 1 770 173" fill="none" stroke="var(--accent)" stroke-width="5" marker-end="url(#arrow)"></path>
+              <text x="570" y="95" font-size="15" font-weight="700">SC and AC contributions</text>
+              <text x="570" y="123" font-size="13" class="muted">Clavicle elevation + retraction + posterior rotation</text>
+              <text x="570" y="146" font-size="13" class="muted">Scapular upward rotation + posterior tilt + external rotation</text>
+              <text x="570" y="288" font-size="14">Final arc prevents impingement</text>
+              <text x="570" y="312" font-size="20" font-weight="800">humerus externally rotates</text>
+            </svg>
+          </div>
+
+          <h4>Six kinematic principles of shoulder abduction</h4>
+          <div class="algorithm-list">
+            <div class="step"><div><strong>Scapulohumeral rhythm:</strong> full abduction near 180 degrees is classically explained by 120 degrees of glenohumeral abduction and 60 degrees of scapulothoracic upward rotation.</div></div>
+            <div class="step"><div><strong>Upward scapular rotation:</strong> the 60 degrees of scapular upward rotation results from clavicular elevation at the SC joint and upward rotation at the AC joint.</div></div>
+            <div class="step"><div><strong>Clavicular retraction:</strong> the clavicle retracts at the SC joint during full abduction.</div></div>
+            <div class="step"><div><strong>Scapular posterior tilt:</strong> near full elevation, the scapula posteriorly tilts and may externally rotate slightly.</div></div>
+            <div class="step"><div><strong>Clavicular posterior rotation:</strong> the clavicle rotates posteriorly around its long axis, which helps free scapular upward rotation.</div></div>
+            <div class="step"><div><strong>Humeral external rotation:</strong> the humerus naturally externally rotates during abduction, moving the greater tubercle away from the acromion to reduce impingement risk.</div></div>
+          </div>
+
+          <details>
+            <summary>Rotator cuff force couple in one clinical sentence</summary>
+            <p>The deltoid elevates the humerus but tends to create superior humeral head translation. The rotator cuff counters this by compressing the humeral head into the glenoid and producing inferior/depressive and rotational components that maintain subacromial clearance. This is why rotator cuff tear can present as weakness, painful arc, altered scapular mechanics, and functional instability. <span class="cite" data-source="S2">S2</span> <span class="cite" data-source="S10">S10</span></p>
+          </details>
+        </div>
+      </section>
+
+      <section class="card searchable" id="pathology">
+        <div class="section-head">
+          <h3>Pathology and differential diagnosis</h3>
+          <p>From mechanism to clinical pattern.</p>
+        </div>
+        <div class="section-body">
+          <div class="grid two">
+            <div class="mini-card">
+              <h4>Macrotrauma</h4>
+              <p>Acute tear after a clear traumatic event, often in younger or active patients. A fall, sudden traction, shoulder dislocation, or heavy load may produce a full-thickness tear. If there is pre-existing degeneration, smaller forces can still produce a complete tear.</p>
+            </div>
+            <div class="mini-card">
+              <h4>Microtrauma and degeneration</h4>
+              <p>Repeated overload, age-related tendon changes, hypovascularity, metabolic risk factors, and insufficient tendon healing can progress into degenerative partial or full-thickness tearing. This pattern is more common with age. <span class="cite" data-source="S2">S2</span> <span class="cite" data-source="S3">S3</span></p>
+            </div>
+          </div>
+
+          <h4>Rotator cuff tear classification</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Classification axis</th><th>Types</th><th>Clinical significance</th></tr></thead>
+              <tbody>
+                <tr><td>Time course</td><td>Acute traumatic, acute-on-chronic, chronic degenerative</td><td>Acute traumatic large tears require earlier surgical discussion; chronic degenerative tears need assessment of retraction, atrophy, and fatty infiltration.</td></tr>
+                <tr><td>Thickness</td><td>Partial-thickness tear and full-thickness tear</td><td>High-grade partial tears that fail conservative care may require repair. Full-thickness tears are more associated with true weakness and lag signs.</td></tr>
+                <tr><td>Partial tear surface</td><td>Articular-sided tear and bursal-sided tear</td><td>Articular-sided tears are often related to intrinsic tendon factors and hypovascularity. Bursal-sided tears may reflect intrinsic factors plus extrinsic abrasion or impingement.</td></tr>
+                <tr><td>Massive tear pattern</td><td>Anterior cuff dominant, posterosuperior cuff dominant, combined patterns</td><td>Subscapularis involvement is especially important for elevation and pseudoparalysis reversal. Posterior cuff involvement impairs external rotation.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Factors that predict poorer tendon healing after repair</h4>
+          <div class="grid three">
+            <div class="mini-card"><h4>Tear factors</h4><p>Chronic duration, greater retraction, larger tear size, transverse tear pattern, and massive tear morphology.</p></div>
+            <div class="mini-card"><h4>Muscle factors</h4><p>Muscle atrophy and fatty infiltration, especially in chronic degenerative tears.</p></div>
+            <div class="mini-card"><h4>Patient factors</h4><p>Older age, smoking, hypercholesterolemia, diabetes, high BMI, and reduced tissue quality may affect outcomes. <span class="cite" data-source="S3">S3</span> <span class="cite" data-source="S13">S13</span></p></div>
+          </div>
+
+          <h4>Differential diagnosis table</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Differential</th><th>Typical clue</th><th>Key tests or reasoning</th><th>Rehab implication</th></tr></thead>
+              <tbody>
+                <tr><td>Rotator cuff tendinopathy or tear</td><td>Lateral deltoid pain, overhead pain, night pain, weakness with abduction or ER</td><td>Painful arc, ER resistance, Jobe, drop arm, lag signs, imaging if needed</td><td>Load management, rotator cuff and scapular strengthening, avoid early aggressive overhead load</td></tr>
+                <tr><td>Subacromial impingement or bursitis</td><td>Pain between 60 and 120 degrees abduction, symptoms with overhead tasks</td><td>Painful arc, Hawkins-Kennedy, Neer, scapular assistance test</td><td>Reduce compressive load, restore scapular posterior tilt/upward rotation, gradual cuff loading</td></tr>
+                <tr><td>SLAP or labral tear</td><td>Deep pain, clicking/catching, throwing or traction history</td><td>O'Brien active compression, crank, biceps load tests, instability exam</td><td>Avoid provocative traction and unstable positions initially; coordinate surgical decision if mechanical symptoms persist</td></tr>
+                <tr><td>AC joint osteoarthritis or sprain</td><td>Superior shoulder pain, focal AC tenderness, pain with cross-body adduction</td><td>Cross-body adduction, AC palpation, Paxinos if known</td><td>Modify horizontal adduction and end-range cross-body load; treat scapular mechanics and local inflammation</td></tr>
+                <tr><td>Biceps tendinopathy</td><td>Anterior shoulder pain, bicipital groove tenderness</td><td>Speed, Yergason, palpation, resisted supination/elbow flexion</td><td>Reduce resisted elbow flexion/supination early; strengthen scapular and cuff support</td></tr>
+                <tr><td>Calcific tendinitis</td><td>Acute severe pain or chronic impingement-like pain</td><td>X-ray or ultrasound; painful ROM often limited by pain</td><td>Pain control first, gentle ROM, later strengthening; consider referral for persistent severe symptoms</td></tr>
+                <tr><td>Cervical radiculopathy</td><td>Neck pain, radiating pain, paresthesia, dermatomal weakness, reflex change</td><td>Spurling, cervical distraction, upper limb tension test, neuro screen</td><td>Treat cervical contribution; shoulder-only rehab may fail if neurologic driver is missed</td></tr>
+                <tr><td>Adhesive capsulitis</td><td>Global loss of active and passive ROM, especially ER</td><td>Capsular pattern, firm end-feel, diabetes risk, night pain</td><td>Gentle mobility, pain modulation, avoid forcing severe irritability; long timeline education</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout warn">
+            <strong>Exam warning:</strong> pain-inhibited weakness is not the same as true tear-related weakness. Diagnostic local anesthetic injection can help distinguish reflex inhibition from structural weakness in selected cases. <span class="cite" data-source="S2">S2</span> <span class="cite" data-source="S8">S8</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card searchable" id="exam">
+        <div class="section-head">
+          <h3>Physical examination sequence</h3>
+          <p>A practical, time-efficient shoulder exam for PM&R oral or bedside examination.</p>
+        </div>
+        <div class="section-body">
+          <div class="tabs" data-tabs="exam-tabs">
+            <button class="tab active" data-tab="sequence">30-minute sequence</button>
+            <button class="tab" data-tab="tests">Special tests</button>
+            <button class="tab" data-tab="interpretation">Interpretation</button>
+          </div>
+
+          <div id="sequence" class="tab-panel active" data-tabs-panel="exam-tabs">
+            <div class="algorithm-list">
+              <div class="step"><div><strong>Opening and safety:</strong> confirm identity, dominant hand, occupation/sport, trauma history, surgery date if post-op, red flags, pain score, medications, and precautions from the surgeon.</div></div>
+              <div class="step"><div><strong>Inspection from front, side, and back:</strong> posture, cervical alignment, shoulder height, clavicle/AC deformity, scapular winging or dyskinesis, deltoid/supraspinatus/infraspinatus wasting, scars, swelling, bruising.</div></div>
+              <div class="step"><div><strong>Palpation:</strong> SC joint, clavicle, AC joint, coracoid, bicipital groove, greater tubercle, subacromial space, scapular borders, trapezius, levator scapulae, posterior cuff.</div></div>
+              <div class="step"><div><strong>Screen cervical spine and neurovascular status:</strong> cervical ROM, Spurling or distraction if radicular symptoms, dermatomes, myotomes, reflexes, distal pulses, sensation over lateral shoulder for axillary nerve.</div></div>
+              <div class="step"><div><strong>Active ROM:</strong> flexion, abduction, extension, external rotation, internal rotation behind back, horizontal adduction. Note painful arc, substitution, shrug sign, and scapular rhythm.</div></div>
+              <div class="step"><div><strong>Passive ROM:</strong> compare to active ROM. A large AROM-PROM gap suggests weakness or pain inhibition. A global PROM loss suggests capsular stiffness or adhesive capsulitis.</div></div>
+              <div class="step"><div><strong>Resisted isometric testing:</strong> abduction, external rotation, internal rotation, elbow flexion/supination, scapular retraction/protraction. Differentiate pain-limited strength from true power loss.</div></div>
+              <div class="step"><div><strong>Special tests by hypothesis:</strong> rotator cuff, impingement, biceps/labrum, AC joint, instability, scapular dyskinesis. Use clusters rather than one isolated test.</div></div>
+              <div class="step"><div><strong>Function and goals:</strong> reach overhead, hand to mouth, hand behind head, hand behind back, lifting, dressing, grooming, work tasks, sport-specific movements.</div></div>
+              <div class="step"><div><strong>Summary:</strong> diagnosis impression, impairments, activity limitations, precautions, rehab phase, short-term goals, exercise prescription, and referral/imaging decision.</div></div>
+            </div>
+          </div>
+
+          <div id="tests" class="tab-panel" data-tabs-panel="exam-tabs">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Test</th><th>How to perform</th><th>Positive finding</th><th>Most relevant structure</th><th>Interpretation for exam</th></tr></thead>
+                <tbody>
+                  <tr><td>Painful arc</td><td>Ask patient to actively abduct shoulder through full range.</td><td>Typical pain between 60 and 120 degrees, often less painful beyond this arc.</td><td>Subacromial structures, supraspinatus, bursa</td><td>Suggests subacromial pain or rotator cuff disorder, especially when combined with other tests. <span class="cite" data-source="S8">S8</span></td></tr>
+                  <tr><td>Drop arm</td><td>Passively or actively position arm near 90 degrees abduction, then ask controlled lowering.</td><td>Arm drops suddenly or cannot lower smoothly, often with pain.</td><td>Supraspinatus, large/full-thickness cuff tear</td><td>More specific than sensitive; positive test raises suspicion for full-thickness tear. <span class="cite" data-source="S2">S2</span></td></tr>
+                  <tr><td>External rotation resistance</td><td>Elbow at side and flexed 90 degrees. Resist ER.</td><td>Pain or weakness.</td><td>Infraspinatus and teres minor</td><td>One of the more accurate clinical findings for rotator cuff disease when positive. <span class="cite" data-source="S8">S8</span></td></tr>
+                  <tr><td>External rotation lag</td><td>Passively place shoulder in ER, ask patient to hold.</td><td>Inability to maintain position, arm falls into internal rotation.</td><td>Supraspinatus and infraspinatus, posterior cuff</td><td>Lag sign supports full-thickness tear or severe cuff dysfunction.</td></tr>
+                  <tr><td>Internal rotation lag</td><td>Place dorsum of hand off back in internal rotation, ask patient to hold.</td><td>Hand falls back onto trunk or cannot maintain position.</td><td>Subscapularis</td><td>A normal internal rotation lag helps reduce probability of full-thickness subscapularis tear.</td></tr>
+                  <tr><td>Lift-off</td><td>Hand behind back, ask patient to lift hand away from lumbar spine.</td><td>Unable to lift or marked weakness/pain.</td><td>Subscapularis</td><td>Useful for lower subscapularis, but may be limited by pain or stiffness.</td></tr>
+                  <tr><td>Belly press</td><td>Hand on abdomen, press while keeping wrist neutral and elbow anterior.</td><td>Wrist flexes or elbow drops posteriorly.</td><td>Subscapularis</td><td>Better when patient cannot reach behind back.</td></tr>
+                  <tr><td>Bear hug</td><td>Hand on opposite shoulder, examiner tries to lift hand away.</td><td>Weakness or inability to resist.</td><td>Upper subscapularis</td><td>Good addition when anterior cuff lesion suspected.</td></tr>
+                  <tr><td>Hawkins-Kennedy</td><td>Flex shoulder to 90 degrees, elbow flexed, internally rotate humerus.</td><td>Subacromial pain.</td><td>Subacromial space</td><td>Provocation test; not diagnostic alone.</td></tr>
+                  <tr><td>Neer</td><td>Stabilize scapula, passively elevate internally rotated arm.</td><td>Anterior/lateral shoulder pain.</td><td>Subacromial structures</td><td>Suggests subacromial pain if consistent with history.</td></tr>
+                  <tr><td>Cross-body adduction</td><td>Passively adduct arm across chest.</td><td>Focal superior shoulder/AC pain.</td><td>AC joint</td><td>Helps separate AC pain from cuff pain.</td></tr>
+                  <tr><td>Speed</td><td>Resisted shoulder flexion with elbow extended and forearm supinated.</td><td>Bicipital groove/anterior pain.</td><td>Long head biceps, labral-biceps complex</td><td>Use with palpation and other labral/biceps tests.</td></tr>
+                  <tr><td>Yergason</td><td>Elbow 90 degrees, resist forearm supination and ER.</td><td>Anterior shoulder pain or biceps instability sensation.</td><td>Long head biceps</td><td>More useful if bicipital groove tenderness present.</td></tr>
+                  <tr><td>Scapular assistance</td><td>Manually assist scapular upward rotation/posterior tilt during elevation.</td><td>Pain decreases or ROM improves.</td><td>Scapular motor control</td><td>Supports scapular contribution and guides rehabilitation priorities.</td></tr>
+                  <tr><td>Scapular retraction test</td><td>Stabilize/retract scapula while repeating strength or impingement test.</td><td>Strength improves or pain decreases.</td><td>Scapular stabilizers</td><td>Suggests cuff strength is being limited by scapular position/control.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="interpretation" class="tab-panel" data-tabs-panel="exam-tabs">
+            <div class="grid two">
+              <div class="mini-card">
+                <h4>Cluster for rotator cuff tear</h4>
+                <p>In the notes, the combination of active painful arc, positive drop arm, and weakness in external rotation is emphasized as a practical cluster. Three negative findings make a full-thickness tear less likely, while multiple positive findings justify imaging or surgical consultation depending on context. <span class="cite" data-source="S2">S2</span> <span class="cite" data-source="S8">S8</span></p>
+              </div>
+              <div class="mini-card">
+                <h4>Active versus passive ROM</h4>
+                <p>AROM limitation with near-normal PROM suggests pain inhibition, weakness, or neurologic deficit. Both AROM and PROM limitation suggests capsular stiffness, adhesive capsulitis, severe pain irritability, or joint restriction.</p>
+              </div>
+              <div class="mini-card">
+                <h4>True weakness versus pain inhibition</h4>
+                <p>True weakness persists despite pain control and often shows lag, drop arm, atrophy, or large AROM-PROM gap. Pain inhibition improves after analgesia or position modification.</p>
+              </div>
+              <div class="mini-card">
+                <h4>Scapular dyskinesis</h4>
+                <p>Early shrugging, winging, excessive anterior tilt, or poor upward rotation may be primary motor control dysfunction or secondary compensation from pain, stiffness, or cuff weakness.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card searchable" id="algorithm">
+        <div class="section-head">
+          <h3>Clinical algorithms</h3>
+          <p>Use these to explain your reasoning during the exam.</p>
+        </div>
+        <div class="section-body">
+          <h4>Shoulder pain diagnostic algorithm</h4>
+          <div class="flow">
+            <div class="flow-row"><div class="node"><strong>1. History</strong><br>Trauma, age, overhead work/sport, night pain, weakness, instability, neck symptoms, previous surgery.</div><div class="arrow">→</div><div class="node"><strong>2. Red flags</strong><br>Fever, malignancy history, unexplained weight loss, fracture/dislocation signs, infection, neurologic deficit.</div></div>
+            <div class="flow-row"><div class="node"><strong>3. AROM/PROM pattern</strong><br>AROM lost more than PROM: cuff weakness or inhibition. PROM globally restricted: capsular stiffness.</div><div class="arrow">→</div><div class="node"><strong>4. Localize tissue</strong><br>Cuff, biceps/labrum, AC joint, cervical, instability, scapular motor control.</div></div>
+            <div class="flow-row"><div class="node"><strong>5. Test cluster</strong><br>Use multiple tests: painful arc + ER weakness + drop arm or lag signs for cuff disease.</div><div class="arrow">→</div><div class="node"><strong>6. Decide management</strong><br>Conservative rehab, imaging, injection discussion, or surgical referral depending on tear size, trauma, weakness, function, and patient goals.</div></div>
+          </div>
+
+          <h4>When to request imaging or refer</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Scenario</th><th>Why it matters</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>Acute traumatic shoulder pain with marked weakness or pseudoparalysis</td><td>Possible acute full-thickness or massive tear, fracture, dislocation, or nerve injury</td><td>Urgent imaging and orthopedic referral</td></tr>
+                <tr><td>Persistent weakness, positive lag/drop arm, or atrophy</td><td>Suggests structural cuff failure rather than only pain inhibition</td><td>Ultrasound or MRI depending availability and surgical planning needs</td></tr>
+                <tr><td>Conservative care fails after adequate trial</td><td>Persistent pain or functional limitation despite exercise and load management</td><td>Review diagnosis, consider imaging, injection, or surgical consultation</td></tr>
+                <tr><td>Post-operative sudden pain or loss of function</td><td>Possible retear, anchor issue, infection, stiffness, or inappropriate load progression</td><td>Contact surgeon and modify rehabilitation</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="tiny">AAOS 2025 states that clinical examination can diagnose or stratify patients with rotator cuff tears, but combinations of tests improve diagnostic accuracy; MRI, MRA, CT, and ultrasound are useful adjuncts to clinical examination and radiographs. <span class="cite" data-source="S3">S3</span></p>
+        </div>
+      </section>
+
+      <section class="card searchable" id="conservative">
+        <div class="section-head">
+          <h3>Conservative rehabilitation</h3>
+          <p>For rotator cuff tendinopathy, partial-thickness tears, selected full-thickness tears, and non-operative candidates.</p>
+        </div>
+        <div class="section-body">
+          <div class="callout ok">
+            <strong>Main exam statement:</strong> non-operative management is not passive waiting. It is education, pain modulation, graded loading, scapular and rotator cuff strengthening, mobility restoration, and return-to-activity planning. <span class="cite" data-source="S4">S4</span> <span class="cite" data-source="S13">S13</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Phase</th><th>Clinical criteria</th><th>Goals</th><th>Exercise examples</th><th>Progression criteria</th></tr></thead>
+              <tbody>
+                <tr><td>Phase 1: pain control and movement confidence</td><td>High irritability, night pain, painful active elevation, guarded movement</td><td>Reduce pain, maintain safe ROM, improve sleep and ADL confidence</td><td>Pendulum, table slide, supine assisted flexion, scapular setting, thoracic extension, isometric ER/IR at low intensity</td><td>Pain stable or improving, able to perform daily activity below shoulder level, tolerates low-load isometrics</td></tr>
+                <tr><td>Phase 2: mobility and early strength</td><td>Moderate pain, improving ROM, weakness present</td><td>Restore ROM, begin cuff and scapular endurance</td><td>Wall slide, active-assisted ER with stick, side-lying ER, prone row, serratus punch, low row band</td><td>AROM improving, no next-day flare, better scapular control</td></tr>
+                <tr><td>Phase 3: progressive strengthening</td><td>Pain controlled, functional ROM available</td><td>Improve cuff strength, scapular force transfer, kinetic chain</td><td>Band ER/IR, scaption to 60-90 degrees, prone Y/T as tolerated, closed-chain wall push-up plus, farmer carry if appropriate</td><td>Strength at least 80% of other side, no painful arc during light load</td></tr>
+                <tr><td>Phase 4: return to work/sport</td><td>Good ROM and strength, specific functional demands</td><td>Prepare overhead work, throwing, swimming, racket sport, or lifting</td><td>Overhead endurance, plyometric wall toss, interval throwing/swimming program, task simulation</td><td>Pain-free task-specific performance, no compensation, patient confidence restored</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <details>
+            <summary>How to explain conservative care for a small to medium full-thickness tear</summary>
+            <p>AAOS 2025 reports that both physical therapy and operative treatment can significantly improve patient-reported outcomes in symptomatic small to medium full-thickness rotator cuff tears. However, non-operative management may allow tear size, atrophy, and fatty infiltration to progress over 5 to 10 years, so the patient should be followed clinically and structurally when future repair remains an option. <span class="cite" data-source="S3">S3</span></p>
+          </details>
+        </div>
+      </section>
+
+      <section class="card searchable" id="postop">
+        <div class="section-head">
+          <h3>Post-operative rotator cuff repair rehabilitation</h3>
+          <p>Phase-based approach after arthroscopic repair. Modify based on surgeon order, tear size, tissue quality, fixation, and subscapularis involvement.</p>
+        </div>
+        <div class="section-body">
+          <div class="callout danger">
+            <strong>Do not memorize only time:</strong> phase progression must consider tissue healing, pain, ROM, neuromuscular control, and repair protection. Large tears, revision repair, poor tissue quality, and subscapularis repair usually require more conservative progression. <span class="cite" data-source="S5">S5</span> <span class="cite" data-source="S6">S6</span>
+          </div>
+
+          <h4>Tendon healing frame</h4>
+          <div class="grid three">
+            <div class="mini-card"><h4>Inflammation</h4><p>Immediate response with hematoma, cytokine release, inflammatory cell migration, and removal of debris. Primary rehab concern is protection and pain control.</p></div>
+            <div class="mini-card"><h4>Proliferation</h4><p>Cell proliferation and extracellular matrix formation create early scar tissue. Rehab emphasizes protected ROM without excessive tendon load.</p></div>
+            <div class="mini-card"><h4>Remodeling</h4><p>Collagen organization shifts toward stronger longitudinal type I collagen alignment. Progressive strengthening becomes more appropriate as tissue matures. <span class="cite" data-source="S2">S2</span></p></div>
+          </div>
+
+          <h4>Post-repair phase table</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Time frame</th><th>Protection</th><th>Main goals</th><th>Allowed or typical exercises</th><th>Avoid</th><th>Progression criteria</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Phase I: 0-6 weeks</td>
+                  <td>Immobilizer or sling with abduction pillow commonly used. Elbow, wrist, and hand ROM from early post-op. If subscapularis repaired, passive ER beyond neutral may be prohibited.</td>
+                  <td>Protect repair, control pain and inflammation, prevent elbow/hand stiffness, maintain safe passive shoulder ROM.</td>
+                  <td>Cryotherapy, breathing/posture education, hand/wrist/elbow ROM, pendulum if allowed, passive ER within restriction, passive forward elevation/table slide for selected early-motion/high-stiffness-risk patients.</td>
+                  <td>Active shoulder elevation, active resisted cuff work, sudden reaching, lifting, pushing from chair, aggressive stretching.</td>
+                  <td>Pain-controlled passive motion; example criteria include passive flexion around 110-125 degrees, GH abduction around 90 degrees in immobilizer, and ER/IR 25-45 degrees if allowed. <span class="cite" data-source="S2">S2</span> <span class="cite" data-source="S6">S6</span></td>
+                </tr>
+                <tr>
+                  <td>Phase II: 7-12 weeks</td>
+                  <td>Wean sling as permitted. Still protect from load and sudden active movement.</td>
+                  <td>Restore PROM then AAROM, reduce stiffness, begin low-load neuromuscular control.</td>
+                  <td>Overhead passive pulley, supine wand flexion, ER stick, table/wall slides, open-chain proprioception in supine at 90 degrees, scapular control drills.</td>
+                  <td>Heavy lifting, aggressive end-range stretching, resisted cuff strengthening unless cleared.</td>
+                  <td>80-90% ROM restored, pain-free ADL, no irritability response to mobility work. Large/massive tears may progress slower.</td>
+                </tr>
+                <tr>
+                  <td>Phase III: 3-4 months</td>
+                  <td>Strengthening begins if repair and symptoms allow. Delay to 4 months for large tears greater than 5 cm, more than 2 tendons, or revision repair.</td>
+                  <td>Restore rotator cuff and scapular strength, endurance, and motor control.</td>
+                  <td>Band ER/IR, biceps curl, low row, scapular retraction, serratus work, gradual closed-chain wall exercise.</td>
+                  <td>Heavy overhead lifting, ballistic arm acceleration, high-load eccentric cuff work.</td>
+                  <td>Good ROM, no resting pain, tolerates strengthening without delayed flare.</td>
+                </tr>
+                <tr>
+                  <td>Phase IV: 4-6 months</td>
+                  <td>Advanced strengthening with careful load progression.</td>
+                  <td>Improve power, endurance, proprioception, and functional task tolerance.</td>
+                  <td>Progress ER at varying abduction angles, push-up plus progression, prone Y/T, closed-chain stability, medicine ball wall dribble if appropriate.</td>
+                  <td>Aggressive overhead sport, heavy labor, fall risk activity.</td>
+                  <td>Near-symmetric ROM, strength improving toward 80-90%, normal scapulothoracic kinematics.</td>
+                </tr>
+                <tr>
+                  <td>Phase V: 6-12 months</td>
+                  <td>Return depends on tear size, sport/work demand, and surgeon clearance.</td>
+                  <td>Return to unrestricted ADL, work, overhead sport, or recreational activity.</td>
+                  <td>Sport/work-specific progression, interval throwing or swimming, controlled overhead strengthening, load exposure plan.</td>
+                  <td>For large tears or revision repair, full activity may be delayed up to 1 year.</td>
+                  <td>Symmetric ROM and strength, no pain at rest or activity, normal scapular mechanics, task-specific confidence.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Early versus delayed rehabilitation decision</h4>
+          <div class="grid two">
+            <div class="mini-card">
+              <h4>Early motion may be considered when</h4>
+              <ul>
+                <li>Small tear or single-tendon repair</li>
+                <li>High risk of stiffness such as adhesive capsulitis, calcific tendinitis, PASTA repair, concomitant labral repair, or stiff pre-op shoulder</li>
+                <li>Good tissue quality and stable fixation</li>
+                <li>Patient is reliable and understands restrictions</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h4>Delayed or conservative motion is safer when</h4>
+              <ul>
+                <li>Large or massive tear</li>
+                <li>Revision repair</li>
+                <li>Multiple tendons or subscapularis involvement</li>
+                <li>Poor tissue quality, fatty infiltration, high retear risk</li>
+                <li>Patient cannot reliably avoid active use</li>
+              </ul>
+            </div>
+          </div>
+          <p>Current evidence generally shows similar long-term outcomes between early and delayed mobilization after small to medium arthroscopic rotator cuff repair. Early motion can improve short-term ROM, while delayed mobilization may trend toward higher healing rates, especially when tissue protection is important. <span class="cite" data-source="S3">S3</span> <span class="cite" data-source="S5">S5</span> <span class="cite" data-source="S7">S7</span></p>
+        </div>
+      </section>
+
+      <section class="card searchable" id="prescription">
+        <div class="section-head">
+          <h3>Practical rehabilitation prescriptions</h3>
+          <p>Use these as exam-ready FITT examples, then individualize.</p>
+        </div>
+        <div class="section-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Problem</th><th>Prescription</th><th>Dose</th><th>Progression</th><th>Precaution</th></tr></thead>
+              <tbody>
+                <tr><td>Painful high-irritability cuff tendinopathy</td><td>Relative rest from provocative overhead load, pendulum, table slide, scapular setting, low-intensity cuff isometrics</td><td>Daily ROM 1-3 sets of 10-15 reps; isometric 5 x 10-20 sec, 30-50% effort</td><td>Increase ROM arc, add isotonic band when pain response is stable</td><td>Do not chase pain. Use pain-monitoring rule: symptoms should settle within 24 hours.</td></tr>
+                <tr><td>Weak external rotation</td><td>Side-lying ER, band ER at side, scapular retraction</td><td>2-4 sets of 8-15 reps, 2-4 days/week</td><td>Increase band resistance, tempo, then ER at 45-90 degrees abduction if tolerated</td><td>Avoid humeral anterior glide and shrug compensation.</td></tr>
+                <tr><td>Scapular dyskinesis</td><td>Scapular clock, low row, serratus punch, wall slide with lift-off, push-up plus progression</td><td>2-3 sets of 10-15 reps, 3-5 days/week for motor control</td><td>Move from supported to unsupported, then closed chain to open chain</td><td>Quality first. Stop if upper trapezius dominance increases pain.</td></tr>
+                <tr><td>Posterior shoulder tightness</td><td>Cross-body stretch or sleeper stretch depending irritability</td><td>3-5 holds of 20-30 sec, daily or every other day</td><td>Add thoracic rotation and posterior cuff soft tissue as tolerated</td><td>Avoid anterior shoulder pain and aggressive end-range internal rotation.</td></tr>
+                <tr><td>Post-op phase I</td><td>Hand/wrist/elbow ROM, cryotherapy, posture, sling education, passive ROM only if allowed</td><td>Elbow/wrist/hand several times daily; shoulder PROM per surgeon protocol</td><td>Progress PROM only within repair-specific limits</td><td>No active shoulder lifting, pushing, pulling, or weight bearing through arm.</td></tr>
+                <tr><td>Post-op phase II</td><td>Passive pulley, AAROM wand, table/wall slides, gentle scapular control</td><td>1-3 sets of 10 reps, 1-2 times/day as tolerated</td><td>Transition PROM to AAROM then AROM when cleared</td><td>No strengthening unless cleared; monitor delayed soreness.</td></tr>
+                <tr><td>Post-op phase III</td><td>Thera-band ER/IR, biceps curl, low row, serratus activation</td><td>2-3 sets of 10-15 reps, 3 days/week</td><td>Increase resistance by small increments once pain-free and movement quality is good</td><td>Large tear or revision repair may delay strengthening to 4 months.</td></tr>
+                <tr><td>Return to overhead sport</td><td>Endurance, kinetic chain, plyometric wall toss, interval throwing/swimming or racket progression</td><td>2-3 days/week, task-specific volume plan</td><td>Increase speed before high load, then sport-specific volume</td><td>Needs pain-free ROM, strength symmetry, normal scapular mechanics, and surgeon clearance after repair.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            <strong>Exam answer template:</strong> “My prescription is phase-based. I will first control pain and protect tissue, then restore ROM, then strengthen rotator cuff and scapular stabilizers, then progress to task-specific overhead function. I will monitor pain response, scapular substitution, ROM, strength, and patient-reported function.”
+          </div>
+        </div>
+      </section>
+
+      <section class="card searchable" id="modalities">
+        <div class="section-head">
+          <h3>Therapeutic modalities</h3>
+          <p>Modalities support rehabilitation. They do not replace exercise progression and education.</p>
+        </div>
+        <div class="section-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Modality</th><th>Clinical purpose</th><th>Practical use</th><th>Safety and exam notes</th></tr></thead>
+              <tbody>
+                <tr><td>Cryotherapy</td><td>Post-op pain and inflammation control; can reduce nociceptive input and swelling.</td><td>10-20 minutes, several times/day in acute or post-op phase, with skin checks.</td><td>Avoid in cold hypersensitivity, impaired sensation, poor circulation, open wound without barrier, or inability to communicate discomfort.</td></tr>
+                <tr><td>TENS</td><td>Non-invasive pain modulation in immobilization or high-pain phase.</td><td>Use as adjunct before exercise or for home pain management. Conventional TENS often uses comfortable sensory intensity.</td><td>Check contraindications such as pacemaker precautions, pregnancy trunk placement, malignancy site, impaired sensation, and skin irritation. <span class="cite" data-source="S2">S2</span></td></tr>
+                <tr><td>Low-level laser therapy</td><td>Pain modulation and possible effects on microcirculation, angiogenesis, immune modulation, and tissue repair in selected conditions.</td><td>Apply with condition-specific dose and wavelength; best used as adjunct to exercise and education.</td><td>Protect eyes, avoid direct application over malignancy, thyroid, or pregnancy abdomen; evidence varies by diagnosis and dosing. <span class="cite" data-source="S2">S2</span></td></tr>
+                <tr><td>Heat</td><td>Reduce muscle guarding and improve comfort before mobility work in chronic low-irritability stiffness.</td><td>15-20 minutes before stretching or AAROM.</td><td>Avoid early acute inflammation or post-op swelling unless specifically indicated.</td></tr>
+                <tr><td>Manual therapy</td><td>Assist pain reduction, thoracic/scapular mobility, GH joint mobility when capsular restriction exists.</td><td>Low-grade mobilization for pain, higher-grade only when tissue irritability and post-op precautions allow.</td><td>After repair, respect surgeon restrictions and tissue healing stage.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout warn">
+            <strong>Good oral exam phrasing:</strong> “I use modalities to reduce pain enough for active rehabilitation. The core intervention remains progressive exercise, education, and functional retraining.”
+          </div>
+        </div>
+      </section>
+
+      <section class="card searchable" id="chooser">
+        <div class="section-head">
+          <h3>Interactive protocol chooser</h3>
+          <p>Select a scenario and generate an exam-style plan.</p>
+        </div>
+        <div class="section-body">
+          <div class="protocol-box">
+            <div class="form-grid">
+              <label>Scenario<br><select id="scenario"><option value="nonop">Non-operative cuff pain</option><option value="postop">Post-op rotator cuff repair</option></select></label>
+              <label>Tear/repair size<br><select id="size"><option value="small">Small/single tendon</option><option value="medium">Medium</option><option value="large">Large/massive or revision</option></select></label>
+              <label>Subscapularis repaired?<br><select id="subscap"><option value="no">No/unknown</option><option value="yes">Yes</option></select></label>
+              <label>Stiffness risk<br><select id="stiff"><option value="low">Low</option><option value="high">High</option></select></label>
+            </div>
+            <button class="btn primary" id="buildProtocol">Generate plan</button>
+            <div class="result" id="protocolResult" style="margin-top:12px"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card searchable" id="quiz">
+        <div class="section-head">
+          <h3>Quiz hub</h3>
+          <p>Interactive questions for board-style revision.</p>
+        </div>
+        <div class="section-body">
+          <div class="kpi">
+            <div class="mini-card"><strong id="quizScore">0</strong><span class="tiny">Correct</span></div>
+            <div class="mini-card"><strong id="quizTotal">0</strong><span class="tiny">Answered</span></div>
+            <div class="mini-card"><strong id="quizPct">0%</strong><span class="tiny">Score</span></div>
+            <div class="mini-card"><button class="btn" id="resetQuiz">Reset quiz</button></div>
+          </div>
+          <div id="quizContainer" class="quiz"></div>
+        </div>
+      </section>
+
+      <section class="card searchable" id="sources">
+        <div class="section-head">
+          <h3>Sources and citations</h3>
+          <p>Sources used to build this guide.</p>
+        </div>
+        <div class="section-body">
+          <div id="sourceList" class="grid two"></div>
+          <p class="tiny" style="margin-top:18px">Note: The guide summarizes and operationalizes the sources for exam preparation. It is not a substitute for surgeon-specific protocols, institutional policy, or direct clinical judgment.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="source-panel" id="sourcePanel" aria-live="polite">
+    <div class="source-inner">
+      <button class="close-x" id="closeSource" aria-label="Close">×</button>
+      <h4 id="sourceTitle"></h4>
+      <p id="sourceText"></p>
+      <p><a id="sourceLink" href="#" target="_blank" rel="noopener">Open source</a></p>
+    </div>
+  </div>
+
+  <script>
+    const sources = {
+      S1: {
+        title: "Shoulder.docx, uploaded notes",
+        text: "User notes covering rotator cuff anatomy, scapulohumeral rhythm, rotator cuff tear mechanism, and differential diagnosis.",
+        link: "#sources"
+      },
+      S2: {
+        title: "Fahrin Ramadan Andiwijaya. Rehabilitasi Paska Repair Artroskopis pada Rotator Cuff Tear. 2024.",
+        text: "Uploaded review containing shoulder complex anatomy, rotator cuff pathology, clinical tests, surgical indications, tendon healing, and post-operative rehabilitation phases.",
+        link: "#sources"
+      },
+      S3: {
+        title: "AAOS. Management of Rotator Cuff Injuries Evidence-Based Clinical Practice Guideline. 2025.",
+        text: "Current guideline on diagnosis, imaging, non-operative and operative management, post-op mobilization timing, sling use, and injections for adult rotator cuff injuries.",
+        link: "https://www.aaos.org/rccpg2025"
+      },
+      S4: {
+        title: "Desmeules F, Roy J, Lafrance S, et al. Rotator Cuff Tendinopathy CPG. JOSPT. 2025.",
+        text: "Evidence-based recommendations on assessment, prognosis, non-surgical medical care, rehabilitation, and return-to-sport for adults with rotator cuff tendinopathy, calcifications, and partial-thickness tears.",
+        link: "https://www.jospt.org/doi/10.2519/jospt.2025.13182"
+      },
+      S5: {
+        title: "Paolucci T, et al. Comparison of Early versus Traditional Rehabilitation Protocol after Rotator Cuff Repair: An Umbrella Review. J Clin Med. 2023.",
+        text: "Umbrella review showing similar long-term functional outcomes, better short-term ROM with early protocols, and ongoing concern about retear risk depending on tear characteristics.",
+        link: "https://www.mdpi.com/2077-0383/12/21/6743"
+      },
+      S6: {
+        title: "Nikolaidou O, Migkou S, Karampalis C. Rehabilitation after Rotator Cuff Repair. Open Orthop J. 2017.",
+        text: "Review describing phased post-operative rehabilitation, immobilization, ROM, strengthening, and the need to balance protection with stiffness prevention.",
+        link: "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/154/ABSTRACT/"
+      },
+      S7: {
+        title: "Hu CW, et al. Early versus delayed mobilization for arthroscopic rotator cuff repair: systematic review and meta-analysis. 2023.",
+        text: "Systematic review comparing early and delayed passive and active ROM protocols after arthroscopic rotator cuff repair.",
+        link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10694899/"
+      },
+      S8: {
+        title: "Hermans J, Luime JJ, Meuffels DE, et al. Does This Patient With Shoulder Pain Have Rotator Cuff Disease? JAMA. 2013.",
+        text: "Rational Clinical Examination systematic review. Painful arc and external rotation resistance are useful for rotator cuff disease; lag signs are useful for full-thickness tears.",
+        link: "https://pubmed.ncbi.nlm.nih.gov/23982370/"
+      },
+      S9: {
+        title: "Sambandam SN, et al. Rotator cuff tears: an evidence based approach. World J Orthop. 2015.",
+        text: "Review covering classifications including partial-thickness tear patterns and management considerations.",
+        link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4686437/"
+      },
+      S10: {
+        title: "Akhtar A, Richards J, Monga P. The biomechanics of the rotator cuff in health and disease. J Clin Orthop Trauma. 2021.",
+        text: "Narrative review on rotator cuff biomechanics and disease relevance.",
+        link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8111677/"
+      },
+      S11: {
+        title: "van der Meijden OA, Westgard P, Chandler Z, et al. Rehabilitation after arthroscopic rotator cuff repair: current concepts review and evidence-based guidelines. Int J Sports Phys Ther. 2012.",
+        text: "Current concepts review on individualized rehabilitation after arthroscopic rotator cuff repair.",
+        link: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3325631/"
+      },
+      S12: {
+        title: "Koo SS, Burkhart SS. Rehabilitation following arthroscopic rotator cuff repair. Clin Sports Med. 2010.",
+        text: "Risk-adjusted early versus delayed motion protocol concept after arthroscopic rotator cuff repair.",
+        link: "https://pubmed.ncbi.nlm.nih.gov/19945591/"
+      },
+      S13: {
+        title: "AAOS OrthoInfo. Rotator Cuff Tears and clinical background.",
+        text: "Patient-facing but authoritative AAOS background on risk factors, symptoms, and general management principles.",
+        link: "https://orthoinfo.aaos.org/en/diseases--conditions/rotator-cuff-tears/"
+      }
+    };
+
+    function renderSources() {
+      const list = document.getElementById('sourceList');
+      list.innerHTML = Object.entries(sources).map(([id, s]) => `
+        <div class="mini-card">
+          <h4>${id}. ${s.title}</h4>
+          <p>${s.text}</p>
+          <p><a href="${s.link}" target="_blank" rel="noopener">Open source</a></p>
+        </div>
+      `).join('');
+    }
+
+    function showSource(id) {
+      const s = sources[id];
+      if (!s) return;
+      document.getElementById('sourceTitle').textContent = `${id}. ${s.title}`;
+      document.getElementById('sourceText').textContent = s.text;
+      document.getElementById('sourceLink').href = s.link;
+      document.getElementById('sourcePanel').classList.add('show');
+    }
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('cite')) showSource(e.target.dataset.source);
+    });
+    document.getElementById('closeSource').addEventListener('click', () => document.getElementById('sourcePanel').classList.remove('show'));
+
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const storedTheme = localStorage.getItem('shoulder-theme');
+    if (storedTheme) document.body.dataset.theme = storedTheme;
+    themeToggle.textContent = document.body.dataset.theme === 'dark' ? 'Day mode' : 'Night mode';
+    themeToggle.addEventListener('click', () => {
+      const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.body.dataset.theme = next;
+      localStorage.setItem('shoulder-theme', next);
+      themeToggle.textContent = next === 'dark' ? 'Day mode' : 'Night mode';
+    });
+
+    document.querySelectorAll('[data-tabs]').forEach(group => {
+      group.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('tab')) return;
+        const tabId = e.target.dataset.tab;
+        const groupName = group.dataset.tabs;
+        group.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        document.querySelectorAll(`[data-tabs-panel="${groupName}"]`).forEach(p => p.classList.toggle('active', p.id === tabId));
+      });
+    });
+
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      document.querySelectorAll('.searchable').forEach(sec => {
+        const match = !q || sec.textContent.toLowerCase().includes(q);
+        sec.classList.toggle('hidden-by-search', !match);
+      });
+    });
+
+    const links = [...document.querySelectorAll('#toc a')];
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+    sections.forEach(s => obs.observe(s));
+
+    function protocolPlan() {
+      const scenario = document.getElementById('scenario').value;
+      const size = document.getElementById('size').value;
+      const subscap = document.getElementById('subscap').value;
+      const stiff = document.getElementById('stiff').value;
+      const out = document.getElementById('protocolResult');
+      if (scenario === 'nonop') {
+        let intensity = size === 'large' ? 'Start with pain-limited ROM and low-load isometrics, then discuss imaging or orthopedic referral if marked weakness, traumatic onset, or poor progress.' : 'Begin with education, load modification, ROM, scapular control, and progressive rotator cuff strengthening.';
+        out.innerHTML = `<strong>Suggested conservative plan:</strong><br>${intensity}<br><br><strong>Initial prescription:</strong> table slide or wall slide 1-3 sets of 10-15 reps daily, ER/IR isometrics 5 x 10-20 sec at 30-50% effort, scapular setting or low row 2-3 sets of 10-15 reps. Progress to band ER/IR and serratus strengthening when pain is stable for 24 hours after exercise.<br><br><strong>Monitor:</strong> night pain, painful arc, AROM-PROM gap, scapular substitution, strength, and function.`;
+        return;
+      }
+      let plan = [];
+      plan.push('<strong>Suggested post-op plan:</strong> follow surgeon-specific protocol first.');
+      if (size === 'large') plan.push('Large/massive or revision repair: choose delayed or conservative mobilization, protect longer, and delay strengthening toward 4 months or later if ordered.');
+      else if (stiff === 'high') plan.push('High stiffness risk with small/medium repair: early protected passive motion may be reasonable if fixation and surgeon order allow.');
+      else plan.push('Small/medium repair with low stiffness risk: either early or delayed mobilization can be used, with similar long-term outcomes in current evidence.');
+      if (subscap === 'yes') plan.push('Subscapularis repaired: avoid passive external rotation beyond neutral or the surgeon-defined limit in early phase; avoid resisted internal rotation until cleared.');
+      else plan.push('No subscapularis repair: passive external rotation is usually allowed within tolerance and protocol limits.');
+      plan.push('<strong>Phase emphasis:</strong> 0-6 weeks protection and PROM, 7-12 weeks PROM/AAROM to AROM, 3-4 months strengthening, 4-6 months advanced strengthening, 6-12 months return to higher demand tasks.');
+      out.innerHTML = plan.join('<br><br>');
+    }
+    document.getElementById('buildProtocol').addEventListener('click', protocolPlan);
+    protocolPlan();
+
+    const quizQuestions = [
+      {q: 'During full shoulder abduction, the classic scapulohumeral rhythm is best described as:', options: ['180 degrees GH motion only', '120 degrees GH abduction plus 60 degrees scapulothoracic upward rotation', '60 degrees GH abduction plus 120 degrees scapular upward rotation', 'Pure AC joint rotation'], answer: 1, exp: 'The classic 2:1 pattern is 120 degrees glenohumeral plus 60 degrees scapulothoracic motion.'},
+      {q: 'Which rotator cuff muscle inserts on the lesser tubercle?', options: ['Supraspinatus', 'Infraspinatus', 'Teres minor', 'Subscapularis'], answer: 3, exp: 'Subscapularis inserts on the lesser tubercle and internally rotates the shoulder.'},
+      {q: 'Pain during abduction between 60 and 120 degrees most classically describes:', options: ['Painful arc', 'Drop arm test', 'Internal rotation lag', 'Yergason test'], answer: 0, exp: 'Painful arc suggests subacromial pain or rotator cuff disorder when interpreted in context.'},
+      {q: 'A positive drop arm test most strongly raises suspicion for:', options: ['AC joint osteoarthritis', 'Large/full-thickness supraspinatus tear', 'Cervical radiculopathy', 'Long head biceps instability'], answer: 1, exp: 'Drop arm indicates inability to control lowering and is concerning for significant cuff tear.'},
+      {q: 'External rotation lag is most related to dysfunction of:', options: ['Subscapularis only', 'Infraspinatus and posterior cuff', 'Pectoralis major', 'Latissimus dorsi'], answer: 1, exp: 'ER lag evaluates the ability of the posterior cuff, especially supraspinatus/infraspinatus, to maintain ER.'},
+      {q: 'If both active and passive shoulder external rotation are globally limited, the most likely impairment category is:', options: ['Pure weakness', 'Capsular stiffness or adhesive capsulitis pattern', 'Only biceps tendinopathy', 'Only cervical radiculopathy'], answer: 1, exp: 'PROM limitation suggests capsular or joint restriction, not isolated weakness.'},
+      {q: 'After subscapularis repair, the early motion that commonly needs restriction is:', options: ['Elbow flexion', 'Passive external rotation beyond neutral or protocol limit', 'Hand ROM', 'Cervical ROM'], answer: 1, exp: 'External rotation stresses the repaired subscapularis, so limits must follow surgeon protocol.'},
+      {q: 'A patient after large or revision rotator cuff repair usually needs:', options: ['Immediate resisted strengthening', 'More conservative progression and delayed strengthening', 'No sling ever', 'Overhead lifting at 6 weeks'], answer: 1, exp: 'Large/revision tears have higher healing risk and commonly require protection and slower strengthening.'},
+      {q: 'The primary role of rehabilitation modalities in cuff rehabilitation is to:', options: ['Replace exercise', 'Permit pain-free progressive function and exercise', 'Guarantee tendon healing', 'Diagnose full thickness tears'], answer: 1, exp: 'Modalities support pain control and exercise participation; they do not replace loading and functional retraining.'},
+      {q: 'The safest exam statement about early versus delayed post-op mobilization is:', options: ['Early mobilization is always superior', 'Delayed mobilization is always superior', 'Long-term outcomes are often similar; early motion may improve short-term ROM while delayed motion may better protect healing in higher-risk repairs', 'Neither protocol affects ROM'], answer: 2, exp: 'This balanced statement reflects current guideline and review findings.'},
+      {q: 'The rotator cuff contributes to GH stability mainly by:', options: ['Passive ligament tightening only', 'Compressing and centering the humeral head dynamically', 'Moving only the scapula', 'Preventing all clavicle motion'], answer: 1, exp: 'The cuff is a dynamic stabilizer, compressing the humeral head into the glenoid.'},
+      {q: 'AC joint pain is most suggested by:', options: ['Focal superior pain with cross-body adduction', 'Dermatomal numbness', 'Loss of elbow flexion', 'Pain only below 30 degrees of abduction'], answer: 0, exp: 'Cross-body adduction compresses the AC joint and may reproduce focal AC pain.'}
+    ];
+
+    let quizState = JSON.parse(localStorage.getItem('shoulder-quiz') || '{}');
+    function renderQuiz() {
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = quizQuestions.map((item, idx) => {
+        const answered = quizState[idx];
+        const options = item.options.map((op, oi) => {
+          let cls = 'quiz-option';
+          if (answered !== undefined) {
+            if (oi === item.answer) cls += ' correct';
+            else if (oi === Number(answered)) cls += ' wrong';
+          }
+          return `<div class="${cls}" data-q="${idx}" data-o="${oi}">${String.fromCharCode(65+oi)}. ${op}</div>`;
+        }).join('');
+        return `<div class="mini-card"><h4>Q${idx+1}. ${item.q}</h4>${options}<p class="tiny" id="exp-${idx}" style="display:${answered !== undefined ? 'block' : 'none'}">${item.exp}</p></div>`;
+      }).join('');
+      updateQuizScore();
+    }
+    function updateQuizScore() {
+      const answered = Object.keys(quizState).length;
+      const correct = Object.entries(quizState).filter(([idx, ans]) => Number(ans) === quizQuestions[Number(idx)].answer).length;
+      document.getElementById('quizScore').textContent = correct;
+      document.getElementById('quizTotal').textContent = answered;
+      document.getElementById('quizPct').textContent = answered ? Math.round(correct/answered*100) + '%' : '0%';
+    }
+    document.getElementById('quizContainer').addEventListener('click', (e) => {
+      if (!e.target.classList.contains('quiz-option')) return;
+      const q = e.target.dataset.q;
+      if (quizState[q] !== undefined) return;
+      quizState[q] = e.target.dataset.o;
+      localStorage.setItem('shoulder-quiz', JSON.stringify(quizState));
+      renderQuiz();
+    });
+    document.getElementById('resetQuiz').addEventListener('click', () => {
+      quizState = {};
+      localStorage.removeItem('shoulder-quiz');
+      renderQuiz();
+    });
+    renderSources();
+    renderQuiz();
+  </script>
+</body>
+</html>
