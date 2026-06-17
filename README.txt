@@ -3,7 +3,7 @@ PM&R Offline Study Hub
 
 Purpose
 -------
-This creates a simple offline webpage for your PM&R national board exam HTML files.
+A simple interactive webpage in preparation for the PM&R national board exams.
 
 Target folder
 -------------
