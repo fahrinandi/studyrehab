@@ -421,3 +421,14 @@ code {
     flex-direction: column;
   }
 }
+.logo.image-logo {
+  overflow: hidden;
+  background: none;
+}
+
+.logo.image-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
