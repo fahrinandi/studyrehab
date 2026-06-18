@@ -112,10 +112,6 @@ def write_site(root: Path, topics):
         "window.PMR_TOPICS = " + json.dumps(topics, ensure_ascii=False, indent=2) + ";\n",
         encoding="utf-8"
     )
-    (assets / "style.css").write_text(STYLE_CSS, encoding="utf-8")
-    (assets / "app.js").write_text(APP_JS, encoding="utf-8")
-    (root / "index.html").write_text(INDEX_HTML, encoding="utf-8")
-    (root / "about.html").write_text(ABOUT_HTML, encoding="utf-8")
 
 def main():
     root = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else Path.cwd()
