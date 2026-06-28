@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CABG Rehabilitation Exam Guide</title>
+<style>
+:root{
+  --bg:#f6f7f6;
+  --panel:#ffffff;
+  --panel2:#eef1ef;
+  --ink:#1f2a2e;
+  --muted:#66736f;
+  --accent:#4f7d78;
+  --accent2:#8aa89f;
+  --accent3:#e4efea;
+  --warn:#a86f3f;
+  --danger:#9b4141;
+  --success:#3e7b57;
+  --line:#d9e0dc;
+  --shadow:0 12px 32px rgba(38,54,47,.10);
+  --radius:18px;
+  --code:#203032;
+}
+html[data-theme="dark"]{
+  --bg:#111715;
+  --panel:#18201d;
+  --panel2:#222c28;
+  --ink:#edf2ee;
+  --muted:#adbab4;
+  --accent:#8fc8bb;
+  --accent2:#5a8179;
+  --accent3:#283a34;
+  --warn:#e0b475;
+  --danger:#e08d8d;
+  --success:#91cfaa;
+  --line:#34413c;
+  --shadow:0 12px 32px rgba(0,0,0,.30);
+  --code:#d8fff5;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.58}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1260px;margin:auto;padding:12px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:12px;align-items:center;font-weight:800;letter-spacing:.2px}.brand .logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;font-weight:900}.toolbar{display:flex;gap:8px;flex-wrap:wrap}
+button,.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:9px 12px;cursor:pointer;font:inherit;font-weight:650;box-shadow:none}button:hover,.btn:hover{border-color:var(--accent);text-decoration:none}.btn-primary,.primary-btn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.layout{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:290px 1fr;gap:22px;padding:22px 18px 70px;min-height:0}
+aside{position:sticky;top:72px;align-self:start;max-height:calc(100vh - 90px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.search{margin:0 0 12px}.search input,input,select,textarea{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:10px 12px;font:inherit}
+.nav-label{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:4px 8px 6px;font-weight:800}nav a{display:block;padding:8px 9px;border-radius:10px;color:var(--ink);font-size:.94rem;margin:2px 0}nav a:hover{background:var(--accent3);text-decoration:none}
+main{min-width:0;max-width:none;width:auto;padding:0}.hero{background:linear-gradient(135deg,var(--panel),var(--accent3));border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:30px;margin:0 0 22px}.hero h2{font-size:clamp(2rem,4vw,3.35rem);line-height:1.05;margin:0 0 10px;color:var(--ink)}.hero p{max-width:950px;color:var(--muted);font-size:1.05rem}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.pill{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 82%,var(--accent3));padding:7px 10px;border-radius:999px;font-size:.88rem;color:var(--ink)}
+section.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin:0 0 22px}section.card h2{font-size:1.65rem;margin:0 0 10px;color:var(--ink)}h3{font-size:1.2rem;margin:24px 0 10px;color:var(--ink)}h4{margin:18px 0 8px;color:var(--ink)}p{margin:0 0 12px}.lead{font-size:1.05rem;color:var(--muted)}
+.grid{display:grid;gap:14px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.mini-card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px}.mini-card h3,.mini-card h4{margin-top:0}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;margin:12px 0;background:var(--panel)}table{width:100%;border-collapse:collapse;min-width:680px}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:var(--panel2);font-size:.88rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}tr:last-child td{border-bottom:0}
+.note{border-left:4px solid var(--accent);background:var(--accent3);padding:12px 14px;border-radius:12px;margin:12px 0;color:var(--ink)}.warning{border-left-color:var(--warn);background:color-mix(in srgb,var(--warn) 16%,var(--panel))}.danger{border-left-color:var(--danger);background:color-mix(in srgb,var(--danger) 14%,var(--panel))}.success{border-left-color:var(--success);background:color-mix(in srgb,var(--success) 14%,var(--panel))}
+.details,details{border:1px solid var(--line);background:var(--bg);border-radius:16px;margin:10px 0;overflow:hidden}.details summary,summary{cursor:pointer;padding:13px 15px;font-weight:800;background:color-mix(in srgb,var(--panel2) 80%,transparent);color:var(--ink)}.details summary::-webkit-details-marker{display:none}.details .content,details .inside{padding:14px 15px}
+.tag{display:inline-block;background:var(--accent3);border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:.78rem;margin:2px;color:var(--ink)}.citation{font-weight:700;color:var(--accent);font-size:.82em;white-space:nowrap;vertical-align:baseline;padding-left:2px}.source-note{font-size:.86rem;color:var(--muted)}
+.algorithm{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:12px;align-items:stretch;margin:14px 0}.step{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px;min-height:112px}.step::after{content:"→";position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--accent);font-weight:900;margin:0}.step:last-child::after{content:""}.step strong{color:var(--accent)}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.tool{border:1px solid var(--line);background:var(--bg);border-radius:16px;padding:16px;margin:12px 0}.tool h3{margin-top:0}.result{padding:12px 14px;border:1px solid var(--line);background:var(--panel);border-radius:12px;margin-top:10px;min-height:46px}.checkbox-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}label.check{display:flex;gap:9px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px;font-size:.92rem}label.check input{width:auto;margin-top:4px}
+.quiz-question{border:1px solid var(--line);border-radius:15px;background:var(--bg);padding:16px;margin:12px 0}.quiz-question p{font-weight:700;color:var(--ink)}.quiz-question label{display:block;padding:7px 8px;margin:4px 0;border-radius:10px;background:var(--panel);border:1px solid var(--line);cursor:pointer}.quiz-feedback{font-weight:700;margin-top:8px}.correct{color:var(--success)}.incorrect{color:var(--danger)}
+.kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.kpi.three{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi div{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px}.kpi strong{display:block;font-size:1.1rem;color:var(--accent)}.phase-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.phase-card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow)}.phase-card .phase-badge{display:inline-flex;align-items:center;justify-content:center;min-width:92px;padding:8px 12px;border-radius:999px;background:var(--accent3);border:1px solid var(--line);color:var(--accent);font-weight:800;margin-bottom:10px}.phase-card h3{margin:0 0 8px;font-size:1.18rem}.phase-card p{margin:0;color:var(--muted)}.timeline{display:grid;gap:12px}.day{display:grid;grid-template-columns:120px 1fr;gap:12px;border:1px solid var(--line);background:var(--bg);border-radius:16px;padding:12px}.day strong{color:var(--accent)}.hidden{display:none!important}.print-only{display:none}
+.home-link{display:inline-flex;gap:6px;align-items:center}.home-fab{position:fixed;right:22px;bottom:22px;width:54px;height:54px;border-radius:999px;background:var(--accent);color:#fff;display:grid;place-items:center;text-decoration:none;font-size:1.45rem;box-shadow:0 12px 30px rgba(0,0,0,.24);z-index:9999;border:1px solid color-mix(in srgb,var(--accent) 82%,#fff);transition:transform .15s ease,filter .15s ease}.home-fab:hover{text-decoration:none;transform:translateY(-2px);filter:brightness(.95)}.home-fab:focus-visible,.home-link:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:3px}
+@media(max-width:980px){.layout{grid-template-columns:1fr}aside{position:static;max-height:none}.grid.two,.grid.three,.split,.kpi,.phase-cards,.checkbox-grid{grid-template-columns:1fr}.algorithm{grid-template-columns:1fr}.step::after{content:"↓";right:auto;left:50%;top:auto;bottom:-20px;transform:translateX(-50%)}.day{grid-template-columns:1fr}.hero h2{font-size:1.9rem}table{min-width:640px}}
+@media print{.topbar,aside,.toolbar,.home-fab,.backtop,.no-print{display:none!important}.layout{display:block;padding:0}.card,.hero{box-shadow:none;break-inside:avoid}.print-only{display:block}body{background:#fff;color:#000}.card,.hero{border-color:#bbb}}
+</style>
+</head>
+<body><div class="topbar"><div class="topbar-inner"><div class="brand"><span class="logo">CB</span><span>CABG Rehab Exam Guide</span></div><div class="toolbar"><a aria-label="Back to homepage" class="btn home-link" href="/studyrehab/" title="Back to homepage">🏠 Home</a><button aria-label="Toggle night mode" id="themeBtn" onclick="toggleTheme()" type="button">🌙 Night mode</button><button id="expandBtn" onclick="toggleAllDetails()" type="button">Expand all</button><button onclick="window.print()" type="button">Print</button></div></div></div>
+<div class="layout">
+<aside class="">
+
+
+<div class="search">
+<input id="searchBox" oninput="filterSections()" placeholder="Search inside guide..."/>
+</div>
+<div class="nav-label">Navigation</div><nav>
+<a href="#overview">1. CABG overview</a>
+<a href="#indications">2. Indications and complications</a>
+<a href="#phases">3. Rehab phases</a>
+<a href="#phase1-problems">4. Phase I problems</a>
+<a href="#assessment">5. Assessment</a>
+<a href="#risk">6. Risk stratification</a>
+<a href="#algorithms">7. Algorithms</a>
+<a href="#prescription">8. Practical prescription</a>
+<a href="#respiratory">9. Respiratory rehab</a>
+<a href="#sternum">10. Sternotomy strategy</a>
+<a href="#edema">11. Edema and graft site</a>
+<a href="#tools">12. Interactive tools</a>
+<a href="#viva">13. Viva questions</a>
+<a href="#quiz">14. Quiz hub</a>
+<a href="#references">15. References</a>
+</nav>
+</aside>
+<main>
+<div class="hero searchable" id="top">
+<h2>Structured CABG Rehabilitation Exam Guide</h2>
+<p>This guide is a practical CABG rehabilitation study hub. It follows the logic expected in a PM&amp;R oral or written examination: understand the surgery, identify risks, examine the patient safely, prescribe exercise, monitor response, educate the patient, and progress rehabilitation.</p>
+<div class="phase-cards">
+<div class="phase-card">
+<div class="phase-badge">Phase I</div>
+<h3>Clinical / inpatient rehabilitation</h3>
+<p>Early monitored recovery focused on pulmonary care, safe mobilization, ADL independence, pain control, education, and complication prevention.</p>
+</div>
+<div class="phase-card">
+<div class="phase-badge">Phase II</div>
+<h3>Supervised outpatient cardiac rehabilitation</h3>
+<p>Structured monitored exercise, risk-factor modification, medication adherence, functional reconditioning, and confidence rebuilding after discharge.</p>
+</div>
+<div class="phase-card">
+<div class="phase-badge">Phase III</div>
+<h3>Long-term maintenance and self-management</h3>
+<p>Independent long-term exercise, self-monitoring, secondary prevention, and sustained lifestyle modification to maintain cardiovascular health.</p>
+</div>
+</div>
+<div class="note">
+<strong>Core exam answer:</strong> CABG rehabilitation is not only walking after surgery. It is a risk-stratified, monitored, multidisciplinary program that prevents pulmonary and thromboembolic complications, restores ADL independence, addresses pain and fear of movement, protects the healing sternum, improves functional capacity, and supports secondary prevention.
+      </div>
+</div>
+<section class="card searchable" id="overview">
+<h2>1. CABG overview</h2>
+<p class="lead">CABG is a major surgical revascularization procedure using harvested veins or arteries to bypass obstructed coronary arteries and restore myocardial blood flow, thereby reducing ischemia and symptoms such as angina.<span class="citation">[1,2]</span></p>
+<div class="grid two">
+<div class="mini-card">
+<h3>What CABG does</h3>
+<p>CABG creates a new route for blood to pass around an atherosclerotic coronary stenosis. The graft is anastomosed proximally and distally so oxygenated blood can reach myocardium beyond the blocked segment. The clinical goals are relief of angina, improvement of myocardial perfusion, preservation of viable myocardium, and, in selected anatomic groups, improved survival.<span class="citation">[1,2]</span></p>
+</div>
+<div class="mini-card">
+<h3>Common graft materials</h3>
+<p>The left internal mammary artery, also called the left internal thoracic artery, is commonly grafted to the left anterior descending artery. Saphenous vein grafts are commonly harvested from the lower limb. Other conduits may include the right internal mammary artery, radial artery, or gastroepiploic artery depending on anatomy and surgical planning.<span class="citation">[2]</span></p>
+</div>
+</div>
+<h3>Rehabilitation implications of the operation</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Surgical feature</th><th>Why it matters in rehabilitation</th><th>PM&amp;R action</th></tr></thead>
+<tbody>
+<tr><td>Median sternotomy</td><td>Pain, fear of movement, altered posture, limited upper limb confidence, risk of sternal wound stress if movement is poorly controlled.</td><td>Teach pain-free bed mobility, supported coughing, postural correction, shoulder ROM within comfort, and “move in the tube” mechanics.</td></tr>
+<tr><td>General anesthesia and mechanical ventilation</td><td>Reduced lung volumes, atelectasis risk, impaired cough, secretion retention, dyspnea, and early fatigue.</td><td>Breathing exercises, airway clearance when indicated, early upright positioning, walking progression, and selective inspiratory muscle training.</td></tr>
+<tr><td>Cardiopulmonary bypass or off-pump technique</td><td>Possible hemodynamic instability, cognitive changes, inflammatory response, arrhythmia, and fatigue.</td><td>Monitor BP, HR, rhythm, RPE, SpO₂, symptoms, cognition, delirium, and orthostatic response.</td></tr>
+<tr><td>Saphenous vein harvest</td><td>Leg pain, edema, gait discomfort, wound sensitivity, and reduced confidence while walking.</td><td>Inspect graft-site wound, elevate limb when resting, ankle pump exercises, compression only if medically approved, progressive gait training.</td></tr>
+<tr><td>Temporary wires, drains, lines, oxygen</td><td>Mobility may be mechanically difficult and requires supervision.</td><td>Coordinate with nurses, secure tubing, check pacing wires and chest tubes, plan transfers before moving.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="card searchable" id="indications">
+<h2>2. Indications and complications</h2>
+<p>Classic 2011 ACCF/AHA Class I CABG indications include: left main disease greater than 50%, three-vessel coronary disease greater than 70%, two-vessel disease involving LAD plus another major artery, significant stenosis with persistent angina despite medical therapy, and severe single-vessel disease in a survivor of sudden cardiac death with ischemia-related ventricular tachycardia.<span class="citation">[2]</span></p>
+<div class="note">
+<strong>Updated exam nuance:</strong> More recent revascularization guidelines emphasize individualized Heart Team decision-making, coronary anatomy complexity, left main disease, diabetes, LV dysfunction, symptoms despite guideline-directed medical therapy, and patient preference. Significant left main disease remains a strong indication where surgical revascularization improves survival compared with medical therapy in appropriate patients.<span class="citation">[1]</span>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Topic</th><th>High-yield detail</th><th>Rehab implication</th></tr></thead>
+<tbody>
+<tr><td>Left main coronary artery disease</td><td>Classic threshold: greater than 50% stenosis. Modern approach considers anatomy and suitability for CABG vs PCI.</td><td>Often higher-risk coronary anatomy. Monitor ischemic symptoms carefully during early activity.</td></tr>
+<tr><td>Three-vessel disease</td><td>Classic threshold: greater than 70% stenosis, with or without proximal LAD involvement.</td><td>Functional limitation may reflect chronic ischemia and preoperative deconditioning.</td></tr>
+<tr><td>Two-vessel disease involving LAD</td><td>LAD involvement is clinically important because of the amount of myocardium supplied.</td><td>Postoperative rehab should restore function but also emphasize secondary prevention.</td></tr>
+<tr><td>Persistent angina despite optimal medical therapy</td><td>CABG may be selected to improve symptoms and perfusion when medical therapy is insufficient.</td><td>Know anginal threshold, nitroglycerin plan, and symptom response during exercise.</td></tr>
+<tr><td>Post-sudden cardiac death with ischemia-related VT</td><td>Severe stenosis with ventricular arrhythmia history is a high-risk context.</td><td>Telemetry, rhythm surveillance, and cardiology clearance become central.</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Complications and rehabilitation implications</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Complication</th><th>What to look for</th><th>PM&amp;R relevance</th></tr></thead>
+<tbody>
+<tr><td>Stroke</td><td>New weakness, facial asymmetry, dysphasia, visual field change, neglect, altered cognition.</td><td>Screen before mobilization; modify rehab to neuro-rehabilitation if present. StatPearls reports CABG stroke rates around 1 to 2%, varying by risk profile.<span class="citation">[2]</span></td></tr>
+<tr><td>Wound infection</td><td>Sternal or harvest-site redness, drainage, fever, increased pain, sternal instability.</td><td>Avoid stressing the sternum, report infection signs, and adjust exercise if systemic signs are present. Deep sternal infection is uncommon but clinically serious.<span class="citation">[2]</span></td></tr>
+<tr><td>Graft failure</td><td>Recurrent angina, ischemic ECG changes, unexplained dyspnea, hemodynamic change.</td><td>Stop activity for ischemic symptoms and refer urgently.</td></tr>
+<tr><td>Renal failure</td><td>Fluid overload, reduced urine output, electrolyte disturbance, fatigue, altered mental status.</td><td>Monitor edema, BP, fluid restriction, and exercise tolerance; coordinate with medical team.</td></tr>
+<tr><td>Postoperative atrial fibrillation</td><td>Irregular pulse, palpitations, dizziness, dyspnea, variable HR during activity.</td><td>Common in the first postoperative days. Use RPE and symptoms if HR is unreliable; ensure rate control and anticoagulation plan when relevant.<span class="citation">[2,4]</span></td></tr>
+<tr><td>Death or major instability</td><td>Shock, malignant arrhythmia, respiratory failure, major bleeding, cardiac arrest.</td><td>Requires acute medical management. Rehab resumes only after stability and clearance.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="card searchable" id="phases">
+<h2>3. Cardiac rehabilitation phases after CABG: this guide uses a 3-phase model</h2>
+<p>Your centre uses three phases, and this is the model used consistently throughout this guide. It is also a commonly used framework: <strong>Phase I = inpatient clinical rehabilitation, Phase II = supervised outpatient cardiac rehabilitation, and Phase III = long-term maintenance/self-management.</strong><span class="citation">[12,13]</span></p>
+<div class="note success">
+<strong>Exam-safe answer:</strong> “In our three-phase cardiac rehabilitation model, Phase I is inpatient mobilization and discharge preparation; Phase II is the formal supervised outpatient rehabilitation program; Phase III is long-term maintenance with independent exercise, self-monitoring, and secondary prevention.”
+      </div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Phase</th><th>Usual setting and timing</th><th>Main goals</th><th>Core PM&amp;R actions</th></tr></thead>
+<tbody>
+<tr><td><strong>Phase I: clinical / inpatient</strong></td><td>ICU, step-down unit, and ward, once clinically stable after CABG.</td><td>Prevent pulmonary and thromboembolic complications; restore safe bed mobility, transfers, walking, basic ADL, and confidence; prepare safe discharge.</td><td>Risk screen; breathing exercises and supported cough; upright positioning; progressive mobilization; education; sternotomy-safe movement; discharge and referral plan.</td></tr>
+<tr><td><strong>Phase II: supervised outpatient CR</strong></td><td>After discharge and cardiology/surgical clearance. This is the full formal outpatient rehabilitation period, whether centre-based, hybrid, or home-based with supervision.</td><td>Improve exercise capacity, confidence, risk-factor control, and return to meaningful activity.</td><td>Baseline assessment or exercise test when appropriate; individualized FITT-VP prescription; aerobic and progressive resistance exercise; education; psychosocial support; medication and risk-factor review.</td></tr>
+<tr><td><strong>Phase III: long-term maintenance</strong></td><td>After completion of the formal outpatient program. Usually independent, community-based, hybrid, or home-based, with periodic clinical follow-up.</td><td>Maintain physical activity and exercise gains; prevent recurrent cardiovascular events; sustain quality of life and self-management.</td><td>Independent/community exercise plan; self-monitoring; periodic reassessment; adherence support; nutrition, smoking cessation, medication adherence, vocational and recreational planning.</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Why textbooks sometimes show four phases</h3>
+<p>The numbering is not internationally uniform. Some four-phase frameworks subdivide the post-discharge period into an <strong>early recovery phase</strong> and a later <strong>formal structured outpatient exercise phase</strong>, then label long-term maintenance as Phase IV. That convention is not more correct; it is a different naming system.<span class="citation">[13]</span></p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Your centre and this guide: 3 phases</th><th>Common 4-phase terminology</th><th>How to interpret it</th></tr></thead>
+<tbody>
+<tr><td><strong>Phase I: inpatient</strong></td><td>Phase I: inpatient</td><td>Same clinical stage.</td></tr>
+<tr><td><strong>Phase II: outpatient CR</strong></td><td>Phase II: early post-discharge recovery <em>plus</em> Phase III: structured outpatient exercise</td><td>Both are grouped under your centre’s Phase II. They can be described as early and later sub-stages of Phase II, not separate phases.</td></tr>
+<tr><td><strong>Phase III: maintenance</strong></td><td>Phase IV: long-term maintenance</td><td>Same long-term objective, but renumbered.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note success">
+<strong>Board-style wording:</strong> Phase I begins once the patient is hemodynamically stable after surgery. It is not maximal exercise training. It is supervised functional remobilization with respiratory care, safety monitoring, education, and discharge planning.
+      </div>
+</section>
+<section class="card searchable" id="phase1-problems">
+<h2>4. Phase I inpatient rehabilitation problems</h2>
+<p>This section keeps your original problem categories and expands them into exam-ready clinical reasoning.</p>
+<details class="details" open="">
+<summary>1. Cardiopulmonary limitations</summary>
+<div class="content">
+<p><strong>Decreased lung capacity and atelectasis.</strong> General anesthesia, mechanical ventilation, incision pain, diaphragmatic inhibition, pleural irritation, and guarded breathing reduce tidal volume and cough effectiveness. Shallow breathing increases atelectasis and pneumonia risk. The patient may need deep breathing, thoracic expansion, directed cough or huff, splinted coughing, incentive spirometry when prescribed, upright positioning, and progressive walking.</p>
+<p><strong>Profound fatigue and low endurance.</strong> Sitting at the edge of the bed or first standing may cause dyspnea, tachycardia, orthostatic symptoms, or marked RPE because of surgical stress, anemia, sleep disruption, pain, preoperative deconditioning, and reduced pulmonary volumes.</p>
+<p><strong>Arrhythmias and hemodynamic instability.</strong> Postoperative atrial fibrillation, orthostatic hypotension, chronotropic abnormality, abnormal BP response, and dizziness can appear during early mobilization. This is why Phase I therapy requires vital sign monitoring before, during, and after activity.</p>
+</div>
+</details>
+<details class="details" open="">
+<summary>2. Pain and musculoskeletal issues</summary>
+<div class="content">
+<p><strong>Sternal precautions and postural guarding.</strong> Sternotomy pain often makes patients hunch forward, keep the shoulders adducted, and avoid trunk rotation. This can create neck, shoulder, thoracic, and upper back stiffness. Modern practice increasingly emphasizes controlled movement with the upper arms close to the body rather than arbitrary long-term load restrictions.<span class="citation">[4,5]</span></p>
+<p><strong>Incisional discomfort.</strong> Pain may come from the chest incision, drain sites, and graft harvest sites. Saphenous vein harvest may make early walking awkward because of leg pain, swelling, or wound sensitivity.</p>
+</div>
+</details>
+<details class="details" open="">
+<summary>3. Psychological and emotional barriers</summary>
+<div class="content">
+<p><strong>Low mobility confidence.</strong> Patients often fear that moving, coughing, or walking will damage the heart or tear the incision. This fear can reduce participation and increase immobility-related risk.</p>
+<p><strong>Postoperative vulnerability and cognitive haze.</strong> ICU lines, monitors, drains, pacing wires, oxygen, sleep deprivation, delirium, and cognitive changes can make patients feel fragile. Depression, anxiety, tearfulness, and poor sleep may reduce motivation. These factors are also recognized in cardiac rehabilitation risk and recovery frameworks.<span class="citation">[3,4]</span></p>
+</div>
+</details>
+<details class="details" open="">
+<summary>4. Functional deconditioning</summary>
+<div class="content">
+<p>Even a short ICU stay causes rapid muscle deconditioning, reduced orthostatic tolerance, gait instability, and difficulty with ADLs. The patient may feel that bed-to-chair transfer, toileting, or walking to the bathroom is a major task. Rehabilitation should restore independence in a staged sequence: rolling, sitting, sit-to-stand, transfer, standing tolerance, marching, corridor walking, stairs if needed, then home activity planning.</p>
+<p>Equipment management is a real barrier. Oxygen tubing, IV lines, telemetry, temporary pacing wires, drains, and urinary catheters can make movement mechanically difficult. Before mobilizing, plan the route, secure devices, and coordinate with nursing staff.</p>
+</div>
+</details>
+<details class="details" open="">
+<summary>5. Edema and fluid retention</summary>
+<div class="content">
+<p>Lower-extremity swelling is common after CABG, especially where the saphenous vein was harvested. Edema can make the leg feel tight and heavy, reduce ankle motion, disturb gait, and increase discomfort. Management includes ankle pumps, frequent walking in short bouts, elevation during rest, wound observation, and compression only when medically approved and when arterial status and wound condition are appropriate.</p>
+</div>
+</details>
+</section>
+<section class="card searchable" id="assessment">
+<h2>5. Phase I assessment framework</h2>
+<p class="lead">In an exam, do not jump directly to exercise prescription. First answer whether the patient is medically stable, what limits function, and what must be monitored.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Domain</th><th>What to check</th><th>Clinical reasoning</th></tr></thead>
+<tbody>
+<tr><td>Chart review</td><td>POD, on-pump/off-pump, number and type of grafts, LVEF, arrhythmia history, ECG, troponin trend if relevant, chest X-ray, labs, hemoglobin, electrolytes, renal function, anticoagulation.</td><td>Defines ischemic, rhythm, bleeding, pulmonary, and endurance risks.</td></tr>
+<tr><td>Lines and devices</td><td>Oxygen, telemetry, drains, pacing wires, IV line, urinary catheter, wound vacuum, chest tube status.</td><td>Determines how to mobilize safely and whether staff assistance is needed.</td></tr>
+<tr><td>Vital signs</td><td>Resting HR, BP, respiratory rate, SpO₂, temperature, rhythm, orthostatic response.</td><td>Identifies hemodynamic instability and pulmonary limitation before activity.</td></tr>
+<tr><td>Symptoms</td><td>Chest pain, incisional pain, dyspnea, dizziness, palpitations, nausea, fatigue, leg pain.</td><td>Distinguishes surgical discomfort from ischemic or cardiopulmonary warning signs.</td></tr>
+<tr><td>Respiratory exam</td><td>Breathing pattern, cough strength, secretion, breath sounds if trained, incentive spirometer performance, need for splinting.</td><td>Targets atelectasis prevention and airway clearance.</td></tr>
+<tr><td>Sternotomy and posture</td><td>Sternal pain, wound status, clicking/instability, kyphotic guarding, shoulder ROM, scapular mobility.</td><td>Guides “move in the tube,” ROM, and ADL training.</td></tr>
+<tr><td>Graft harvest site</td><td>Edema, wound drainage, pain, calf tenderness, skin temperature, gait discomfort.</td><td>Impacts walking, compression decisions, and DVT concern.</td></tr>
+<tr><td>Function</td><td>Bed mobility, sitting balance, sit-to-stand, transfer, gait distance, gait aid, stair need, ADL tolerance.</td><td>Phase I goal is safe functional independence, not maximal capacity.</td></tr>
+<tr><td>Cognition and mood</td><td>Delirium, attention, memory, anxiety, depression, fear of movement.</td><td>Affects safety, education, adherence, and risk stratification.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="card searchable" id="risk">
+<h2>6. Risk stratification</h2>
+<p>For cardiac rehabilitation, AACVPR risk stratification is commonly used to estimate risk of an event during rehabilitation and to guide monitoring intensity. In the source algorithm, <strong>any high-risk criterion</strong> classifies the patient as high risk; low risk requires all low-risk features; moderate risk is used when the patient meets neither high nor low-risk standards.<span class="citation">[3]</span></p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Risk level</th><th>Criteria</th><th>Clinical implication for CABG rehabilitation</th></tr></thead>
+<tbody>
+<tr><td><strong>High risk</strong></td><td>LVEF less than 40%, survivor of cardiac arrest or sudden death, complex ventricular dysrhythmia at rest or exercise, MI or cardiac surgery complicated by cardiogenic shock, CHF or post-procedure ischemic signs, abnormal hemodynamics with exercise, significant silent ischemia, symptoms at low exercise levels less than 5 METs, functional capacity less than 5 METs, or clinically significant depression.<span class="citation">[3]</span></td><td>Closer supervision, slower progression, symptom-limited activity, telemetry when indicated, and careful communication with cardiology and surgical team.</td></tr>
+<tr><td><strong>Moderate risk</strong></td><td>Neither high nor low risk; examples include LVEF 40 to 50%, symptoms at moderate exercise levels, or mild to moderate silent ischemia.<span class="citation">[3]</span></td><td>Supervised progression with regular HR, BP, rhythm, RPE, SpO₂, and symptom checks.</td></tr>
+<tr><td><strong>Low risk</strong></td><td>LVEF greater than 50%, no complex dysrhythmia, uncomplicated CABG without CHF or post-event ischemia, normal hemodynamic and ECG response, asymptomatic with exercise, functional capacity at least 7 METs, and absence of depression symptoms.<span class="citation">[3]</span></td><td>Can progress more confidently but still requires sternotomy-aware movement and secondary prevention education.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note warning">
+<strong>Practical point:</strong> In early inpatient CABG rehabilitation, formal MET capacity may not be available. The algorithm allows functional capacity to be excluded if not measured, but the clinician should compensate with symptom response, vital sign response, operative course, LVEF, rhythm, and mobility tolerance.<span class="citation">[3]</span>
+</div>
+</section>
+<section class="card searchable" id="algorithms">
+<h2>7. Algorithms for exam and ward use</h2>
+<h3>Algorithm A. Can I mobilize this patient today?</h3>
+<div class="algorithm">
+<div class="step"><strong>Step 1. Confirm medical stability.</strong><br/>Check surgeon or cardiology clearance, hemodynamics, rhythm, oxygenation, pain control, bleeding status, fever, mental status, and device safety.</div>
+<div class="step"><strong>Step 2. Screen red flags.</strong><br/>Do not mobilize or stop planned activity if there is unstable angina, new ischemic ECG change, uncontrolled arrhythmia, symptomatic hypotension, severe dyspnea at rest, SpO₂ persistently below the local target despite oxygen, major bleeding, suspected sternal instability, new neurological deficit, or severe delirium.</div>
+<div class="step"><strong>Step 3. Define today’s functional target.</strong><br/>Choose the lowest useful goal: sit out of bed, stand, transfer, march in place, walk inside room, corridor ambulation, stairs, or discharge simulation.</div>
+<div class="step"><strong>Step 4. Prepare the patient and environment.</strong><br/>Teach splinted cough and move-in-the-tube mechanics. Secure lines, oxygen, drains, and telemetry. Pre-plan the route and sitting rest points.</div>
+<div class="step"><strong>Step 5. Monitor response.</strong><br/>Record HR, BP, SpO₂, RPE, dyspnea, pain, rhythm if available, gait quality, and symptoms before, during, and after activity.</div>
+<div class="step"><strong>Step 6. Progress, hold, or refer.</strong><br/>Progress if symptoms and vital signs are acceptable. Hold or down-grade if excessive fatigue, dyspnea, dizziness, poor color, chest pain, nausea, abnormal movement quality, or abnormal hemodynamics occur.<span class="citation">[4]</span></div>
+</div>
+<h3>Algorithm B. Stop criteria during mobilization</h3>
+<div class="grid two">
+<div class="mini-card">
+<h4>Stop immediately</h4>
+<ul>
+<li>Angina-like chest pressure, jaw tightness, or new ischemic symptoms.</li>
+<li>Severe dyspnea, accessory muscle overuse, cyanosis, pallor, or poor color.</li>
+<li>Dizziness, presyncope, syncope, confusion, or new neurological sign.</li>
+<li>Palpitations with instability or new significant arrhythmia.</li>
+<li>Sudden wound pain, sternal clicking/instability, or active bleeding.</li>
+<li>Nausea, diaphoresis, or excessive fatigue out of proportion to activity.</li>
+</ul>
+</div>
+<div class="mini-card">
+<h4>Then do this</h4>
+<ol>
+<li>Stop activity and sit or lie the patient safely.</li>
+<li>Check HR, BP, SpO₂, symptoms, rhythm if available.</li>
+<li>Give oxygen or medication only according to local medical order.</li>
+<li>Notify the nurse or physician if symptoms persist, vital signs are abnormal, or ischemia/arrhythmia is suspected.</li>
+<li>Document activity level, symptoms, vital response, and recovery time.</li>
+</ol>
+</div>
+</div>
+<h3>Algorithm C. Discharge readiness from Phase I</h3>
+<div class="algorithm">
+<div class="step"><strong>Respiratory safety.</strong><br/>Can perform breathing exercise and effective cough or airway clearance strategy. SpO₂ stable with prescribed oxygen plan.</div>
+<div class="step"><strong>Functional safety.</strong><br/>Independent or safely assisted bed mobility, transfers, toileting, walking household distance, and stairs if required at home.</div>
+<div class="step"><strong>Sternal and wound safety.</strong><br/>Understands wound signs, splinted cough, and safe upper-limb mechanics.</div>
+<div class="step"><strong>Exercise safety.</strong><br/>Understands RPE target, walking dose, warm-up/cool-down, stop symptoms, and whom to contact.</div>
+<div class="step"><strong>Secondary prevention.</strong><br/>Understands medication adherence, smoking cessation, BP/lipid/diabetes control, nutrition, sleep, stress, and outpatient CR referral.</div>
+</div>
+</section>
+<section class="card searchable" id="prescription">
+<h2>8. Practical exercise prescription</h2>
+<p class="lead">Prescription must match the local three-phase model. In Phase I, the exercise is functional mobilization. In Phase II, rehabilitation becomes a structured supervised outpatient aerobic and resistance program. Phase III maintains those gains through long-term independent or community-based exercise and secondary prevention.</p>
+<h3>Phase I inpatient prescription by postoperative stage</h3>
+<div class="timeline">
+<div class="day"><strong>ICU, once stable</strong><div>Positioning, breathing control, thoracic expansion, supported cough, ankle pumps, active limb ROM, sitting upright, dangling at bedside if allowed. Intensity: very light, RPE 9 to 11 or dyspnea 0 to 2/10. Goal: prevent pulmonary and immobility complications.</div></div>
+<div class="day"><strong>POD 1 to 2</strong><div>Bed mobility using move-in-the-tube technique, sit out of bed, sit-to-stand, transfer to chair, marching in place, short room ambulation. Frequency: several short bouts per day as tolerated. Monitor HR, BP, SpO₂, RPE, symptoms.</div></div>
+<div class="day"><strong>POD 2 to 4</strong><div>Progress corridor walking, repeated sit-to-stand, standing balance, self-care practice, shoulder and thoracic mobility within pain-free range. Use interval walking if fatigue is high, for example 1 to 3 minutes walking followed by seated rest.</div></div>
+<div class="day"><strong>Pre-discharge</strong><div>Increase walking distance, practice stairs if needed, simulate home ADLs, teach independent home walking plan, stop criteria, wound precautions, and outpatient cardiac rehabilitation referral.</div></div>
+</div>
+<h3>Phase II outpatient cardiac rehabilitation: aerobic prescription using FITT-VP</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Component</th><th>Practical prescription</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td>Frequency</td><td>Usually 3 to 5 days/week supervised or hybrid, plus home walking on non-supervised days when stable.</td><td>Frequent exposure builds endurance and confidence while allowing recovery.</td></tr>
+<tr><td>Intensity</td><td>Start low to moderate: about 40% HRR for low-functioning or high-risk patients, progressing toward 70% HRR when tolerated. RPE 11 to 14 on Borg 6 to 20, or CR10 2 to 4, is a practical anchor.<span class="citation">[4]</span></td><td>HR may be affected by beta-blockers, atrial fibrillation, anemia, and deconditioning, so RPE and symptoms are essential.</td></tr>
+<tr><td>Time</td><td>Build toward at least 20 minutes conditioning, then progress toward 30 to 60 minutes as appropriate. Use intervals such as 5 to 10 minute bouts in very deconditioned patients.<span class="citation">[4]</span></td><td>Duration is often progressed before intensity in early rehabilitation.</td></tr>
+<tr><td>Type</td><td>Walking, treadmill, cycle ergometer, stepper, low-impact circuit, or interval walking. Use large muscle dynamic exercise.</td><td>Dynamic aerobic exercise improves cardiovascular fitness with lower static load than heavy isometric work.</td></tr>
+<tr><td>Volume</td><td>Total weekly volume depends on risk and tolerance. For independent long-term prevention, aim toward general guideline targets after medical clearance.</td><td>Volume should be individualized and progressed gradually.</td></tr>
+<tr><td>Progression</td><td>Increase total duration first. When 20 minutes continuous cardiovascular exercise is achieved, intensity can be progressed carefully.<span class="citation">[4]</span></td><td>This reduces early overload and improves safety.</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Resistance and flexibility prescription</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Component</th><th>Early practical approach</th><th>Key cautions</th></tr></thead>
+<tbody>
+<tr><td>Resistance training</td><td>Begin with functional strengthening: sit-to-stand, heel raises, mini-squats, light lower limb resistance, and light upper limb activity close to the body. Formal resistance training is usually added after wound stability and program clearance.</td><td>Avoid breath-holding, heavy isometrics, sudden pulling/pushing, and painful upper limb loading. Watch BP response and sternotomy symptoms.</td></tr>
+<tr><td>Upper limb mobility</td><td>Gentle shoulder flexion, abduction, scapular retraction, thoracic extension, cervical ROM, and postural exercises within pain-free range. ACPICR notes ROM and postural exercises can be encouraged from 24 hours after surgery when appropriate.<span class="citation">[4]</span></td><td>Use controlled bilateral or unilateral movement within comfort. Keep arms close to the body for load-bearing tasks.</td></tr>
+<tr><td>Flexibility</td><td>Neck, pectoral, thoracic, shoulder girdle, hip flexor, calf, and hamstring stretches as needed.</td><td>Low intensity, no Valsalva, avoid aggressive chest wall stress.</td></tr>
+<tr><td>Balance and gait</td><td>Standing weight shift, marching, turns, walking with appropriate gait aid if needed, stairs before discharge if home requires it.</td><td>Monitor orthostatic symptoms, leg wound pain, edema, dizziness, and line safety.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+<strong>Example Phase I prescription:</strong> “Ambulation training 3 to 5 short bouts/day, starting with 2 to 5 minutes or room distance, RPE 9 to 11 initially, progress to RPE 11 to 13 if stable. Include breathing exercise, splinted cough, ankle pumps, postural correction, gentle shoulder ROM, and ADL transfer training. Monitor HR, BP, SpO₂, symptoms, incision pain, dizziness, and rhythm if telemetry is available.”
+      </div>
+</section>
+<section class="card searchable" id="respiratory">
+<h2>9. Respiratory rehabilitation, incentive spirometry, and IMT</h2>
+<p>CABG patients may have decreased postoperative lung volumes, respiratory muscle weakness, and expiratory flow limitation. These are relevant because postoperative pain, anesthesia, ventilation, and immobility reduce inspiratory depth and cough effectiveness.</p>
+<h3>Respiratory management table</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Intervention</th><th>How to prescribe</th><th>When useful</th><th>Exam nuance</th></tr></thead>
+<tbody>
+<tr><td>Breathing control</td><td>Slow nasal inspiration if possible, relaxed expiration, avoid breath-holding.</td><td>Anxiety, dyspnea, pain-guarded breathing.</td><td>Useful before coughing and before mobilization.</td></tr>
+<tr><td>Thoracic expansion / deep breathing</td><td>Several slow deep inspirations with inspiratory hold 2 to 3 seconds if tolerated.</td><td>Low lung volume, atelectasis risk, shallow breathing.</td><td>Must be pain-controlled and combined with positioning and mobility.</td></tr>
+<tr><td>Splinted cough or huff</td><td>Support sternum with pillow, folded towel, or hands within comfort. Use huff if strong cough is painful.</td><td>Secretion retention, weak cough, fear of sternal pain.</td><td>Teach that controlled cough protects lungs and does not mean the sternum will open if technique is correct.</td></tr>
+<tr><td>Incentive spirometry</td><td>Slow maximal inspiration through the device, hold, rest between repetitions, avoid rapid shallow use.</td><td>Can be used as a visual feedback tool for lung expansion.</td><td>Evidence for preventing pulmonary complications after CABG is mixed and not strong when used alone. It should not replace mobilization and breathing exercises.<span class="citation">[8]</span></td></tr>
+<tr><td>Inspiratory muscle training</td><td>Usually threshold-based. Start low, often around 30% MIP when MIP is measured, then progress by symptoms, RPE, and pressure tolerance. Protocols vary.</td><td>Low MIP, difficult weaning history, high pulmonary complication risk, reduced inspiratory strength, low lung volume.</td><td>Recent reviews suggest IMT may improve respiratory muscle strength, exercise capacity, LOS, and quality of life in postoperative cardiac rehabilitation, but protocols differ.<span class="citation">[9,10]</span></td></tr>
+</tbody>
+</table>
+</div>
+<h3>Flow-oriented incentive spirometer</h3>
+<div class="grid two">
+<div class="mini-card">
+<h4>Triflow principle</h4>
+<p>A typical flow-oriented incentive spirometer, such as a Triflow device, has three chambers in series, each containing a ball. During inspiration, the patient generates sub-atmospheric pressure above the ball, and the ball rises according to inspiratory flow.</p>
+<p>In a typical Triflow device, the first chamber rises at approximately 600 mL/s, the second at 900 mL/s, and the third at 1200 mL/s.</p>
+</div>
+<div class="mini-card">
+<h4>How to teach it</h4>
+<ol>
+<li>Sit upright with shoulders relaxed.</li>
+<li>Seal lips around the mouthpiece.</li>
+<li>Inhale slowly and deeply. Avoid fast, forceful, shallow sucking.</li>
+<li>Hold inspiration briefly if tolerated.</li>
+<li>Exhale normally, rest, and repeat as prescribed.</li>
+</ol>
+</div>
+</div>
+<div class="note warning">
+<strong>Important distinction:</strong> Incentive spirometry is feedback for lung expansion. IMT is strengthening of inspiratory muscles against resistance. They are not the same intervention.
+      </div>
+<h3>IMT indications</h3>
+<ul>
+<li><strong>Respiratory muscle weakness:</strong> low MIP, difficult weaning, shallow breathing, poor inspiratory endurance.</li>
+<li><strong>Decreased postoperative lung volume:</strong> atelectasis risk, low inspiratory capacity, reduced chest expansion from pain or guarding.</li>
+<li><strong>Limitation of expiratory flow or secretion clearance:</strong> indirect benefit through improved inspiratory depth, cough preparation, and ventilation distribution.</li>
+</ul>
+</section>
+<section class="card searchable" id="sternum">
+<h2>10. Sternotomy strategy: from strict precautions to “move in the tube”</h2>
+<p>Traditional sternal precautions often restrict pushing, pulling, lifting, reaching, and weight-bearing through the arms. These restrictions can produce fear, postural guarding, and neck or shoulder stiffness. Modern approaches increasingly focus on controlled movement rather than blanket restriction.</p>
+<div class="grid two">
+<div class="mini-card">
+<h3>Traditional precautions</h3>
+<ul>
+<li>Avoid forceful pushing or pulling.</li>
+<li>Avoid heavy lifting.</li>
+<li>Avoid unilateral loaded reaching far from the body.</li>
+<li>Use a pillow or splinting for cough.</li>
+<li>Log-roll or move carefully during bed mobility.</li>
+</ul>
+<p class="source-note">These are still used in some hospitals and should follow local surgical protocol.</p>
+</div>
+<div class="mini-card">
+<h3>Move in the tube</h3>
+<ul>
+<li>Keep the upper arms close to the trunk during loaded movement.</li>
+<li>Use symmetrical, pain-free movements when possible.</li>
+<li>Avoid long lever arms away from the chest.</li>
+<li>Resume ADLs within pain-free limits and wound safety.</li>
+<li>Teach confidence rather than fear of movement.</li>
+</ul>
+<p class="source-note">This approach is supported by clinical literature and is cited in ACPICR 2023 heart surgery considerations.<span class="citation">[4,5,6]</span></p>
+</div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Task</th><th>Practical cue</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td>Supine to sitting</td><td>Roll to side, keep elbows near trunk, use legs and trunk, avoid strong one-arm pulling.</td><td>Reduces sternal torque and pain.</td></tr>
+<tr><td>Sit-to-stand</td><td>Scoot forward, feet under knees, lean forward, push lightly with arms close if permitted, emphasize legs.</td><td>Promotes independence without excessive arm load.</td></tr>
+<tr><td>Coughing</td><td>Support the sternum with pillow or arms close to chest.</td><td>Improves cough confidence and secretion clearance.</td></tr>
+<tr><td>Reaching</td><td>Reach within comfort, avoid sudden weighted reaching far behind or far laterally.</td><td>Protects wound and prevents guarding.</td></tr>
+<tr><td>Walking aid</td><td>Use only if needed. Fit correctly. Avoid heavy leaning through arms.</td><td>Assist balance without making upper limbs the main weight-bearing source.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="card searchable" id="edema">
+<h2>11. Edema and graft-site management</h2>
+<p>Lower limb edema after CABG is common, particularly on the side of saphenous vein harvest. Edema can limit ankle mobility, alter gait, and increase pain. It must be distinguished from infection, DVT, heart failure, and renal-related fluid overload.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Finding</th><th>Likely issue</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>Bilateral pitting edema, dyspnea, weight gain</td><td>Fluid overload or heart failure pattern</td><td>Notify medical team, monitor SpO₂ and exertional tolerance, adjust activity intensity.</td></tr>
+<tr><td>Unilateral graft-leg swelling with wound discomfort</td><td>Harvest-site edema and local tissue trauma</td><td>Elevation during rest, ankle pumps, gentle walking, wound observation, compression if approved.</td></tr>
+<tr><td>Calf pain, marked unilateral swelling, warmth</td><td>Possible DVT</td><td>Do not massage. Refer for medical evaluation according to local pathway.</td></tr>
+<tr><td>Redness, drainage, fever, increasing wound pain</td><td>Possible wound infection</td><td>Report promptly. Modify exercise if systemic infection suspected.</td></tr>
+<tr><td>Leg heaviness during walking</td><td>Edema-related gait limitation</td><td>Shorter walking bouts, ankle mobility, seated rest, limb elevation after session.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+<strong>Practical prescription:</strong> ankle pumps 10 to 20 repetitions hourly while awake, short walking bouts several times per day, limb elevation when resting, and daily graft-site inspection. Compression should be individualized and cleared by the treating team.
+      </div>
+</section>
+<section class="card searchable" id="tools">
+<h2>12. Interactive tools</h2>
+<div class="split">
+<div>
+<div class="tool">
+<h3>AACVPR-style risk stratifier</h3>
+<p>Select any criteria present. This is a study tool, not a replacement for clinical judgment.</p>
+<h4>High-risk criteria</h4>
+<div class="checkbox-grid" id="highCriteria">
+<label class="check"><input type="checkbox"/> LVEF less than 40%</label>
+<label class="check"><input type="checkbox"/> Survivor of cardiac arrest or sudden death</label>
+<label class="check"><input type="checkbox"/> Complex ventricular dysrhythmia</label>
+<label class="check"><input type="checkbox"/> Cardiogenic shock, CHF, or post-procedure ischemia</label>
+<label class="check"><input type="checkbox"/> Abnormal hemodynamics with exercise</label>
+<label class="check"><input type="checkbox"/> Silent ischemia ST depression 2 mm or more</label>
+<label class="check"><input type="checkbox"/> Symptoms at low exercise level, less than 5 METs</label>
+<label class="check"><input type="checkbox"/> Functional capacity less than 5 METs</label>
+<label class="check"><input type="checkbox"/> Clinically significant depression</label>
+</div>
+<h4>Low-risk criteria, all should be true</h4>
+<div class="checkbox-grid" id="lowCriteria">
+<label class="check"><input type="checkbox"/> LVEF greater than 50%</label>
+<label class="check"><input type="checkbox"/> No complex dysrhythmia</label>
+<label class="check"><input type="checkbox"/> Uncomplicated CABG</label>
+<label class="check"><input type="checkbox"/> No CHF or post-event ischemic signs</label>
+<label class="check"><input type="checkbox"/> Normal hemodynamic and ECG response</label>
+<label class="check"><input type="checkbox"/> Asymptomatic with exercise or recovery</label>
+<label class="check"><input type="checkbox"/> Functional capacity at least 7 METs</label>
+<label class="check"><input type="checkbox"/> No clinical depression symptoms</label>
+</div>
+<button class="primary-btn" onclick="stratifyRisk()">Calculate risk</button>
+<div class="result" id="riskResult">Result will appear here.</div>
+</div>
+<div class="tool">
+<h3>Target HRR calculator</h3>
+<p>Use measured peak HR from exercise testing when available. If unavailable, age-predicted HRmax is only a rough estimate and can be inaccurate after CABG medications.</p>
+<div class="grid two">
+<label>Age <input id="age" type="number" value="60"/></label>
+<label>Resting HR <input id="restHR" type="number" value="70"/></label>
+<label>Peak or max HR, optional <input id="maxHR" placeholder="leave blank to estimate" type="number"/></label>
+<label>Intensity range <select id="intensityRange"><option value="40-70">40 to 70% HRR</option><option value="40-50">40 to 50% HRR</option><option value="50-60">50 to 60% HRR</option><option value="60-70">60 to 70% HRR</option></select></label>
+</div>
+<button class="primary-btn" onclick="calcHRR()">Calculate target HR</button>
+<div class="result" id="hrrResult">Target HR will appear here.</div>
+</div>
+</div>
+<div>
+<div class="tool">
+<h3>Phase I readiness checklist</h3>
+<p>Use this to decide whether to proceed, downgrade, or hold mobilization.</p>
+<div id="readyList">
+<label class="check"><input type="checkbox"/> Hemodynamically stable at rest</label>
+<label class="check"><input type="checkbox"/> Rhythm acceptable or monitored</label>
+<label class="check"><input type="checkbox"/> SpO₂ stable with current oxygen plan</label>
+<label class="check"><input type="checkbox"/> Pain controlled enough to breathe and move</label>
+<label class="check"><input type="checkbox"/> No active bleeding or uncontrolled drain issue</label>
+<label class="check"><input type="checkbox"/> Wound and sternum appear safe for planned task</label>
+<label class="check"><input type="checkbox"/> Lines and devices can be secured</label>
+<label class="check"><input type="checkbox"/> Patient can follow basic instructions or has adequate assistance</label>
+</div>
+<button class="primary-btn" onclick="checkReadiness()">Check readiness</button>
+<div class="result" id="readyResult">Readiness result will appear here.</div>
+</div>
+<div class="tool">
+<h3>Quick prescription generator</h3>
+<div class="grid two">
+<label>Phase <select id="phaseSelect"><option>Phase I clinical / inpatient</option><option>Phase II supervised outpatient CR</option><option>Phase III long-term maintenance</option></select></label>
+<label>Risk <select id="riskSelect"><option>High</option><option>Moderate</option><option>Low</option></select></label>
+<label>Main limiter <select id="limiterSelect"><option>Fatigue</option><option>Dyspnea</option><option>Sternal pain</option><option>Leg edema</option><option>Fear of movement</option></select></label>
+<label>Current function <select id="functionSelect"><option>Bed to chair only</option><option>Room ambulation</option><option>Corridor walking</option><option>Stair practice needed</option></select></label>
+</div>
+<button class="primary-btn" onclick="generatePrescription()">Generate</button>
+<div class="result" id="prescResult">Prescription will appear here.</div>
+</div>
+</div>
+</div>
+</section>
+<section class="card searchable" id="viva">
+<h2>13. Viva questions and concise answers</h2>
+<details class="details" open=""><summary>What is the main goal of Phase I cardiac rehabilitation after CABG?</summary><div class="content">To safely remobilize the patient, prevent pulmonary and thromboembolic complications, restore basic ADL independence, educate on sternotomy-safe movement and home activity, and prepare referral to outpatient cardiac rehabilitation.</div></details>
+<details class="details"><summary>Why does atelectasis occur after CABG?</summary><div class="content">Because general anesthesia, mechanical ventilation, postoperative pain, diaphragmatic inhibition, pleural irritation, supine positioning, and reduced mobility reduce tidal volume and cough effectiveness. This promotes basal lung collapse and secretion retention.</div></details>
+<details class="details"><summary>How do you prescribe walking in Phase I?</summary><div class="content">Use short, frequent, symptom-limited bouts. Start with bed-to-chair, standing, room ambulation, then corridor walking. Monitor HR, BP, SpO₂, RPE, dyspnea, pain, rhythm, dizziness, and wound symptoms. Progress duration and distance before intensity.</div></details>
+<details class="details"><summary>What is the difference between incentive spirometry and IMT?</summary><div class="content">Incentive spirometry provides visual feedback for deep inspiration and lung expansion. IMT strengthens inspiratory muscles by breathing against a threshold or resistive load, ideally prescribed using measured MIP.</div></details>
+<details class="details"><summary>What is “move in the tube”?</summary><div class="content">It is a sternotomy movement strategy that keeps the upper arms close to the body during loaded movement to reduce excessive sternal stress while allowing functional ADLs within pain-free limits.</div></details>
+<details class="details"><summary>What makes a post-CABG patient high risk in cardiac rehabilitation?</summary><div class="content">Examples include LVEF less than 40%, complex ventricular arrhythmias, cardiac arrest survivor, cardiogenic shock or CHF, post-procedure ischemia, abnormal hemodynamics, symptoms at low exercise level, functional capacity less than 5 METs, or clinically significant depression.</div></details>
+<details class="details"><summary>How do beta-blockers affect exercise prescription?</summary><div class="content">They reduce heart rate response, so HR alone may underestimate effort. Combine HR with RPE, dyspnea score, BP response, rhythm, symptoms, and functional tolerance.</div></details>
+<details class="details"><summary>When should mobilization be stopped?</summary><div class="content">Stop for angina-like symptoms, severe dyspnea, dizziness, presyncope, abnormal pallor or cyanosis, significant arrhythmia, symptomatic hypotension, new neurological sign, sternal instability, active bleeding, severe fatigue, nausea, or concerning vital sign response.</div></details>
+<details class="details"><summary>What should be included in discharge education?</summary><div class="content">Walking plan, RPE target, warm-up and cool-down, stop symptoms, wound care signs, sternal movement strategy, coughing technique, medication adherence, risk factor control, nutrition, smoking cessation, sleep, psychosocial support, and outpatient cardiac rehabilitation referral.</div></details>
+</section>
+<section class="card searchable" id="quiz">
+<h2>14. Quiz hub</h2>
+<p>Answer the questions, then check your score. These questions focus on board-style reasoning.</p>
+<div id="quizBox"></div>
+<button class="primary-btn" onclick="gradeQuiz()">Check answers</button>
+<div class="result" id="quizScore">Score will appear here.</div>
+</section>
+<section class="card searchable" id="references">
+<h2>15. References and sources</h2>
+<ol>
+<li>Lawton, J.S., Tamis-Holland, J.E., Bangalore, S., et al. (2022) ‘2021 ACC/AHA/SCAI Guideline for Coronary Artery Revascularization’, <em>Circulation</em>, 145, e18-e114. DOI: 10.1161/CIR.0000000000001038. Available at: <a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000001038" target="_blank">AHA Journals</a>.</li>
+<li>Bachar, B.J. and Manna, B. (2023) ‘Coronary Artery Bypass Graft’, <em>StatPearls</em>. Treasure Island: StatPearls Publishing. Available at: <a href="https://www.ncbi.nlm.nih.gov/books/NBK507836/" target="_blank">NCBI Bookshelf</a>.</li>
+<li>American Association of Cardiovascular and Pulmonary Rehabilitation (2012) <em>AACVPR Stratification Algorithm for Risk of Event</em>. Available at: <a href="https://registry.dev.aacvpr.org/Documents/AACVPR%20Risk%20Stratification%20Algorithm_June2012.pdf" target="_blank">AACVPR PDF</a>.</li>
+<li>Association of Chartered Physiotherapists in Cardiovascular Rehabilitation (2023) <em>Standards for Physical Activity and Exercise in the Cardiovascular Population</em>, 4th edn. Available at: <a href="https://www.acpicr.com/data/Page_Downloads/ACPICR2023StandardsReaderlayout.pdf" target="_blank">ACPICR Standards</a>.</li>
+<li>Adams, J., Lotshaw, A., Exum, E., et al. (2016) ‘An alternative approach to prescribing sternal precautions after median sternotomy, Keep Your Move in the Tube’, <em>Proceedings (Baylor University Medical Center)</em>, 29(1), pp. 97-100. DOI: 10.1080/08998280.2016.11929379.</li>
+<li>Gach, R., Triano, H., Patel, K., et al. (2021) ‘Keep Your Move in the Tube safely increases discharge home for cardiac surgery patients’, <em>PM&amp;R</em>. PubMed PMID: 33527697.</li>
+<li>Ennis, S., Lobley, G., Worrall, S. and Evans, B. (2018) ‘Early initiation of post-sternotomy cardiac rehabilitation exercise training and its effect on functional capacity’, <em>Journal of Thoracic Disease</em>. Available at: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5875596/" target="_blank">PMC</a>.</li>
+<li>Freitas, E.R.F.S., Soares, B.G.O., Cardoso, J.R. and Atallah, Á.N. (2012) ‘Incentive spirometry for preventing pulmonary complications after coronary artery bypass graft’, <em>Cochrane Database of Systematic Reviews</em>. Available at: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8094624/" target="_blank">PMC</a>.</li>
+<li>Cordeiro, A.L.L., et al. (2023) ‘Inspiratory muscle training in patients in the postoperative period of cardiac surgery: systematic review’, <em>Annals of Rehabilitation Medicine</em>. Available at: <a href="https://www.e-arm.org/journal/view.php?number=4311" target="_blank">Annals of Rehabilitation Medicine</a>.</li>
+<li>Inspiratory Muscle Training in Phase 1 and 2 Postoperative Cardiac Rehabilitation (2024). PubMed PMID: 38624192.</li>
+<li>Tessler, J., Ahmed, I. and Bordoni, B. (updated 2025) ‘Cardiac Rehabilitation’, <em>StatPearls</em>. Describes a three-phase framework: clinical/inpatient, outpatient cardiac rehabilitation, and post-cardiac-rehabilitation long-term maintenance. Available at: <a href="https://www.ncbi.nlm.nih.gov/books/NBK537196/" target="_blank">NCBI Bookshelf</a>.</li>
+<li>Servey, J.T. and Stephens, M. (2018) ‘Cardiac rehabilitation: a class 1 recommendation’, <em>Cleveland Clinic Journal of Medicine</em>, 85(7), pp. 551–558. States that cardiac rehabilitation is traditionally described in three phases and that phase nomenclature is not uniform. Available at: <a href="https://www.ccjm.org/content/85/7/551" target="_blank">Cleveland Clinic Journal of Medicine</a>.</li>
+<li>User-provided source: <em>CABG.docx</em>, uploaded in this chat. This guide incorporates CABG definition, graft materials, indications, complications, Phase I rehabilitation problems, incentive spirometry, and IMT indications from the uploaded source material.</li>
+</ol>
+<div class="note warning">
+<strong>Use in clinical practice:</strong> This guide is for study and clinical reasoning support. Apply local hospital protocols, surgeon-specific restrictions, and current patient status before prescribing exercise.
+      </div>
+</section>
+</main>
+</div>
+<a aria-label="Back to homepage" class="home-fab no-print" href="/studyrehab/" title="Back to homepage">🏠</a>
+<script>
+  const quiz = [
+    {q:"A post-CABG patient has LVEF 35% but no symptoms during short walking. What is the AACVPR risk level?", opts:["Low risk","Moderate risk","High risk","Cannot be stratified"], ans:2, exp:"LVEF less than 40% is a high-risk criterion."},
+    {q:"In Phase I CABG rehabilitation, what should usually be progressed first?", opts:["Heavy upper limb resistance","Duration and frequency of low-level activity","Maximal HR intensity","Plyometric activity"], ans:1, exp:"Early progression emphasizes short, frequent, symptom-limited activity and duration before intensity."},
+    {q:"Which symptom should make you stop ambulation immediately?", opts:["Mild incisional tightness at stable intensity","Leg heaviness from edema without instability","Jaw tightness with sweating","RPE 11 during corridor walking"], ans:2, exp:"Jaw tightness can be an ischemic equivalent and should trigger stopping and reassessment."},
+    {q:"The Triflow incentive spirometer raises the second ball at approximately what inspiratory flow?", opts:["300 mL/s","600 mL/s","900 mL/s","1500 mL/s"], ans:2, exp:"The chamber thresholds are 600, 900, and 1200 mL/s for the first, second, and third chambers."},
+    {q:"Which statement best distinguishes IMT from incentive spirometry?", opts:["IMT is only passive lung expansion","IMT strengthens inspiratory muscles against load","Incentive spirometry is resistance training","They are identical techniques"], ans:1, exp:"IMT is respiratory muscle training, while incentive spirometry is visual feedback for deep inspiration."},
+    {q:"A patient avoids coughing because he fears the sternum will open. What is the best rehab response?", opts:["Tell him not to cough for six weeks","Teach splinted cough and explain why secretion clearance matters","Give only lower limb strengthening","Avoid all mobilization"], ans:1, exp:"Splinted cough improves confidence and lung clearance while respecting sternotomy pain."},
+    {q:"Which finding suggests possible DVT rather than simple harvest-site edema?", opts:["Mild bilateral ankle swelling","Unilateral calf pain with warmth and marked swelling","Leg heaviness that improves with elevation","Bruising near incision only"], ans:1, exp:"Unilateral painful warm swelling should prompt medical evaluation for DVT."},
+    {q:"Why is RPE important after CABG?", opts:["HR is always normal after CABG","Beta-blockers, AF, anemia, and deconditioning can alter HR response","RPE replaces all vital sign monitoring","RPE is only used in athletes"], ans:1, exp:"RPE complements HR and symptoms when HR response is altered."},
+    {q:"What is the key cue in move-in-the-tube strategy?", opts:["Keep upper arms close to trunk during loaded movement","Avoid all shoulder ROM","Use only one arm to push strongly","Keep elbows maximally abducted"], ans:0, exp:"Keeping the upper arms close reduces excessive sternal stress during functional tasks."},
+    {q:"Which is the best Phase I goal before discharge?", opts:["Maximal exercise test in all patients","Safe household ambulation and ADL plan with stop criteria","Heavy resistance training","Running gait assessment"], ans:1, exp:"Phase I emphasizes safe function, education, and outpatient CR transition."}
+  ];
+  function initQuiz(){
+    const box=document.getElementById('quizBox');
+    box.innerHTML = quiz.map((item,i)=>`<div class="quiz-question"><p>${i+1}. ${item.q}</p>${item.opts.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join('')}<div class="quiz-feedback" id="fb${i}"></div></div>`).join('');
+  }
+  function gradeQuiz(){
+    let score=0;
+    quiz.forEach((item,i)=>{
+      const checked=document.querySelector(`input[name="q${i}"]:checked`);
+      const fb=document.getElementById(`fb${i}`);
+      if(!checked){fb.textContent='Not answered. '+item.exp; fb.className='quiz-feedback incorrect'; return;}
+      if(Number(checked.value)===item.ans){score++; fb.textContent='Correct. '+item.exp; fb.className='quiz-feedback correct';}
+      else{fb.textContent='Incorrect. '+item.exp; fb.className='quiz-feedback incorrect';}
+    });
+    document.getElementById('quizScore').innerHTML=`Score: <strong>${score}/${quiz.length}</strong>. Review the feedback under each question.`;
+  }
+  function updateThemeButton(){
+    const btn=document.getElementById('themeBtn');
+    if(btn){btn.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️ Light mode':'🌙 Night mode';}
+  }
+  function toggleTheme(){
+    const current=document.documentElement.getAttribute('data-theme');
+    const next=current==='dark'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',next);
+    localStorage.setItem('cabgTheme',next);
+    updateThemeButton();
+  }
+  let allDetailsOpen=false;
+  function toggleAllDetails(){
+    allDetailsOpen=!allDetailsOpen;
+    document.querySelectorAll('details').forEach(d=>d.open=allDetailsOpen);
+    const b=document.getElementById('expandBtn');
+    if(b){b.textContent=allDetailsOpen?'Collapse all':'Expand all';}
+  }
+  function filterSections(){
+    const q=document.getElementById('searchBox').value.toLowerCase().trim();
+    document.querySelectorAll('.searchable').forEach(sec=>{
+      const text=sec.innerText.toLowerCase();
+      sec.classList.toggle('hidden', q && !text.includes(q));
+    });
+  }
+  function stratifyRisk(){
+    const high=[...document.querySelectorAll('#highCriteria input')].some(x=>x.checked);
+    const lows=[...document.querySelectorAll('#lowCriteria input')];
+    const allLow=lows.every(x=>x.checked);
+    const res=document.getElementById('riskResult');
+    if(high){res.innerHTML='<strong style="color:var(--danger)">High risk.</strong> Any high-risk criterion is enough. Use closer monitoring, slower progression, and coordinate with cardiology or surgical team.'; return;}
+    if(allLow){res.innerHTML='<strong style="color:var(--success)">Low risk.</strong> All low-risk criteria are present. Progression may be more confident, while still respecting sternotomy and symptoms.'; return;}
+    res.innerHTML='<strong style="color:var(--warning)">Moderate risk or incomplete data.</strong> Patient meets neither high nor fully low-risk standards. Use supervised, gradual progression and monitor carefully.';
+  }
+  function calcHRR(){
+    const age=Number(document.getElementById('age').value);
+    const rest=Number(document.getElementById('restHR').value);
+    const maxInput=Number(document.getElementById('maxHR').value);
+    const max=maxInput || (220-age);
+    const [low,high]=document.getElementById('intensityRange').value.split('-').map(Number);
+    if(!age || !rest || !max || max<=rest){document.getElementById('hrrResult').textContent='Please enter valid values. Peak or max HR must be higher than resting HR.';return;}
+    const hrr=max-rest;
+    const lowHR=Math.round(rest + hrr*(low/100));
+    const highHR=Math.round(rest + hrr*(high/100));
+    document.getElementById('hrrResult').innerHTML=`Estimated target HR: <strong>${lowHR} to ${highHR} bpm</strong> using ${low}-${high}% HRR. Pair this with RPE, dyspnea, BP, rhythm, SpO₂, and symptoms, especially if the patient uses beta-blockers or has atrial fibrillation.`;
+  }
+  function checkReadiness(){
+    const items=[...document.querySelectorAll('#readyList input')];
+    const checked=items.filter(x=>x.checked).length;
+    const res=document.getElementById('readyResult');
+    if(checked===items.length){res.innerHTML='<strong style="color:var(--success)">Proceed with planned activity.</strong> Continue monitoring before, during, and after.';}
+    else if(checked>=5){res.innerHTML='<strong style="color:var(--warning)">Proceed with caution or downgrade.</strong> Consider lower task intensity, more assistance, or medical clarification.';}
+    else{res.innerHTML='<strong style="color:var(--danger)">Hold or reassess.</strong> Too many safety items are unchecked. Clarify medical stability and device safety first.';}
+  }
+  function generatePrescription(){
+    const phase=document.getElementById('phaseSelect').value;
+    const risk=document.getElementById('riskSelect').value;
+    const limiter=document.getElementById('limiterSelect').value;
+    const func=document.getElementById('functionSelect').value;
+    let text='';
+    if(phase==='Phase I clinical / inpatient'){
+      text=`${phase}, ${risk.toLowerCase()} risk, limiter: ${limiter}. Start with ${func.toLowerCase()} level training. Prescribe 3 to 5 short bouts/day, RPE 9 to 11 initially and up to 11 to 13 if stable. Include breathing control, thoracic expansion, splinted cough, ankle pumps, posture, gentle shoulder ROM, and move-in-the-tube transfer practice. Monitor HR, BP, SpO₂, RPE, dyspnea, pain, dizziness, rhythm if available, wound response, and recovery time.`;
+    }else if(phase==='Phase II supervised outpatient CR'){
+      text=`${phase}, ${risk.toLowerCase()} risk. Begin supervised aerobic exercise 3 days/week with home walking as tolerated. Use 40% HRR or RPE 11 for high-risk or deconditioned patients, progressing toward 70% HRR or RPE 14 only after stable duration. Start 10 to 20 minutes conditioning using intervals if needed. Add light resistance after clearance and wound stability. Address ${limiter.toLowerCase()} specifically. This includes both early post-discharge recovery and formal structured outpatient exercise, which some four-phase systems split into two labels.`;
+    }else{
+      text=`${phase}, ${risk.toLowerCase()} risk. Continue aerobic training 3 to 5 days/week, progress toward 30 to 60 minutes/session, add resistance 2 to 3 days/week as cleared, and focus on long-term secondary prevention, self-monitoring, and periodic medical follow-up. Monitor symptoms and adjust if ${limiter.toLowerCase()} limits adherence.`;
+    }
+    document.getElementById('prescResult').textContent=text;
+  }
+  (function(){
+    const saved=localStorage.getItem('cabgTheme');
+    if(saved){document.documentElement.setAttribute('data-theme',saved)}
+    initQuiz();
+    updateThemeButton();
+    const tocLinks=document.querySelectorAll('nav a');
+    const sections=Array.from(document.querySelectorAll('main section[id]'));
+    if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting){
+          tocLinks.forEach(a=>a.style.background='');
+          const active=document.querySelector(`nav a[href="#${e.target.id}"]`);
+          if(active) active.style.background='var(--accent3)';
+        }});
+      },{rootMargin:'-20% 0px -70% 0px'});
+      sections.forEach(s=>observer.observe(s));
+    }
+  })();
+</script>
+</body>
+</html>
